@@ -74,7 +74,7 @@ def checkIfUserIsOnline():
     
     isOnline = userDao.getUserOnlineStatusByUserName(username)
     return jsonify({
-        "Message": "User status",
+        "Message": "User online status",
         "isOnline": isOnline
     })         
 
@@ -90,7 +90,7 @@ def checkIfUserIsBusy():
     isBusy = userDao.getUserBusyStatusByUserName(username)
     return jsonify({
         "Message": "User busy status",
-        "isOnline": isBusy
+        "isBusy": isBusy
     })
     
 
@@ -106,7 +106,7 @@ def checkUserBalance():
     balance = userDao.getUserBalanceByUserName(username)
     return jsonify({
         "Message": "User balance status",
-        "isOnline": balance
+        "credits": balance
     })    
 
 
