@@ -63,5 +63,51 @@ def getUserRoleID():
     return user.role_id
 
 
+def checkIfUserIsOnline():
+    obj = json.loads(request.data)
+    username = obj['username']
+    user = userDao.getUserByUserName(username)
+    if user ==None:
+        return jsonify({
+            "Message": "Invalid user name",
+        })
+    
+    isOnline = userDao.getUserOnlineStatusByUserName(username)
+    return jsonify({
+        "Message": "User status",
+        "isOnline": isOnline
+    })         
+
+
+def checkIfUserIsBusy():
+    obj = json.loads(request.data)
+    username = obj['username']
+    user = userDao.getUserByUserName(username)
+    if user ==None:
+        return jsonify({
+            "Message": "Invalid user name",
+        })
+    isBusy = userDao.getUserBusyStatusByUserName(username)
+    return jsonify({
+        "Message": "User busy status",
+        "isOnline": isBusy
+    })
+    
+
+def checkUserBalance():
+    obj = json.loads(request.data)
+    username = obj['username']
+    user = userDao.getUserByUserName(username)
+    if user ==None:
+        return jsonify({
+            "Message": "Invalid user name",
+        })
+
+    balance = userDao.getUserBalanceByUserName(username)
+    return jsonify({
+        "Message": "User balance status",
+        "isOnline": balance
+    })    
+
 
 

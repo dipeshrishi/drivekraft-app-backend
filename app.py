@@ -46,6 +46,19 @@ def getUSer():
 def checkUserNameIfExists():
     return userService.checkUsername()
 
+@app.route("/api/user/online", methods =['POST'])
+def checkUserIsOnline():
+    return userService.checkIfUserIsOnline()
+
+@app.route("/api/user/busy", methods =['POST'])
+def checkUserIsOnline():
+    return userService.checkIfUserIsBusy()
+
+@app.route("/api/user/balance", methods =['POST'])
+def checkUserIsOnline():
+    return userService.checkUserBalance()
+
+
 @app.route("/api/session/book/request", methods =['POST'])
 def bookRequest():
         return sessionRequestService.sendSessionRequest()

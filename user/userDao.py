@@ -74,3 +74,28 @@ def updateUserBalance(id,bal):
 
     logging.info(f"Balance updated to  {bal} for user {id}")
     return
+
+def getUserOnlineStatusByUserName(username):
+    obj = connect()
+    mycursor = obj.cursor(buffered=True)
+    query = f"select is_online from user where username='{username}'"
+    mycursor.execute(query)
+    data = mycursor.fetchone()
+    return data[0]
+
+
+def getUserBusyStatusByUserName(username):
+    obj = connect()
+    mycursor = obj.cursor(buffered=True)
+    query = f"select is_busy from user where username='{username}'"
+    mycursor.execute(query)
+    data = mycursor.fetchone()
+    return data[0]
+
+def getUserBalanceByUserName(username):
+    obj = connect()
+    mycursor = obj.cursor(buffered=True)
+    query = f"select credits from user where username='{username}'"
+    mycursor.execute(query)
+    data = mycursor.fetchone()
+    return data[0]
