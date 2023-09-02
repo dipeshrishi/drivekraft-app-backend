@@ -45,7 +45,7 @@ def checkUsername():
     obj = json.loads(request.data)
     username = obj['username']
     id = userDao.getUserByUserName(username)
-    if id ==None:
+    if id == None:
         return jsonify({
             "Message": "Invalid user",
         })
@@ -67,7 +67,7 @@ def checkIfUserIsOnline():
     obj = json.loads(request.data)
     username = obj['username']
     user = userDao.getUserByUserName(username)
-    if user ==None:
+    if user == None:
         return jsonify({
             "Message": "Invalid user name",
         })
@@ -83,7 +83,7 @@ def checkIfUserIsBusy():
     obj = json.loads(request.data)
     username = obj['username']
     user = userDao.getUserByUserName(username)
-    if user ==None:
+    if user == None:
         return jsonify({
             "Message": "Invalid user name",
         })
@@ -98,7 +98,7 @@ def checkUserBalance():
     obj = json.loads(request.data)
     username = obj['username']
     user = userDao.getUserByUserName(username)
-    if user ==None:
+    if user == None:
         return jsonify({
             "Message": "Invalid user name",
         })
