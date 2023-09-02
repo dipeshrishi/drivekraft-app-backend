@@ -51,11 +51,11 @@ def checkUserIsOnline():
     return userService.checkIfUserIsOnline()
 
 @app.route("/api/user/busy", methods =['POST'])
-def checkUserIsOnline():
+def checkUserIsBusy():
     return userService.checkIfUserIsBusy()
 
 @app.route("/api/user/balance", methods =['POST'])
-def checkUserIsOnline():
+def checkUserBalance():
     return userService.checkUserBalance()
 
 
