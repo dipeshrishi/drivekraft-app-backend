@@ -1,5 +1,6 @@
 import sessionRequest.sessionRequestDao as sessionRequestDao
 import json
+import logging
 from flask import request,jsonify
 import user.userService as userService
 import otp.otpService as otpService
@@ -14,7 +15,15 @@ def sendSessionRequest():
     sessionRequestDao.createRequest(listnersId,token.userId)
 
     sessionRequest=sessionRequestDao.getLastRequestByUserId(token.userId)
-
+    listenersUser=userService.getUserById(listnersId)
+    logging.info(f"listener  current busy status is  {listenersUser.is_busy} for user {listenersUser.id}")
+    if(listenersUser.is_busy):
+         return jsonify({
+        'data': sessionRequest.__dict__,
+        'listenerBusyStatus':listenersUser.is_busy,
+        'message':'listener is busy already'
+    })
+    userService.updateBusyStatusByUserId(listenersUser.id)
     return jsonify({
         'data': sessionRequest.__dict__
     })

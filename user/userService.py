@@ -35,6 +35,15 @@ def updateBusyStatus():
         "user": (getUser().__dict__)
     })
 
+def updateBusyStatusByUserId(userId):
+    status = request.form.get('busy')
+    userDao.updateUsetStatus(userId,status)
+
+    return jsonify({
+        "msg": "Successfully Updated",
+        "user": userId
+    })
+
 
 def getUser():
     print("before token")

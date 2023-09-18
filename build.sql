@@ -29,7 +29,7 @@ CREATE TABLE otp(
         state ENUM('OTP_SEND','WRONG_OTP','CORRECT_OTP') DEFAULT 'OTP_SEND',
         created CHAR(50),
         updated CHAR(50)
-        )
+        );
 
 -- creating token table        
 CREATE TABLE token(
@@ -38,7 +38,7 @@ CREATE TABLE token(
         tokenvalue CHAR(70),
         created CHAR(50),
         expireAt CHAR(50)
-        )
+        );
 
 
 -- creating sessionRequest table
@@ -66,8 +66,8 @@ CREATE TABLE role(
 
 
 -- inserting into role ids needed to be mapped properly
-insert ignore into role values(2,'psychologist','Psychologist', now(),now())
-insert ignore into role values(3,'customer','Customer', now(),now())
+insert ignore into role values(2,'psychologist','Psychologist', now(),now());
+insert ignore into role values(3,'customer','Customer', now(),now());
 
 
 -- creating psychologist table
