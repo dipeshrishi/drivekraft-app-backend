@@ -20,6 +20,7 @@ def index():
     return "test"
 
 @app.route("/home")
+@app.route("/index.html")
 def home():
     return render_template("index.html")
 
