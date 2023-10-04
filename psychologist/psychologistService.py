@@ -6,3 +6,6 @@ def getPsychologistList():
 
 def getPsychologistById(psyId):
     return psychologistDao.getPsychologistById(psyId)
+
+def getPsychologistByDescription(description):
+    return psychologistDao.getPsychologistByDescription(description)
