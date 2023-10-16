@@ -186,6 +186,11 @@ def getListnersData():
     print(data,data2)
     return render_template("psychologistDashboard.html",data=data, data2= data2[0])
 
+
+@app.route('/requestStatusUpdate', methods = ['POST'])
+def requestStatusUpdate():
+        return sessionRequestService.updateSessionRequestStatus()
+
 #app.run(debug=True)
 
 
