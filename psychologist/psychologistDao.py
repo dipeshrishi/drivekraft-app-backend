@@ -108,3 +108,22 @@ def turnStatusOn(listner_id, startTime, startEpoch, activeTimes):
     obj.commit()
     disconnect(connection_pool, obj, mycursor)
     return
+
+
+def fetchDataForPsychologist():
+    connection_pool, obj = connect()
+    mycursor = obj.cursor(buffered=True)
+
+    query1 = "select name,session_count,round(round(yesterDayActiveTime/60)/60,2) from psychologist where enable= true"
+    print(query1)
+    mycursor.execute(query1)
+    data = mycursor.fetchall()
+
+    query2 = "select count(*) from transaction "
+    print(query2)
+    mycursor.execute(query2)
+    data2 = mycursor.fetchone()
+
+    disconnect(connection_pool, obj, mycursor)
+
+    return data, data2

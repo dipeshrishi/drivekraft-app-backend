@@ -10,6 +10,7 @@ def createRequest(listnerId, userId):
     connection_pool,obj = connect()
     mycursor = obj.cursor(buffered=True)
     sql = f"Insert into sessionRequest(listener_id,customer_id, expiry_at, updated_at,created_at) values('{listnerId}','{userId}',DATE_ADD(now(),INTERVAL 2 MINUTE), now(), now())"
+    print(sql)
     mycursor.execute(sql)
     obj.commit()
     disconnect(connection_pool,obj, mycursor)
@@ -21,6 +22,7 @@ def getLastRequestByUserId(userId):
     connection_pool,obj = connect()
     mycursor = obj.cursor(buffered=True)
     query = f"select id,listener_id,is_cancelled,customer_id,status, expiry_at,updated_at,created_at from sessionRequest where customer_id='{userId}' order by id desc limit 1"
+    print(query)
     mycursor.execute(query)
     data = mycursor.fetchone()
     disconnect(connection_pool, obj, mycursor)
@@ -33,6 +35,7 @@ def cancelSessionRequestBySessionId(sessionRequestId):
     connection_pool,obj = connect()
     mycursor = obj.cursor(buffered=True)
     sql = f"Update sessionRequest set is_cancelled ='1' , updated_at =now() where id ='{sessionRequestId}'"
+    print(sql)
     mycursor.execute(sql)
     obj.commit()
     disconnect(connection_pool,obj, mycursor)
@@ -59,6 +62,7 @@ def isExpiredOrCancelled(sessionRequestId):
     connection_pool,obj = connect()
     mycursor = obj.cursor(buffered=True)
     query = f"select id from sessionRequest  where id='{sessionRequestId}' and (expiry_at >= now() or is_cancelled =1 )"
+    print(query)
     mycursor.execute(query)
     data = mycursor.fetchone()
     disconnect(connection_pool, obj, mycursor)
@@ -73,6 +77,7 @@ def confirmSessionById(sessionRequestId):
     connection_pool,obj = connect()
     mycursor = obj.cursor(buffered=True)
     sql = f"Update sessionRequest set status ='1' , updated_at =now() where id ='{sessionRequestId}'"
+    print(sql)
     mycursor.execute(sql)
     obj.commit()
     disconnect(connection_pool,obj, mycursor)
@@ -86,6 +91,7 @@ def getValidSessionRequest(listner_Id):
     connection_pool,obj = connect()
     mycursor = obj.cursor(buffered=True)
     query = f"select id,listener_id,is_cancelled,customer_id,status, expiry_at,updated_at,created_at from sessionRequest where listener_id='{listner_Id}' and now() < expiry_at and status ='false'  and is_cancelled ='false'"
+    print(query)
     mycursor.execute(query)
     requestList = mycursor.fetchall()
     print(query)

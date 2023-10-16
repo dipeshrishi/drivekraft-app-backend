@@ -58,4 +58,6 @@ def turnStatusOn(email):
     return
 
 
+def fetchDataofPsyDashboard():
+    return psychologistDao.fetchDataForPsychologist();
 

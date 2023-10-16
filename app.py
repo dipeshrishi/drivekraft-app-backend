@@ -180,6 +180,12 @@ def trackListners(name,status):
             return json_object
 
 
-app.run(debug=True)
+@app.route("/admin/dashboard/listner")
+def getListnersData():
+    data,data2=psychologistService.fetchDataofPsyDashboard()
+    print(data,data2)
+    return render_template("psychologistDashboard.html",data=data, data2= data2[0])
+
+#app.run(debug=True)
 
 
