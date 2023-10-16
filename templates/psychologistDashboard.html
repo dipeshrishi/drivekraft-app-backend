@@ -5,9 +5,13 @@
 <table border="2px black solid">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Total Session</th>
-      <th>Hours active yesterday</th>
+        <th>Name</th>
+        <th>Total Session</th>
+        <th>Hours active yesterday</th>
+        <th>Total Session Count</th>
+         <th>Total Request Recieved</th>
+         <th>Missed Requests</th>
+
 
     </tr>
   </thead>
@@ -18,6 +22,9 @@
        <td> {{ value[0] }}</td>
        <td> {{ value[1] }}</td>
        <td> {{ value[2] }}</td>
+       <td> {{ value[3] }}</td>
+       <td> {{ value[4] }}</td>
+       <td> {{ value[5] }}</td>
 
    </tr>
   {% endfor %}

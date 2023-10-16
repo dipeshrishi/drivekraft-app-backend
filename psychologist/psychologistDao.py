@@ -114,7 +114,7 @@ def fetchDataForPsychologist():
     connection_pool, obj = connect()
     mycursor = obj.cursor(buffered=True)
 
-    query1 = "select name,session_count,round(round(yesterDayActiveTime/60)/60,2) from psychologist where enable= true"
+    query1 = "select name,session_count,round(round(yesterDayActiveTime/60)/60,2),session_count,TotalRequestsRecieved,missedRequests from psychologist where enable= true"
     print(query1)
     mycursor.execute(query1)
     data = mycursor.fetchall()
@@ -127,3 +127,31 @@ def fetchDataForPsychologist():
     disconnect(connection_pool, obj, mycursor)
 
     return data, data2
+
+
+def updatePsychologistSessionData(listener_id,status):
+    connection_pool, obj = connect()
+    mycursor = obj.cursor(buffered=True)
+
+    query = f"select missedRequests,TotalRequestsRecieved,session_count from psychologist where id = '{listener_id}' "
+    print(query)
+    mycursor.execute(query)
+    data2 = mycursor.fetchone()
+    missedRequests = int(data2[0])
+    TotalRequestsRecieved = int(data2[1])
+    session_count = int(data2[2])
+
+    if status == 'REQUEST_ACCEPTED':
+        query2 = f"update psychologist set session_count = '{session_count} +1' , TotalRequestsRecieved ='{TotalRequestsRecieved} +1'   where id='{listener_id}'"
+        print("here", query2)
+        mycursor.execute(query2)
+
+    if status == 'REQUEST_MISSED':
+        query2 = f"update psychologist set missedRequests = '{missedRequests} +1' , TotalRequestsRecieved ='{TotalRequestsRecieved} +1'   where id='{listener_id}'"
+        print("here", query2)
+        mycursor.execute(query2)
+
+    obj.commit()
+    disconnect(connection_pool, obj, mycursor)
+
+    return

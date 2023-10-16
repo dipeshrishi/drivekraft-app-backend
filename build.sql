@@ -148,3 +148,8 @@ CREATE TABLE activetimes(
 -- tracking total active times of a day
 ALTER TABLE psychologist Add COLUMN yesterDayActiveTime int DEFAULT '0';
 ALTER TABLE psychologist add COLUMN todayCurrentActiveTime int DEFAULT '0';
+
+
+-- tracking missed session requests
+ALTER TABLE psychologist Add COLUMN missedRequests int DEFAULT '0';
+ALTER TABLE psychologist Add COLUMN TotalRequestsRecieved int DEFAULT '0';
