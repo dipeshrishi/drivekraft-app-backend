@@ -160,8 +160,26 @@ def confirmRazorpayOrder():
     return paymentService.confirmRazorpayOrder()
 
 
+@app.route("/lastSeen", methods =['POST'])
+def lastSeen():
+    return psychologistService.updateLastSeen()
+
+@app.route("/trackListners/<name>/<status>",methods=['POST','GET'])
+def trackListners(name,status):
+        response=dict()
+        try:
+            psychologistService.updateStatus(name,status)
+            response['success'] = True
+            response['message'] = 'Psychologist status has been updated Successfully'
+            json_object = json.dumps(response)
+            return json_object
+        except Exception as error:
+            response['success'] = False
+            response['message'] = error
+            json_object = json.dumps(response)
+            return json_object
 
 
-#app.run(debug=True)
+app.run(debug=True)
 
 
