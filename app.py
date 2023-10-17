@@ -20,6 +20,7 @@ def index():
     return "test"
 
 @app.route("/home")
+@app.route("/index.html")
 def home():
     return render_template("index.html")
 
@@ -159,7 +160,36 @@ def confirmRazorpayOrder():
     return paymentService.confirmRazorpayOrder()
 
 
+@app.route("/lastSeen", methods =['POST'])
+def lastSeen():
+    return psychologistService.updateLastSeen()
 
+@app.route("/trackListners/<name>/<status>",methods=['POST','GET'])
+def trackListners(name,status):
+        response=dict()
+        try:
+            psychologistService.updateStatus(name,status)
+            response['success'] = True
+            response['message'] = 'Psychologist status has been updated Successfully'
+            json_object = json.dumps(response)
+            return json_object
+        except Exception as error:
+            response['success'] = False
+            response['message'] = error
+            json_object = json.dumps(response)
+            return json_object
+
+
+@app.route("/admin/dashboard/listner")
+def getListnersData():
+    data,data2=psychologistService.fetchDataofPsyDashboard()
+    print(data,data2)
+    return render_template("psychologistDashboard.html",data=data, data2= data2[0])
+
+
+@app.route('/requestStatusUpdate', methods = ['POST'])
+def requestStatusUpdate():
+        return sessionRequestService.updateSessionRequestStatus()
 
 #app.run(debug=True)
 

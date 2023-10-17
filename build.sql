@@ -130,3 +130,26 @@ CREATE TABLE transaction(
 
 
 ALTER TABLE psychologist MODIFY profile_image char(50);
+
+-- adding support for last seen
+ALTER TABLE psychologist  ADD lastSeen DATETIME DEFAULT now();
+
+-- creating table active times for tracking active times of listners
+CREATE TABLE activetimes(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        psyId INT ,
+        startTime varchar(50) NOT NULL,
+        endTime varchar(50) DEFAULT 0,
+        startEpoch  varchar(50) DEFAULT NULL,
+        endEpoch 	varchar(50) DEFAULT '0',
+        duration varchar(50)
+        );
+
+-- tracking total active times of a day
+ALTER TABLE psychologist Add COLUMN yesterDayActiveTime int DEFAULT '0';
+ALTER TABLE psychologist add COLUMN todayCurrentActiveTime int DEFAULT '0';
+
+
+-- tracking missed session requests
+ALTER TABLE psychologist Add COLUMN missedRequests int DEFAULT '0';
+ALTER TABLE psychologist Add COLUMN TotalRequestsRecieved int DEFAULT '0';
