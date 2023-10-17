@@ -1172,7 +1172,7 @@ ul.tabs-nav .tab-nav.active {
 --------------------------------*/
 .features {
   padding: 2rem 0;
-  background: url(images/departments-bg.jpg) no-repeat; no-repeat;
+  background: url(images/departments-bg.jpg) no-repeat;
   background-size: cover;
   backdrop-filter: blur(8px);
   padding-top: 4rem;
@@ -1942,7 +1942,7 @@ ul.tabs-nav .tab-nav.active {
 
 .stats-section h2,
 .stats-section h3 {
-  margin-bottom: 80px;
+  margin-bottom: 20px;
   font-size: 48px;
   font-weight: 600;
   text-align: center;
@@ -1950,7 +1950,7 @@ ul.tabs-nav .tab-nav.active {
 }
 
 .stats-section h3 {
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .stat {

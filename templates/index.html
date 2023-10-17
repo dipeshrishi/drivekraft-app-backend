@@ -201,9 +201,18 @@
                             class="button gradient-bg mt-4 none"
                             >Our Blogs</a
                           >
-                          <a href="about.html" class="button gradient-bg mt-4"
+                          {% comment %} <a href="about.html" class="button gradient-bg mt-4"
                             >Read More</a
-                          >
+                          > {% endcomment %}
+                          <div class="call-btn button gradient-bg mt-4">
+                            <a
+                              class="d-flex justify-content-center align-items-center"
+                              href="https://play.google.com/store/search?q=drivekraft&c=apps"
+                              target="_blank"
+                              ><img style="height: 26px; width: 26px;" src="{{ url_for('static', filename='images/download-icon-white-24.jpg') }}" /> Download App
+        
+                            </a>
+                          </div>
                         </footer>
                       </div>
                     </div>
@@ -264,11 +273,11 @@
                       Anonymous Conversations
                       </h3>
                     </header>
-                    <div class="entry-content">
+                    {% comment %} <div class="entry-content">
                       <p class="animate__animated wow animate__fadeInUp">
                         Your identity will remain anonymous from everyone while using the app
                       </p>
-                    </div>
+                    </div> {% endcomment %}
                   </div>
                 </div>
 
@@ -308,11 +317,11 @@
                       </h3>
                     </header>
 
-                    <div class="entry-content">
+                    {% comment %} <div class="entry-content">
                       <p class="animate__animated wow animate__fadeInUp">
                         Trained individuals who offer empathetic support through attentive listening skills
                       </p>
-                    </div>
+                    </div> {% endcomment %}
                   </div>
                 </div>
 
@@ -351,11 +360,11 @@
                         Affordable Pricing
                       </h3>
                     </header>
-                    <div class="entry-content">
+                    {% comment %} <div class="entry-content">
                       <p class="animate__animated wow animate__fadeInUp">
                         Get your session at just <strong id="price">$25/-</strong>
                       </p>
-                    </div>
+                    </div> {% endcomment %}
                   </div>
                 </div>
               </div>
