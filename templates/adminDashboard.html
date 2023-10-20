@@ -1,0 +1,43 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha256-/ykJw/wDxMa0AQhHDYfuMEwVb4JHMx9h4jD4XvHqVzU=" crossorigin="anonymous" />
+<strong>Session count since 15 Aug: {{ data2}}</strong>
+
+<table border="2px black solid">
+  <thead>
+    <tr>
+
+        <th>Date</th>
+        <th>Total Request Recieved in a day</th>
+        <th>Total Request Missed in a day</th>
+        <th>Total Request Accepted in a day</th>
+        <th>Total Request Cancelled in a day</th>
+        <th>Total Active Time in a day</th>
+        <th>Total Request Recieved</th>
+        <th>Total Request Missed</th>
+        <th>Total Request Cancelled </th>
+        <th>Total Session Count</th>
+         <th>Total Counselling Time</th>
+
+
+    </tr>
+  </thead>
+  <tbody border="2px black solid">
+  {% for value in data %}
+   <tr>
+
+       <td> {{ value[0] }}</td>
+       <td> {{ value[1] }}</td>
+       <td> {{ value[2] }}</td>
+       <td> {{ value[3] }}</td>
+       <td> {{ value[4] }}</td>
+       <td> {{ value[5] }}</td>
+       <td> {{ value[6] }}</td>
+       <td> {{ value[7] }}</td>
+       <td> {{ value[8] }}</td>
+       <td> {{ value[9] }}</td>
+       <td> {{ value[10] }}</td>
+
+   </tr>
+  {% endfor %}
+  </tbody>
+</table>

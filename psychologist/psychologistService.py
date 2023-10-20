@@ -31,12 +31,12 @@ def updateLastSeen():
 
 
 def updateStatus(email,status):
-    if status == "on":
+    if status == "on" or status =='1':
         turnStatusOff(email)
         turnStatusOn(email)
         return "added"
 
-    if status == "off":
+    if status == "off" or status =='0':
         turnStatusOff(email)
         return "done"
 
@@ -60,4 +60,8 @@ def turnStatusOn(email):
 
 def fetchDataofPsyDashboard():
     return psychologistDao.fetchDataForPsychologist();
+
+def incrementSessionCount(user_id):
+    psychologistDao.updateSessionCountById(user_id)
+
 
