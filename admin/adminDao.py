@@ -47,7 +47,6 @@ def fetchadminBoardData():
     mycursor.execute(query1)
     data = mycursor.fetchall()
 
-
     disconnect(connection_pool, obj, mycursor)
 
     return data

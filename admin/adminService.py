@@ -5,4 +5,4 @@ def updateDataForAdminDashboard():
 
 
 def fetchDataofAdminDashboard():
-    adminDao.fe
+    return adminDao.fetchadminBoardData()
