@@ -135,7 +135,7 @@ ALTER TABLE psychologist MODIFY profile_image char(50);
 ALTER TABLE psychologist  ADD lastSeen DATETIME DEFAULT now();
 
 -- creating table active times for tracking active times of listners
-CREATE TABLE activetimes(
+CREATE TABLE activeTimes(
         id INT PRIMARY KEY AUTO_INCREMENT,
         psyId INT ,
         startTime varchar(50) NOT NULL,
@@ -153,3 +153,20 @@ ALTER TABLE psychologist add COLUMN todayCurrentActiveTime int DEFAULT '0';
 -- tracking missed session requests
 ALTER TABLE psychologist Add COLUMN missedRequests int DEFAULT '0';
 ALTER TABLE psychologist Add COLUMN TotalRequestsRecieved int DEFAULT '0';
+
+
+-- creating table adminData
+CREATE TABLE admindata(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        today_Date varchar(50) DEFAULT '-1' ,
+        today_requestRecieved varchar(50) DEFAULT '-1',
+        today_requestMissed varchar(50) DEFAULT '-1',
+        today_requestAccepted varchar(50) DEFAULT '-1',
+        today_requestCancelled varchar(50) DEFAULT '-1',
+        today_activeTime varchar(50) DEFAULT '-1',
+        total_requestRecieved varchar(50) DEFAULT '-1',
+        total_requestMissed varchar(50) DEFAULT '-1',
+        total_requestCancelled varchar(50) DEFAULT '-1',
+        total_sessionCount varchar(50) DEFAULT '-1',
+        total_counsellingTime varchar(50) DEFAULT '-1'
+        );

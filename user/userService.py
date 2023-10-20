@@ -88,6 +88,9 @@ def setUserOnline():
     status = request.form.get('online_status')
     userDao.updateUserAvailStatus(user.id, status)
 
+    psychologistService.updateStatus(user.email,status)
+    print("status is " + str(status))
+
     return jsonify({
         "msg": "Successfully Updated.",
         'status' : 'Success',

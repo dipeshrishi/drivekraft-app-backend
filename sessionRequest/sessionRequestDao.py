@@ -117,7 +117,7 @@ def getValidSessionRequest(listner_Id):
 def getLastSessionRequestByUserContact(contact):
     connection_pool, obj = connect()
     mycursor = obj.cursor(buffered=True)
-    query = f"select listener_id,is_cancelled,customer_id,status, expiry_at,updated_at,created_at from sessionRequest  where customer_id in (select id from user where contact = '{contact}') order by created_at desc limit 1"
+    query = f"select id,listener_id,is_cancelled,customer_id,status, expiry_at,updated_at,created_at from sessionRequest  where customer_id in (select id from user where contact = '{contact}') order by created_at desc limit 1"
     print(query)
     mycursor.execute(query)
     data = mycursor.fetchone()

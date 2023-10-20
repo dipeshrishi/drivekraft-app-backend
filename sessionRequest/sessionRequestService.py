@@ -4,6 +4,8 @@ from flask import request,jsonify
 import user.userService as userService
 import otp.otpService as otpService
 import sessionRequest.sessionRequestDao as sessionRequestDao
+import psychologist.psychologistDao as psychologistDao
+import psychologist.psychologistService as psychologistService
 from datetime import datetime, timedelta
 
 def sendSessionRequest():
@@ -51,6 +53,7 @@ def confirmSessionRequest():
     else:
         sessionRequestDao.confirmSessionById(sessionRequestId)
         sessionRequest = sessionRequestDao.verifySessionRequestBySessionId(sessionRequestId)
+        psychologistService.incrementSessionCount(sessionRequest.listener_id)
 
         return jsonify({
             "status": "Success",
@@ -70,7 +73,9 @@ def updateSessionRequestStatus():
     now = datetime.now() + timedelta(minutes=30, hours=5)
     sessionRequest=sessionRequestDao.getLastSessionRequestByUserContact(contact)
 
-    updatePsychologistData(sessionRequest.listener_id,status)
+    psychologistDao.updatePsychologistSessionData(sessionRequest.listener_id,status)
+
+    return
 
 
 

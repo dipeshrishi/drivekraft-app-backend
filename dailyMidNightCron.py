@@ -1,6 +1,7 @@
-from flask_mysqldb import MySQL
+
 from db import connect, disconnect
 from psychologist import psychologistService
+from admin import adminService
 
 def dailyCron():
     # new new entry for all active listners
@@ -17,7 +18,7 @@ def dailyCron():
         toggleStatus(name[0])
 
     copyTodayCurrentTimeToYst()
-
+    adminService.fetchDataofAdminDashboard()
     return
 
 

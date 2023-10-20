@@ -8,6 +8,7 @@ import role.roleService as roleService
 import psychologist.psychologistService as psychologistService
 import sessionRequest.sessionRequestService as sessionRequestService
 import payment.paymentService as paymentService
+import admin.adminService as adminService
 
 
 app = Flask(__name__)
@@ -185,6 +186,11 @@ def getListnersData():
     data,data2=psychologistService.fetchDataofPsyDashboard()
     print(data,data2)
     return render_template("psychologistDashboard.html",data=data, data2= data2[0])
+
+@app.route("/admin/dashboard/secretKey/adminboard")
+def adminBoard():
+    data=adminService.fetchDataofAdminDashboard()
+    return render_template("adminDashboard.html", data=data)
 
 
 @app.route('/requestStatusUpdate', methods = ['POST'])
