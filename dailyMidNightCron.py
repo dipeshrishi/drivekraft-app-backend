@@ -18,7 +18,7 @@ def dailyCron():
         toggleStatus(name[0])
 
     copyTodayCurrentTimeToYst()
-    adminService.fetchDataofAdminDashboard()
+    adminService.updateDataForAdminDashboard()
     return
 
 
