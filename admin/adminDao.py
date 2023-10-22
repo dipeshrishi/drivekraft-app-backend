@@ -9,7 +9,7 @@ def updateDataForAdminDashboard():
     print(query)
     mycursor.execute(query)
     data = mycursor.fetchone()
-    disconnect(connection_pool, obj, mycursor)
+
     total_requestRecieved_yesterday,total_requestMissed_yesterday,total_requestCancelled_yesterday,total_sessionCount_yesterday = data[0],data[1],data[2],data[3]
 
     query = f"select sum(session_count), sum(TotalRequestsRecieved), sum(missedRequests), sum(yesterDayActiveTime) from psychologist"
@@ -22,10 +22,10 @@ def updateDataForAdminDashboard():
     total_requestMissed = int(data2[2])
     today_activeTime =  round(round(int(data2[3]) /60)/60,2)
     total_requestCancelled= total_requestRecieved - total_session-total_requestMissed
-    today_requestRecieved =total_requestRecieved- total_requestRecieved_yesterday
-    today_requestMissed = total_requestMissed- total_requestMissed_yesterday
-    today_requestCancelled= total_requestCancelled- total_requestCancelled_yesterday
-    today_requestAccepted= total_session-total_sessionCount_yesterday
+    today_requestRecieved =total_requestRecieved- int(total_requestRecieved_yesterday)
+    today_requestMissed = total_requestMissed- int(total_requestMissed_yesterday)
+    today_requestCancelled= total_requestCancelled- int(total_requestCancelled_yesterday)
+    today_requestAccepted= total_session-int(total_sessionCount_yesterday)
     tdate= date.today()
 
     query2 = f'''INSERT INTO admindata (today_Date, total_sessionCount, total_requestMissed, total_requestRecieved, total_requestCancelled, today_activeTime,today_requestRecieved,today_requestMissed,today_requestCancelled,today_requestAccepted)
