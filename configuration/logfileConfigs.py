@@ -11,6 +11,8 @@ def logFileCongig():
         # logging.basicConfig(filename='log/record' + '.log', level=logging.DEBUG,
         #                      format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
+    finally :
+        print("error in logging")
 
     return
 
