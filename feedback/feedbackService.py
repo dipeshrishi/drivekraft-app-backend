@@ -6,10 +6,10 @@ import sessionRequest.sessionRequestDao as sessionRequestDao
 
 def addFeedback():
     sessionId = request.form.get('session_request_id')
-    if(isValidSessionId(sessionId=sessionId)):
+    if(isValidSessionId(sessionId)):
         feedback = request.form.get('feedback')
         rating = request.form.get('rating')
-        feedbackDao.addFeedback(sessionId=sessionId,feedback=feedback,rating=rating)
+        feedbackDao.addFeedback(sessionId,feedback,rating)
         return jsonify({
             "message": "feedback submitted successfully",
             "feedbacck":feedback,
@@ -20,10 +20,10 @@ def addFeedback():
     })
 
 def isValidSessionId(sessionId):
-    sessionRequest = sessionRequestDao.verifySessionRequestBySessionId(sessionRequestId=sessionId)
+    sessionRequest = sessionRequestDao.verifySessionRequestBySessionId(sessionId)
     if(sessionRequest!=None):
-        return TRUE
-    return FALSE
+        return True
+    return False
 
 
     
