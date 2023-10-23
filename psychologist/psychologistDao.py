@@ -154,7 +154,7 @@ def updatePsychologistSessionData(listener_id,status):
     obj.commit()
     disconnect(connection_pool, obj, mycursor)
 
-    return
+    return "updated"
 
 def updateSessionCountById(user_id):
     connection_pool, obj = connect()
