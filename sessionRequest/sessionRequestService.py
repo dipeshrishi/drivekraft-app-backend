@@ -6,6 +6,7 @@ import otp.otpService as otpService
 import sessionRequest.sessionRequestDao as sessionRequestDao
 import psychologist.psychologistDao as psychologistDao
 import psychologist.psychologistService as psychologistService
+import nortificationMessage.nortificationMessageService as nortificationService
 from datetime import datetime, timedelta
 
 def sendSessionRequest():
@@ -74,6 +75,8 @@ def updateSessionRequestStatus():
     sessionRequest=sessionRequestDao.getLastSessionRequestByUserContact(contact)
 
     psychologistDao.updatePsychologistSessionData(sessionRequest.listener_id,status)
+    if status == 'REQUEST_MISSED':
+        nortificationService.nortifyMissedMessage(sessionRequest.listener_id)
 
     return "updated"
 
