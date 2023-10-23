@@ -9,6 +9,7 @@ import psychologist.psychologistService as psychologistService
 import sessionRequest.sessionRequestService as sessionRequestService
 import payment.paymentService as paymentService
 import admin.adminService as adminService
+import feedback.feedbackService as feedbackService
 
 
 app = Flask(__name__)
@@ -196,6 +197,10 @@ def adminBoard():
 @app.route('/requestStatusUpdate', methods = ['POST'])
 def requestStatusUpdate():
         return sessionRequestService.updateSessionRequestStatus()
+
+@app.route('/api/reviews', methods = ['POST'])
+def addFeedbackForSessionRequest():
+        return feedbackService.addFeedback()
 
 #app.run(debug=True)
 
