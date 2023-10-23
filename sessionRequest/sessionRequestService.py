@@ -75,7 +75,7 @@ def updateSessionRequestStatus():
 
     psychologistDao.updatePsychologistSessionData(sessionRequest.listener_id,status)
 
-    return
+    return "updated"
 
 
 
