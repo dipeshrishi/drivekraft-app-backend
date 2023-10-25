@@ -141,6 +141,7 @@ def updatePsychologistSessionData(listener_id,status):
     TotalRequestsRecieved = int(data2[1])
     session_count = int(data2[2])
 
+    # i guess REQUEST_ACCEPTED doesnt work ... haha
     if status == 'REQUEST_ACCEPTED':
         query2 = f"update psychologist set session_count = {session_count} +1 , TotalRequestsRecieved ={TotalRequestsRecieved} +1   where user_id='{listener_id}'"
         print("here", query2)
@@ -160,13 +161,14 @@ def updateSessionCountById(user_id):
     connection_pool, obj = connect()
     mycursor = obj.cursor(buffered=True)
 
-    query = f"select session_count from psychologist where user_id = '{user_id}' "
+    query = f"select session_count,TotalRequestsRecieved from psychologist where user_id = '{user_id}' "
     print(query)
     mycursor.execute(query)
     data2 = mycursor.fetchone()
     count = int(data2[0])
+    requestCount = int(data2[1])
 
-    query2 = f"update psychologist set session_count = {count} +1   where user_id='{user_id}'"
+    query2 = f"update psychologist set session_count = {count} +1 ,TotalRequestsRecieved= {requestCount} +1  where user_id='{user_id}'"
     print("here", query2)
     mycursor.execute(query2)
 
