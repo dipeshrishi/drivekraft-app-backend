@@ -2,7 +2,7 @@
 
 
 class transaction:
-  def __init__(self,id,transaction_id, user_id,psychologist_id,session_request_id,seconds_chatted,amount_deducted,created_at,updated_at):
+  def __init__(self,id,transaction_id, user_id,psychologist_id,session_request_id,seconds_chatted,amount_deducted,session_type,created_at,updated_at):
     self.id = id
     self.transaction_id = transaction_id
     self.user_id = user_id
@@ -10,6 +10,7 @@ class transaction:
     self.session_request_id = session_request_id
     self.seconds_chatted = seconds_chatted
     self.amount_deducted = amount_deducted
+    self.session_type=session_type
     self.created_at = created_at
     self.updated_at = updated_at
 

@@ -202,6 +202,10 @@ def requestStatusUpdate():
 def addFeedbackForSessionRequest():
         return feedbackService.addFeedback()
 
+@app.route('/psychologists/session-type', methods = ['POST'])
+def updatePsychologistSessionType():
+        return userService.updatingSessionType()
+
 #app.run(debug=True)
 
 
