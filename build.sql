@@ -170,3 +170,11 @@ CREATE TABLE admindata(
         total_sessionCount varchar(50) DEFAULT '-1',
         total_counsellingTime varchar(50) DEFAULT '-1'
         );
+
+-- adding colums to track calling and texting
+
+ALTER TABLE user Add COLUMN is_call int DEFAULT '0';
+ALTER TABLE user Add COLUMN is_chat int DEFAULT '1';
+
+ALTER TABLE sessionRequest Add COLUMN session_type varchar(50)  DEFAULT 'chat';
+ALTER TABLE transaction Add COLUMN session_type varchar(50)  DEFAULT 'chat';

@@ -1,16 +1,18 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha256-/ykJw/wDxMa0AQhHDYfuMEwVb4JHMx9h4jD4XvHqVzU=" crossorigin="anonymous" />
-<strong>Session count since 15 Aug: {{ data2}}</strong>
-
+<strong>Drivekraft Listners report !!</strong>
+<br>
+<br>
 <table border="2px black solid">
   <thead>
     <tr>
         <th>Name</th>
-        <th>Total Session</th>
         <th>Hours active yesterday</th>
-        <th>-</th>
-         <th>Total Request Recieved</th>
-         <th>Missed Requests</th>
+        <th>Total Request Recieved</th>
+        <th>Total Session</th>
+        <th>Missed Requests</th>
+
+
 
 
     </tr>
@@ -20,10 +22,9 @@
    <tr>
 
        <td> {{ value[0] }}</td>
-       <td> {{ value[1] }}</td>
        <td> {{ value[2] }}</td>
-       <td> -</td>
-       <td> {{ value[4] }}</td>
+       <td> {{ value[4]-50 }} </td>
+       <td> {{ value[1]-50 }} </td>
        <td> {{ value[5] }}</td>
 
    </tr>

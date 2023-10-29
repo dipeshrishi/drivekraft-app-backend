@@ -136,3 +136,15 @@ def confirmUsername():
         "status": True,
         "message": "Username registered.",
     })
+
+def updatingSessionType():
+    user = getUser()
+    is_chat = request.form.get('chat')
+    is_call = request.form.get('call')
+
+    userDao.updateAvailableSessionTypeByUserId(user.id,is_chat,is_call)
+
+    return jsonify({
+        "status": 'Success',
+        "message": "Session type call updated.",
+    })

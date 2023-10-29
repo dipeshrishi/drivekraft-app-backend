@@ -3,6 +3,7 @@ from flask import request,jsonify
 import requests
 import payment.paymentDao as paymentDao
 import user.userService as userService
+import sessionRequest.sessionRequestService as sessionRequestService
 import user.userDao as userDao
 import logging
 def createRazorpayOrder():
@@ -33,6 +34,8 @@ def placeRazorpayOrder():
     user= userService.getUser()
     #obj = json.loads(request.data)
     transId = request.form.get('transaction_id')
+    sessionRequest=sessionRequestService.getSessionByRequestId(request.form.get('session_request_id'))
+
 
     if user.credits<5 :
         return jsonify({
@@ -46,7 +49,7 @@ def placeRazorpayOrder():
     cost = int((int(seconds_chatted) + 60)/60) * 5
 
     if transactional== None:
-         transId=paymentDao.createTranaction(user.id,request.form.get('psychologist_id'),request.form.get('session_request_id'),request.form.get('seconds_chatted'),cost)
+         transId=paymentDao.createTranaction(user.id,request.form.get('psychologist_id'),request.form.get('session_request_id'),request.form.get('seconds_chatted'),cost,sessionRequest.session_type)
     else:
          paymentDao.updateTranaction(transId,seconds_chatted,cost)
 

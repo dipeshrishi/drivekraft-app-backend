@@ -139,3 +139,15 @@ def updateUsername(user_id,username):
 
     logging.info(f"usermane  updated to  {username} for user {user_id}")
     return
+
+
+def updateAvailableSessionTypeByUserId(user_id,is_chat,is_call):
+    connection_pool, obj = connect()
+    mycursor = obj.cursor(buffered=True)
+    sql = f"Update user set is_call ='{is_call}',is_chat='{is_chat}',updated =now() where id ='{user_id}'"
+    mycursor.execute(sql)
+    obj.commit()
+    disconnect(connection_pool, obj, mycursor)
+
+    logging.info(f"Session type updated  for user {user_id}")
+    return

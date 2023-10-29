@@ -11,11 +11,15 @@ from datetime import datetime, timedelta
 
 def sendSessionRequest():
     listnersId = request.form.get('listener_id')
+    try:
+        session_type =request.form.get('session_type')
+    except:
+        session_type= 'chat'
 
     tokenValue = userService.getTokenFromRequest()
     token = otpService.getTokenFromTokenValue(tokenValue)
 
-    sessionRequestDao.createRequest(listnersId,token.userId)
+    sessionRequestDao.createRequest(listnersId,session_type,token.userId)
 
     sessionRequest=sessionRequestDao.getLastRequestByUserId(token.userId)
 

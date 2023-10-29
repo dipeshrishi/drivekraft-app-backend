@@ -19,23 +19,23 @@ def storePaymentOrder(responseDict, userId):
 def getTransactionaByTransId(transId):
     connection_pool,obj = connect()
     mycursor = obj.cursor(buffered=True)
-    query = f"select id,transaction_id, userId,psychologist_id,session_request_id,seconds_chatted,amount_deducted,created_at,updated_at from transaction where transaction_id='{transId}'"
+    query = f"select id,transaction_id, userId,psychologist_id,session_request_id,seconds_chatted,amount_deducted,session_type,created_at,updated_at from transaction where transaction_id='{transId}'"
     mycursor.execute(query)
     data = mycursor.fetchone()
     disconnect(connection_pool, obj, mycursor)
     if data == None:
         return None
-    return transaction.transaction(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8])
+    return transaction.transaction(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8],data[9])
 
 
-def createTranaction(user_id,psychologist_id,session_request_id,seconds_chatted,cost):
+def createTranaction(user_id,psychologist_id,session_request_id,seconds_chatted,cost,session_type):
     tranactionalId= str(uuid.uuid4())
     connection_pool,obj = connect()
     mycursor = obj.cursor(buffered=True)
     sql = f"Insert into transaction(transaction_id, userId,psychologist_id," \
-          f"session_request_id,seconds_chatted,amount_deducted,created_at,updated_at)" \
+          f"session_request_id,seconds_chatted,amount_deducted,session_type,created_at,updated_at)" \
           f" values('{tranactionalId}','{user_id}','{psychologist_id}','{session_request_id}'," \
-          f"'{seconds_chatted}','{cost}', now(), now() )"
+          f"'{seconds_chatted}','{cost}','{session_type}', now(), now() )"
     mycursor.execute(sql)
     obj.commit()
     disconnect(connection_pool,obj, mycursor)
