@@ -214,6 +214,10 @@ def placeRazorpayOrder():
 def confirmRazorpayOrder():
     return paymentService.confirmRazorpayOrder()
 
+@app.route("/api/search/psychologist", methods =['POST'])
+def searchPsychologistByDescription():
+    return psychologistService.getPsychologistByDescription()
+
 
 @app.route("/lastSeen", methods =['POST'])
 @database_connection

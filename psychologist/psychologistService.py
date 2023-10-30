@@ -11,6 +11,10 @@ def getPsychologistList():
 def getPsychologistById(psyId):
     return psychologistDao.getPsychologistById(psyId)
 
+
+def getPsychologistByDescription(description):
+    return psychologistDao.getPsychologistByDescription(description)
+
 def updateLastSeen():
     response = dict()
     try:
@@ -63,5 +67,6 @@ def fetchDataofPsyDashboard():
 
 def incrementSessionCount(user_id):
     psychologistDao.updateSessionCountById(user_id)
+
 
 
