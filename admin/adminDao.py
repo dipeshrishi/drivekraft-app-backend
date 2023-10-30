@@ -1,9 +1,11 @@
 from datetime import date
 
 from db import connect, disconnect
+from flask import  g
 def updateDataForAdminDashboard():
-    connection_pool, obj = connect()
-    mycursor = obj.cursor(buffered=True)
+    # connection_pool, obj = connect()
+    # mycursor = obj.cursor(buffered=True)
+    mycursor = g.cursor
 
     query = f"select total_requestRecieved,total_requestMissed,total_requestCancelled,total_sessionCount from admindata  order by id desc limit 1"
     print(query)
@@ -32,21 +34,23 @@ def updateDataForAdminDashboard():
 VALUES ('{tdate}', {total_session}, {total_requestMissed}, {total_requestRecieved}, {total_requestCancelled}, {today_activeTime},{today_requestRecieved},{today_requestMissed},{today_requestCancelled},{today_requestAccepted})'''
 
     mycursor.execute(query2)
-    obj.commit()
-    disconnect(connection_pool, obj, mycursor)
+    g.db.commit()
+    #obj.commit()
+    # disconnect(connection_pool, obj, mycursor)
 
     return
 
 
 def fetchadminBoardData():
-    connection_pool, obj = connect()
-    mycursor = obj.cursor(buffered=True)
+    # connection_pool, obj = connect()
+    # mycursor = obj.cursor(buffered=True)
+    mycursor = g.cursor
 
     query1 = "select today_Date,today_requestRecieved,today_requestMissed,today_requestAccepted,today_requestCancelled,today_activeTime,total_requestRecieved,total_requestMissed,total_requestCancelled,total_sessionCount,total_counsellingTime from admindata order by id desc"
     print(query1)
     mycursor.execute(query1)
     data = mycursor.fetchall()
 
-    disconnect(connection_pool, obj, mycursor)
+    #disconnect(connection_pool, obj, mycursor)
 
     return data
