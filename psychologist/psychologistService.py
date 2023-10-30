@@ -12,7 +12,9 @@ def getPsychologistById(psyId):
     return psychologistDao.getPsychologistById(psyId)
 
 
-def getPsychologistByDescription(description):
+def getPsychologistByDescription():
+    obj = json.loads(request.data)
+    description = obj['value']
     return psychologistDao.getPsychologistByDescription(description)
 
 def updateLastSeen():
@@ -68,5 +70,6 @@ def fetchDataofPsyDashboard():
 def incrementSessionCount(user_id):
     psychologistDao.updateSessionCountById(user_id)
 
-
+def getPsychologistForSearchPage():
+    return psychologistDao.psyListForSearchPage()
 

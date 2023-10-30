@@ -215,9 +215,19 @@ def confirmRazorpayOrder():
     return paymentService.confirmRazorpayOrder()
 
 @app.route("/api/search/psychologist", methods =['POST'])
+@database_connection
 def searchPsychologistByDescription():
-    return psychologistService.getPsychologistByDescription()
-
+    psy= psychologistService.getPsychologistByDescription()
+    return jsonify({
+        "psyologistList": (psy)
+    })
+@app.route("/api/get/psychologistforSearch", methods =['Get'])
+@database_connection
+def imagesForSearchPage():
+    psy= psychologistService.getPsychologistForSearchPage()
+    return jsonify({
+        "psyologistList": (psy)
+    })
 
 @app.route("/lastSeen", methods =['POST'])
 @database_connection
