@@ -130,3 +130,51 @@ CREATE TABLE transaction(
 
 
 ALTER TABLE psychologist MODIFY profile_image char(50);
+
+-- adding support for last seen
+ALTER TABLE psychologist  ADD lastSeen DATETIME DEFAULT now();
+
+-- creating table active times for tracking active times of listners
+CREATE TABLE activeTimes(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        psyId INT ,
+        startTime varchar(50) NOT NULL,
+        endTime varchar(50) DEFAULT 0,
+        startEpoch  varchar(50) DEFAULT NULL,
+        endEpoch 	varchar(50) DEFAULT '0',
+        duration varchar(50)
+        );
+
+-- tracking total active times of a day
+ALTER TABLE psychologist Add COLUMN yesterDayActiveTime int DEFAULT '0';
+ALTER TABLE psychologist add COLUMN todayCurrentActiveTime int DEFAULT '0';
+
+
+-- tracking missed session requests
+ALTER TABLE psychologist Add COLUMN missedRequests int DEFAULT '0';
+ALTER TABLE psychologist Add COLUMN TotalRequestsRecieved int DEFAULT '0';
+
+
+-- creating table adminData
+CREATE TABLE admindata(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        today_Date varchar(50) DEFAULT '-1' ,
+        today_requestRecieved varchar(50) DEFAULT '-1',
+        today_requestMissed varchar(50) DEFAULT '-1',
+        today_requestAccepted varchar(50) DEFAULT '-1',
+        today_requestCancelled varchar(50) DEFAULT '-1',
+        today_activeTime varchar(50) DEFAULT '-1',
+        total_requestRecieved varchar(50) DEFAULT '-1',
+        total_requestMissed varchar(50) DEFAULT '-1',
+        total_requestCancelled varchar(50) DEFAULT '-1',
+        total_sessionCount varchar(50) DEFAULT '-1',
+        total_counsellingTime varchar(50) DEFAULT '-1'
+        );
+
+-- adding colums to track calling and texting
+
+ALTER TABLE user Add COLUMN is_call int DEFAULT '0';
+ALTER TABLE user Add COLUMN is_chat int DEFAULT '1';
+
+ALTER TABLE sessionRequest Add COLUMN session_type varchar(50)  DEFAULT 'chat';
+ALTER TABLE transaction Add COLUMN session_type varchar(50)  DEFAULT 'chat';

@@ -22,6 +22,10 @@ def sendOtpInternally():
     })
 
     otp= generateOtp()
+
+    if contactNumber =='917889085355' or contactNumber =='917007309707' or contactNumber =='916284876974' :
+        otp = '122207' # dont change this value.. this is share with playsore as well for verifcation
+
     chatApi.sendTemplate('otp', [otp],[], contactNumber)
     logging.info(f"OTP :  {otp} send to user")
 

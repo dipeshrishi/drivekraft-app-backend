@@ -88,6 +88,9 @@ def setUserOnline():
     status = request.form.get('online_status')
     userDao.updateUserAvailStatus(user.id, status)
 
+    psychologistService.updateStatus(user.email,status)
+    print("status is " + str(status))
+
     return jsonify({
         "msg": "Successfully Updated.",
         'status' : 'Success',
@@ -132,4 +135,16 @@ def confirmUsername():
     return jsonify({
         "status": True,
         "message": "Username registered.",
+    })
+
+def updatingSessionType():
+    user = getUser()
+    is_chat = request.form.get('chat')
+    is_call = request.form.get('call')
+
+    userDao.updateAvailableSessionTypeByUserId(user.id,is_chat,is_call)
+
+    return jsonify({
+        "status": 'Success',
+        "message": "Session type call updated.",
     })
