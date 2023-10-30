@@ -1,5 +1,6 @@
 from db import connect,disconnect
 import  psychologist.psychologist as psychologist
+from flask import  g
 import json
 
 
@@ -114,8 +115,9 @@ def turnStatusOn(listner_id, startTime, startEpoch, activeTimes):
 
 
 def fetchDataForPsychologist():
-    connection_pool, obj = connect()
-    mycursor = obj.cursor(buffered=True)
+    #connection_pool, obj = connect()
+    mycursor = g.cursor
+    #mycursor = obj.cursor(buffered=True)
 
     query1 = "select name,session_count,round(round(yesterDayActiveTime/60)/60,2),session_count,TotalRequestsRecieved,missedRequests from psychologist where enable= true"
     print(query1)
@@ -127,7 +129,7 @@ def fetchDataForPsychologist():
     mycursor.execute(query2)
     data2 = mycursor.fetchone()
 
-    disconnect(connection_pool, obj, mycursor)
+    #disconnect(connection_pool, obj, mycursor)
 
     return data, data2
 
