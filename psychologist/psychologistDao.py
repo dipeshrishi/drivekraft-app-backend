@@ -5,8 +5,9 @@ import json
 
 
 def getPsychologistInOrder():
-    connection_pool,obj = connect()
-    mycursor = obj.cursor(buffered=True)
+    # connection_pool,obj = connect()
+    # mycursor = obj.cursor(buffered=True)
+    mycursor = g.cursor
     query = '''select p.id,p.name,p.profile_image,p.is_busy,p.firebase_id,p.firebase_name,p.firebase_email,p.firebase_password,p.uuid,
       p.user_id, p.description,p.session_count,p.rating,
                p.yrs_of_exp,p.education,p.short_desc,p.status,order_,p.created_at
@@ -14,7 +15,7 @@ def getPsychologistInOrder():
     mycursor.execute(query)
     psyData = mycursor.fetchall()
 
-    disconnect(connection_pool, obj, mycursor)
+    # disconnect(connection_pool, obj, mycursor)
 
     psychologistList= list()
 
@@ -28,8 +29,9 @@ def getPsychologistInOrder():
 
 
 def getPsychologistById(psyId):
-    connection_pool,obj = connect()
-    mycursor = obj.cursor(buffered=True)
+    # connection_pool,obj = connect()
+    # mycursor = obj.cursor(buffered=True)
+    mycursor = g.cursor
     query = f'''select p.id,p.name,p.profile_image,p.is_busy,p.firebase_id,p.firebase_name,p.firebase_email,p.firebase_password,p.uuid,
       p.user_id, p.description,p.session_count,p.rating,
                p.yrs_of_exp,p.education,p.short_desc,p.status,order_,p.created_at
@@ -37,7 +39,7 @@ def getPsychologistById(psyId):
     print("here" +  str(query))
     mycursor.execute(query)
     data = mycursor.fetchone()
-    disconnect(connection_pool, obj, mycursor)
+    # disconnect(connection_pool, obj, mycursor)
 
     if data == None:
         return None
@@ -47,43 +49,47 @@ def getPsychologistById(psyId):
 
 
 def updatingLastSeenInternally(listner_email,currentTime):
-    connection_pool, obj = connect()
-    mycursor = obj.cursor(buffered=True)
+    # connection_pool, obj = connect()
+    # mycursor = obj.cursor(buffered=True)
+    mycursor = g.cursor
 
     query1 = f"update psychologist set lastSeen ='{currentTime}' where user_id in (select id from user where emailId= '{listner_email}' )"
     print(query1)
     mycursor.execute(query1)
+    g.db.commit()
 
-    obj.commit()
-    disconnect(connection_pool, obj, mycursor)
+    # obj.commit()
+    # disconnect(connection_pool, obj, mycursor)
 
     return
 
 
 
 def getIdAndActivesFromPsyEmail(email):
-        connection_pool, obj = connect()
-        mycursor = obj.cursor(buffered=True)
+        # connection_pool, obj = connect()
+        # mycursor = obj.cursor(buffered=True)
+        mycursor = g.cursor
         query = f"select id,todayCurrentActiveTime from psychologist where user_id in ( select id from user where emailId ='{email}') limit 1"
         print(query)
         mycursor.execute(query)
         data = mycursor.fetchone()
-        disconnect(connection_pool, obj, mycursor)
+        # disconnect(connection_pool, obj, mycursor)
         id = data[0]
         activeTimes = data[1]
 
         return id, activeTimes
 
 def turnStatusOff(listner_id,endTime,endEpoch,activeTimes):
-    connection_pool, obj = connect()
-    mycursor = obj.cursor(buffered=True)
+    # connection_pool, obj = connect()
+    # mycursor = obj.cursor(buffered=True)
+    mycursor = g.cursor
     query = f"Select id, startEpoch from activeTimes where psyId='{listner_id}' and endTime='0' order by id desc limit 1"
     mycursor.execute(query)
     data = mycursor.fetchone()
     print("dta check", data)
 
     if data == None:
-        disconnect(connection_pool, obj, mycursor)
+        # disconnect(connection_pool, obj, mycursor)
         return
 
     id = data[0]
@@ -98,19 +104,22 @@ def turnStatusOff(listner_id,endTime,endEpoch,activeTimes):
     print("here", query2)
     mycursor.execute(query2)
 
-    obj.commit()
-    disconnect(connection_pool, obj, mycursor)
+    g.db.commit()
+    # obj.commit()
+    # disconnect(connection_pool, obj, mycursor)
     return
 
 def turnStatusOn(listner_id, startTime, startEpoch, activeTimes):
-    connection_pool, obj = connect()
-    mycursor = obj.cursor(buffered=True)
+    # connection_pool, obj = connect()
+    # mycursor = obj.cursor(buffered=True)
+    mycursor = g.cursor
 
     query1 = f"Insert into activeTimes(psyId,startTime,startEpoch) values('{listner_id}','{startTime}','{startEpoch}')"
     print(query1)
     mycursor.execute(query1)
-    obj.commit()
-    disconnect(connection_pool, obj, mycursor)
+    g.db.commit()
+    # obj.commit()
+    # disconnect(connection_pool, obj, mycursor)
     return
 
 
@@ -135,8 +144,9 @@ def fetchDataForPsychologist():
 
 
 def updatePsychologistSessionData(listener_id,status):
-    connection_pool, obj = connect()
-    mycursor = obj.cursor(buffered=True)
+    # connection_pool, obj = connect()
+    # mycursor = obj.cursor(buffered=True)
+    mycursor = g.cursor
 
     query = f"select missedRequests,TotalRequestsRecieved,session_count from psychologist where user_id = '{listener_id}' "
     print(query)
@@ -157,14 +167,16 @@ def updatePsychologistSessionData(listener_id,status):
         print("here", query2)
         mycursor.execute(query2)
 
-    obj.commit()
-    disconnect(connection_pool, obj, mycursor)
+    g.db.commit()
+    # obj.commit()
+    # disconnect(connection_pool, obj, mycursor)
 
     return "updated"
 
 def updateSessionCountById(user_id):
-    connection_pool, obj = connect()
-    mycursor = obj.cursor(buffered=True)
+    # connection_pool, obj = connect()
+    # mycursor = obj.cursor(buffered=True)
+    mycursor = g.cursor
 
     query = f"select session_count,TotalRequestsRecieved from psychologist where user_id = '{user_id}' "
     print(query)
@@ -177,7 +189,8 @@ def updateSessionCountById(user_id):
     print("here", query2)
     mycursor.execute(query2)
 
-    obj.commit()
-    disconnect(connection_pool, obj, mycursor)
+    g.db.commit()
+    # obj.commit()
+    # disconnect(connection_pool, obj, mycursor)
 
     return count

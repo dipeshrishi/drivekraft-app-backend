@@ -1,7 +1,7 @@
 from datetime import date
 
 from db import connect, disconnect
-from flask import  g
+from flask import g
 def updateDataForAdminDashboard():
     # connection_pool, obj = connect()
     # mycursor = obj.cursor(buffered=True)
