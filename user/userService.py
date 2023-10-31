@@ -1,3 +1,5 @@
+import logging
+
 from flask import request,jsonify
 import user.userDao as userDao
 import json
@@ -11,12 +13,13 @@ def UserByContact(contactNumber):
     return userDao.getUserByContact(contactNumber)
 
 def firebaseUser():
-
+    logging.info("obtaining user from token")
     tokenValue =getTokenFromRequest()
     token=otpService.getTokenFromTokenValue(tokenValue)
     userDao.updateUserFirebaseData(token.userId)
 
     user = userDao.getUserById(token.userId)
+    logging.info("user obtained successfully  from token")
 
     return jsonify({
         "msg": "Successfully Updated.",
@@ -37,12 +40,11 @@ def updateBusyStatus():
 
 
 def getUser():
-    print("before token")
+    logging.info("user obtained token from request")
     tokenValue = getTokenFromRequest()
-    print("after token " , tokenValue )
     token = otpService.getTokenFromTokenValue(tokenValue)
-
     user = userDao.getUserById(token.userId)
+    logging.info(f"token value {tokenValue} successfully from request")
     return user
 
 
@@ -51,7 +53,7 @@ def getTokenFromRequest():
     headers = request.headers
     bearer = headers.get('Authorization')  # Bearer YourTokenHere
     token = bearer.split()[1]  # YourTokenHere
-
+    logging.info(f"Assigned token for user is {token}")
     return token
 
 def checkUsername():
