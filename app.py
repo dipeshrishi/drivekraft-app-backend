@@ -1,6 +1,7 @@
 from flask import Flask,jsonify,request,render_template,g
 import logging
 import json
+from flask_caching import Cache
 from functools import wraps
 from db import connect, disconnect
 import configuration.logfileConfigs as logfileConfigs
@@ -16,7 +17,8 @@ import feedback.feedbackService as feedbackService
 
 
 app = Flask(__name__)
-#logfileConfigs.logFileCongig()
+cache = Cache(app, config={'CACHE_TYPE': 'simple'})
+logfileConfigs.logFileCongig()
 
 
 # Create the database connection pool
@@ -84,16 +86,28 @@ def generateToken():
 @app.route("/api/user/firebase", methods =['POST'])
 @database_connection
 def getUSerForFirebase():
-    return userService.firebaseUser()
+    headers = request.headers.get('Authorization')
+    cache_key = f'data_{headers}'
+    data = cache.get(cache_key)
+    if data is None:
+        data = userService.firebaseUser()
+        cache.set(cache_key, data, timeout=60)
+    return data
 
 
 @app.route("/api/user", methods =['GET'])
 @database_connection
 def getUSer():
-    user=userService.getUser()
-    return jsonify({
+    headers = request.headers.get('Authorization')
+    cache_key = f'data_{headers}'
+    data = cache.get(cache_key)
+    if data is None:
+        user = userService.getUser()
+        data = jsonify({
         "user": (user.__dict__)
     })
+    cache.set(cache_key, data, timeout=60)
+    return data
 
 
 @app.route("/api/username/check", methods =['POST'])
@@ -282,6 +296,6 @@ def updatePsychologistSessionType():
 
 
 
-app.run(debug=True)
+#app.run(debug=True)
 
 
