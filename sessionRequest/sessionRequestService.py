@@ -1,3 +1,5 @@
+import logging
+
 import sessionRequest.sessionRequestDao as sessionRequestDao
 import json
 from flask import request,jsonify
@@ -16,12 +18,15 @@ def sendSessionRequest():
     except:
         session_type= 'chat'
 
+    logging.info(f"trying to send session request to listner with id :{listnersId}")
+
     tokenValue = userService.getTokenFromRequest()
     token = otpService.getTokenFromTokenValue(tokenValue)
 
     sessionRequestDao.createRequest(listnersId,session_type,token.userId)
-
     sessionRequest=sessionRequestDao.getLastRequestByUserId(token.userId)
+
+    logging.info(f"request successfully send to listner with id :{listnersId}")
 
     return jsonify({
         'data': sessionRequest.__dict__
@@ -30,6 +35,7 @@ def sendSessionRequest():
 def cancelSessionRequest():
     sessionRequestId = request.form.get('session_request_id')
     sessionRequestDao.cancelSessionRequestBySessionId(sessionRequestId)
+    logging.info(f"request with session id {sessionRequestId} has been cancelled")
 
     return jsonify({
         'status' : 'Success',
@@ -39,9 +45,9 @@ def cancelSessionRequest():
 def verifySessionRequest():
     #obj = json.loads(request.data)
     sessionRequestId = request.form.get('session_request_id')
-
     sessionRequest=sessionRequestDao.verifySessionRequestBySessionId(sessionRequestId)
 
+    logging.info(f"request with session id {sessionRequestId} has been verified")
     return jsonify({
         'session': (sessionRequest.__dict__)
     })
@@ -59,7 +65,7 @@ def confirmSessionRequest():
         sessionRequestDao.confirmSessionById(sessionRequestId)
         sessionRequest = sessionRequestDao.verifySessionRequestBySessionId(sessionRequestId)
         psychologistService.incrementSessionCount(sessionRequest.listener_id)
-
+        logging.info(f"request with session id {sessionRequestId} has been confirmed")
         return jsonify({
             "status": "Success",
             "message": "Session request successfully confirmed.",
