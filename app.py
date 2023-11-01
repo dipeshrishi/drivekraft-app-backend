@@ -38,6 +38,7 @@ def database_connection(view):
         except Exception as e:
             # Handle database-related errors here
             result = "An error occurred while processing the request."
+            logging.error(result)
         finally:
             if 'db' in g:
                 cursor = g.pop('cursor', None)
@@ -288,6 +289,11 @@ def requestStatusUpdate():
 @database_connection
 def addFeedbackForSessionRequest():
         return feedbackService.addFeedback()
+
+@app.route('/api/get/reviews', methods = ['GET'])
+@database_connection
+def getFeedbacks():
+        return feedbackService.getFeedback()
 
 @app.route('/psychologists/session-type', methods = ['POST'])
 @database_connection

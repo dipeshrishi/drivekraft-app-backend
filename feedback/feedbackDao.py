@@ -14,3 +14,11 @@ def addFeedback(sessionId,feedback,rating):
     # disconnect(connection_pool,obj, mycursor)
     logging.info(f"sessionFeedback with for session  {sessionId} created")
     return "feedback updated"
+
+
+def getFeedbackFromPsychologist(psychologistId):
+    mycursor = g.cursor
+    sql =f"select feedback,rating from sessionFeedback sf left join sessionRequest sr on sf.sessionId= sr.id where sr.listener_id ={psychologistId}"
+    mycursor.execute(sql)
+    data = mycursor.fetchall()
+    return data

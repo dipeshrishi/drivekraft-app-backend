@@ -1,4 +1,5 @@
 from pickle import FALSE, TRUE
+import json
 from flask import jsonify, request
 import feedback.feedbackDao as feedbackDao
 import sessionRequest.sessionRequestDao as sessionRequestDao
@@ -12,12 +13,21 @@ def addFeedback():
         feedbackDao.addFeedback(sessionId,feedback,rating)
         return jsonify({
             "message": "feedback submitted successfully",
-            "feedbacck":feedback,
+            "feedback":feedback,
             "rating":rating
         })
     return jsonify({
         "message":"feedback submission failed"
     })
+
+def getFeedback():
+    obj = json.loads(request.data)
+    psychologistId = obj['psychologist_id']
+    feedback= feedbackDao.getFeedbackFromPsychologist(psychologistId)
+    return jsonify({
+            "feedback":feedback
+        })
+
 
 def isValidSessionId(sessionId):
     sessionRequest = sessionRequestDao.verifySessionRequestBySessionId(sessionId)
