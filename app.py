@@ -290,6 +290,11 @@ def requestStatusUpdate():
 def addFeedbackForSessionRequest():
         return feedbackService.addFeedback()
 
+@app.route('/api/get/reviews', methods = ['GET'])
+@database_connection
+def getFeedbacks():
+        return feedbackService.getFeedback()
+
 @app.route('/psychologists/session-type', methods = ['POST'])
 @database_connection
 def updatePsychologistSessionType():
