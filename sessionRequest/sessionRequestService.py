@@ -15,8 +15,6 @@ def sendSessionRequest():
     listnersId = request.form.get('listener_id')
     try:
         session_type =request.form.get('session_type')
-        if session_type== None:
-            session_type = 'chat'
     except:
         session_type= 'chat'
 
@@ -88,13 +86,10 @@ def updateSessionRequestStatus():
 
     psychologistDao.updatePsychologistSessionData(sessionRequest.listener_id,status)
     if status == 'REQUEST_MISSED':
-        logging.info(f"Session Request Missed")
-        user = userService.UserByContact(contact)
         nortificationService.nortifyMissedMessage(sessionRequest.listener_id)
         psychologistService.updateStatus(user.email, "off")
         logging.info(f"Turning status off forcefully for {user.email}")
         logging.info(f"Session Request Missed")
-
 
     return "updated"
 
