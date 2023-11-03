@@ -87,6 +87,9 @@ def updateSessionRequestStatus():
     psychologistDao.updatePsychologistSessionData(sessionRequest.listener_id,status)
     if status == 'REQUEST_MISSED':
         nortificationService.nortifyMissedMessage(sessionRequest.listener_id)
+        psychologistService.updateStatus(user.email, "off")
+        logging.info(f"Turning status off forcefully for {user.email}")
+        logging.info(f"Session Request Missed")
 
     return "updated"
 
