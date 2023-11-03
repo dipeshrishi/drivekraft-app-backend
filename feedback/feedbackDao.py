@@ -4,6 +4,7 @@ import  configuration.currentTime as currentTime
 import logging
 from flask import  g
 import feedback.feedback as feedback
+import logging
 
 def addFeedback(sessionId,feedback,rating):
     now = currentTime.getCurrentTimeInIst()
@@ -22,10 +23,11 @@ def getFeedbackFromPsychologist(psychologistId):
     sql =f"select sf.id,feedback,rating from sessionFeedback sf left join sessionRequest sr on sf.sessionId= sr.id where sr.listener_id ={psychologistId}"
     mycursor.execute(sql)
     data = mycursor.fetchall()
+    logging.info(f"sql query executed for fetching feedback is {sql}")
 
     feedbackList=list()
     for feeedback in data:
-        feedback.feedback(feeedback[0],feeedback[1],feeedback[2],feeedback[3])
+        feedback.feedback(feeedback[0],feeedback[1],feeedback[2],"1 month")
         feedbackList.append(feedbackList)
 
     return feedbackList
