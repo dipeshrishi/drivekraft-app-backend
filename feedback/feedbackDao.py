@@ -3,6 +3,7 @@ from db import connect,disconnect
 import  configuration.currentTime as currentTime
 import logging
 from flask import  g
+import feedback.feedback as feedback
 
 def addFeedback(sessionId,feedback,rating):
     now = currentTime.getCurrentTimeInIst()
@@ -18,7 +19,13 @@ def addFeedback(sessionId,feedback,rating):
 
 def getFeedbackFromPsychologist(psychologistId):
     mycursor = g.cursor
-    sql =f"select feedback,rating from sessionFeedback sf left join sessionRequest sr on sf.sessionId= sr.id where sr.listener_id ={psychologistId}"
+    sql =f"select sf.id,feedback,rating from sessionFeedback sf left join sessionRequest sr on sf.sessionId= sr.id where sr.listener_id ={psychologistId}"
     mycursor.execute(sql)
     data = mycursor.fetchall()
-    return data
+
+    feedbackList=list()
+    for feeedback in data:
+        feedback.feedback(feeedback[0],feeedback[1],feeedback[2],feeedback[3])
+        feedbackList.append(feedbackList)
+
+    return feedbackList
