@@ -15,6 +15,8 @@ def sendSessionRequest():
     listnersId = request.form.get('listener_id')
     try:
         session_type =request.form.get('session_type')
+        if session_type== None:
+            session_type = 'chat'
     except:
         session_type= 'chat'
 
