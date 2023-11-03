@@ -21,8 +21,9 @@ def addFeedback():
     })
 
 def getFeedback():
-    obj = json.loads(request.data)
-    psychologistId = obj['psychologist_id']
+    # obj = json.loads(request.data)
+    # psychologistId = obj['psychologist_id']
+    psychologistId = request.args.get('psychologist_id')
     feedback= feedbackDao.getFeedbackFromPsychologist(psychologistId)
     return jsonify({
             "feedback":feedback
