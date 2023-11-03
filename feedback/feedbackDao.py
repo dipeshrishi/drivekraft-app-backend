@@ -27,8 +27,7 @@ def getFeedbackFromPsychologist(psychologistId):
 
     feedbackList=list()
     for feeedback in data:
-        logging.info(f"feedback is {feeedback}")
-        feedbackobj=feedback.feedback(feeedback[0],feeedback[1],feeedback[2],"1 month")
-        feedbackList.append(feedbackobj.__dict__)
+        feedback.feedback(feeedback[0],feeedback[1],feeedback[2],"1 month")
+        feedbackList.append(feedbackList)
 
     return feedbackList
