@@ -178,7 +178,3 @@ ALTER TABLE user Add COLUMN is_chat int DEFAULT '1';
 
 ALTER TABLE sessionRequest Add COLUMN session_type varchar(50)  DEFAULT 'chat';
 ALTER TABLE transaction Add COLUMN session_type varchar(50)  DEFAULT 'chat';
-
-
--- for actuals ession count creating column called delta which will be added
-ALTER TABLE psychologist Add COLUMN delta INT DEFAULT 0;
