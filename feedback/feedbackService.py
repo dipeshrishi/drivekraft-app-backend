@@ -3,6 +3,7 @@ import json
 from flask import jsonify, request
 import feedback.feedbackDao as feedbackDao
 import sessionRequest.sessionRequestDao as sessionRequestDao
+import logging
 
 
 def addFeedback():
@@ -24,6 +25,7 @@ def getFeedback():
     # obj = json.loads(request.data)
     # psychologistId = obj['psychologist_id']
     psychologistId = request.args.get('psychologist_id')
+    logging.info(f"fetching feedbacks for {psychologistId}")
     feedback= feedbackDao.getFeedbackFromPsychologist(psychologistId)
     return jsonify({
             "feedback":feedback
