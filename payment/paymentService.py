@@ -27,8 +27,11 @@ def createRazorpayOrder():
 
     responseDict= json.loads(response.text)
     paymentDao.storePaymentOrder(responseDict, userId)
-
-    return responseDict
+    return jsonify({
+        "order_id": responseDict['id'],
+        "currency": "INR",
+        "amount": responseDict['amount'] / 100
+    })
 
 def placeRazorpayOrder():
     user= userService.getUser()

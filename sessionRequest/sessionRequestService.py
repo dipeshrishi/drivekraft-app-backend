@@ -76,7 +76,10 @@ def confirmSessionRequest():
 
 def fetchSessionRequest():
     user= userService.getUser()
-    return sessionRequestDao.getValidSessionRequest(user.id)
+    rqst= sessionRequestDao.getValidSessionRequest(user.id)
+    return jsonify({
+        "sessions": (rqst)
+    })
 
 
 def updateSessionRequestStatus():
