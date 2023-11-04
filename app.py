@@ -168,12 +168,7 @@ def verifySessionRequest():
 @app.route("/api/session/request/fetch" , methods =['GET'])
 @database_connection
 def fetchSessionRequest():
-    rqst= sessionRequestService.fetchSessionRequest()
-
-    return jsonify({
-        "sessions": (rqst)
-    })
-
+    return sessionRequestService.fetchSessionRequest()
 
 
 @app.route("/api/session/request/confirm", methods =['POST'])
@@ -191,21 +186,12 @@ def getRole():
 @app.route("/api/psychologists", methods =['GET'])
 @database_connection
 def getPsychologist():
-        data= psychologistService.getPsychologistList()
-        return ({
-            "data": data
-        })
+        return psychologistService.getPsychologistList()
 
 @app.route("/api/order/create", methods =['POST'])
 @database_connection
 def createRazorpayOrder():
-    response= paymentService.createRazorpayOrder()
-    return jsonify({
-        "order_id": response['id'],
-        "currency" : "INR" ,
-        "amount" : response['amount']/100
-    })
-
+    return paymentService.createRazorpayOrder()
 
 @app.route("/api/app/ver", methods =['GET'])
 @database_connection
@@ -232,17 +218,12 @@ def confirmRazorpayOrder():
 @app.route("/api/search/psychologist", methods =['POST'])
 @database_connection
 def searchPsychologistByDescription():
-    psy= psychologistService.getPsychologistByDescription()
-    return jsonify({
-        "psyologistList": (psy)
-    })
+    return  psychologistService.getPsychologistByDescription()
+
 @app.route("/api/get/psychologistforSearch", methods =['Get'])
 @database_connection
 def imagesForSearchPage():
-    psy= psychologistService.getPsychologistForSearchPage()
-    return jsonify({
-        "psyologistList": (psy)
-    })
+    return psychologistService.getPsychologistForSearchPage()
 
 @app.route("/lastSeen", methods =['POST'])
 @database_connection
@@ -252,25 +233,13 @@ def lastSeen():
 @app.route("/trackListners/<name>/<status>",methods=['POST','GET'])
 @database_connection
 def trackListners(name,status):
-        response=dict()
-        try:
-            psychologistService.updateStatus(name,status)
-            response['success'] = True
-            response['message'] = 'Psychologist status has been updated Successfully'
-            json_object = json.dumps(response)
-            return json_object
-        except Exception as error:
-            response['success'] = False
-            response['message'] = error
-            json_object = json.dumps(response)
-            return json_object
+            return psychologistService.updateStatus(name,status)
 
 
 @app.route("/admin/dashboard/listner")
 @database_connection
 def getListnersData():
     data,data2=psychologistService.fetchDataofPsyDashboard()
-    print(data,data2)
     return render_template("psychologistDashboard.html",data=data, data2= data2[0])
 
 @app.route("/admin/dashboard/secretKey/adminboard")
@@ -302,6 +271,6 @@ def updatePsychologistSessionType():
 
 
 
-app.run(debug=True)
+#app.run(debug=True)
 
 
