@@ -2,7 +2,7 @@ class psychologist:
   def __init__(self,id,name,profile_image,is_busy,firebase_id,firebase_name,firebase_email,firebase_password,uuid,
       user_id, description,session_count,rating,
                yrs_of_exp,education,short_desc,status,order,created_at
-               ,updated_at,gender,age,interests,languages,online,contact,is_call,is_chat,lastSeen):
+               ,updated_at,gender,age,interests,languages,online,contact,is_call,is_chat,delta,lastSeen):
     self.id = id
     self.name = name
     self.profile_image = profile_image
@@ -31,6 +31,7 @@ class psychologist:
     self.contact = contact
     self.is_call = is_call
     self.is_chat = is_chat
+    self.delta= delta
     self.lastSeen=lastSeen
 
 
