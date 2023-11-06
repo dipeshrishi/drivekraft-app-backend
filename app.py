@@ -13,6 +13,7 @@ import sessionRequest.sessionRequestService as sessionRequestService
 import payment.paymentService as paymentService
 import admin.adminService as adminService
 import feedback.feedbackService as feedbackService
+import sessionEntity.sessionEntityService as sessionEntityService
 
 
 
@@ -32,9 +33,11 @@ def database_connection(view):
         cursor = connection_object.cursor()
         g.db = connection_object
         g.cursor = cursor
+        logging.info("trying to accquire db connection")
 
         try:
             result = view(*args, **kwargs)
+            logging.info("db connection acquired")
         except Exception as e:
             # Handle database-related errors here
             result = "An error occurred while processing the request."
@@ -47,6 +50,7 @@ def database_connection(view):
                 connection_object = g.pop('db', None)
                 if connection_object:
                     connection_object.close()
+                logging.info("db connection released")
         return result
 
     return decorated_view
@@ -93,6 +97,8 @@ def getUSerForFirebase():
     if data is None:
         data = userService.firebaseUser()
         cache.set(cache_key, data, timeout=60)
+    else:
+        logging.info("/api/user/firebase served by cache layer")
     return data
 
 
@@ -107,6 +113,8 @@ def getUSer():
         data = jsonify({
         "user": (user.__dict__)
     })
+    else:
+        logging.info("/api/user served by cache layer")
     cache.set(cache_key, data, timeout=60)
     return data
 
@@ -270,6 +278,10 @@ def updatePsychologistSessionType():
         return userService.updatingSessionType()
 
 
+@app.route('/user/sessionhistory', methods = ['POST'])
+@database_connection
+def getUserSessionHistory():
+        return sessionEntityService.getSessionHistoryForUser()
 
 #app.run(debug=True)
 
