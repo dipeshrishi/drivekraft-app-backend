@@ -48,11 +48,15 @@ def verifySessionRequest():
     #obj = json.loads(request.data)
     sessionRequestId = request.form.get('session_request_id')
     sessionRequest=sessionRequestDao.verifySessionRequestBySessionId(sessionRequestId)
-
-    logging.info(f"request with session id {sessionRequestId} has been verified")
-    return jsonify({
-        'session': (sessionRequest.__dict__)
-    })
+    logging.info(f"request with session id {sessionRequestId} has been verified with sessionRequest {sessionRequest}")
+    if sessionRequest != None:
+        return jsonify({
+            'session': (sessionRequest.__dict__)
+        })
+    else:
+        return jsonify({
+            'session': {}
+        })
 
 def confirmSessionRequest():
     #obj = json.loads(request.data)
@@ -76,7 +80,10 @@ def confirmSessionRequest():
 
 def fetchSessionRequest():
     user= userService.getUser()
-    return sessionRequestDao.getValidSessionRequest(user.id)
+    rqst= sessionRequestDao.getValidSessionRequest(user.id)
+    return jsonify({
+        "sessions": (rqst)
+    })
 
 
 def updateSessionRequestStatus():

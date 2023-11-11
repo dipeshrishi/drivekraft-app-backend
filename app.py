@@ -13,6 +13,7 @@ import sessionRequest.sessionRequestService as sessionRequestService
 import payment.paymentService as paymentService
 import admin.adminService as adminService
 import feedback.feedbackService as feedbackService
+import sessionEntity.sessionEntityService as sessionEntityService
 
 
 
@@ -32,9 +33,11 @@ def database_connection(view):
         cursor = connection_object.cursor()
         g.db = connection_object
         g.cursor = cursor
+        logging.info("trying to accquire db connection")
 
         try:
             result = view(*args, **kwargs)
+            logging.info("db connection acquired")
         except Exception as e:
             # Handle database-related errors here
             result = "An error occurred while processing the request."
@@ -47,6 +50,7 @@ def database_connection(view):
                 connection_object = g.pop('db', None)
                 if connection_object:
                     connection_object.close()
+                logging.info("db connection released")
         return result
 
     return decorated_view
@@ -93,6 +97,8 @@ def getUSerForFirebase():
     if data is None:
         data = userService.firebaseUser()
         cache.set(cache_key, data, timeout=60)
+    else:
+        logging.info("/api/user/firebase served by cache layer")
     return data
 
 
@@ -107,6 +113,8 @@ def getUSer():
         data = jsonify({
         "user": (user.__dict__)
     })
+    else:
+        logging.info("/api/user served by cache layer")
     cache.set(cache_key, data, timeout=60)
     return data
 
@@ -168,12 +176,7 @@ def verifySessionRequest():
 @app.route("/api/session/request/fetch" , methods =['GET'])
 @database_connection
 def fetchSessionRequest():
-    rqst= sessionRequestService.fetchSessionRequest()
-
-    return jsonify({
-        "sessions": (rqst)
-    })
-
+    return sessionRequestService.fetchSessionRequest()
 
 
 @app.route("/api/session/request/confirm", methods =['POST'])
@@ -191,21 +194,12 @@ def getRole():
 @app.route("/api/psychologists", methods =['GET'])
 @database_connection
 def getPsychologist():
-        data= psychologistService.getPsychologistList()
-        return ({
-            "data": data
-        })
+        return psychologistService.getPsychologistList()
 
 @app.route("/api/order/create", methods =['POST'])
 @database_connection
 def createRazorpayOrder():
-    response= paymentService.createRazorpayOrder()
-    return jsonify({
-        "order_id": response['id'],
-        "currency" : "INR" ,
-        "amount" : response['amount']/100
-    })
-
+    return paymentService.createRazorpayOrder()
 
 @app.route("/api/app/ver", methods =['GET'])
 @database_connection
@@ -232,17 +226,12 @@ def confirmRazorpayOrder():
 @app.route("/api/search/psychologist", methods =['POST'])
 @database_connection
 def searchPsychologistByDescription():
-    psy= psychologistService.getPsychologistByDescription()
-    return jsonify({
-        "psyologistList": (psy)
-    })
+    return  psychologistService.getPsychologistByDescription()
+
 @app.route("/api/get/psychologistforSearch", methods =['Get'])
 @database_connection
 def imagesForSearchPage():
-    psy= psychologistService.getPsychologistForSearchPage()
-    return jsonify({
-        "psyologistList": (psy)
-    })
+    return psychologistService.getPsychologistForSearchPage()
 
 @app.route("/lastSeen", methods =['POST'])
 @database_connection
@@ -252,25 +241,13 @@ def lastSeen():
 @app.route("/trackListners/<name>/<status>",methods=['POST','GET'])
 @database_connection
 def trackListners(name,status):
-        response=dict()
-        try:
-            psychologistService.updateStatus(name,status)
-            response['success'] = True
-            response['message'] = 'Psychologist status has been updated Successfully'
-            json_object = json.dumps(response)
-            return json_object
-        except Exception as error:
-            response['success'] = False
-            response['message'] = error
-            json_object = json.dumps(response)
-            return json_object
+            return psychologistService.updateStatus(name,status)
 
 
 @app.route("/admin/dashboard/listner")
 @database_connection
 def getListnersData():
     data,data2=psychologistService.fetchDataofPsyDashboard()
-    print(data,data2)
     return render_template("psychologistDashboard.html",data=data, data2= data2[0])
 
 @app.route("/admin/dashboard/secretKey/adminboard")
@@ -301,7 +278,11 @@ def updatePsychologistSessionType():
         return userService.updatingSessionType()
 
 
+@app.route('/user/sessionhistory', methods = ['POST'])
+@database_connection
+def getUserSessionHistory():
+        return sessionEntityService.getSessionHistoryForUser()
 
-app.run(debug=True)
+#app.run(debug=True)
 
 

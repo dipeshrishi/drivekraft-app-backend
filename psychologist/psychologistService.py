@@ -1,11 +1,14 @@
-from flask import request
+from flask import request, jsonify
 from datetime import datetime,timedelta
 import psychologist.psychologistDao as psychologistDao
 import json
 import time
 
 def getPsychologistList():
-    return psychologistDao.getPsychologistInOrder()
+    data= psychologistDao.getPsychologistInOrder()
+    return ({
+        "data": data
+    })
 
 
 def getPsychologistById(psyId):
@@ -15,7 +18,10 @@ def getPsychologistById(psyId):
 def getPsychologistByDescription():
     obj = json.loads(request.data)
     description = obj['value']
-    return psychologistDao.getPsychologistByDescription(description)
+    psy= psychologistDao.getPsychologistByDescription(description)
+    return jsonify({
+        "psyologistList": (psy)
+    })
 
 def updateLastSeen():
     response = dict()
@@ -37,14 +43,26 @@ def updateLastSeen():
 
 
 def updateStatus(email,status):
-    if status == "on" or status =='1':
-        turnStatusOff(email)
-        turnStatusOn(email)
-        return "added"
+    try:
+        if status == "on" or status =='1':
+            turnStatusOff(email)
+            turnStatusOn(email)
 
-    if status == "off" or status =='0':
-        turnStatusOff(email)
-        return "done"
+        if status == "off" or status =='0':
+            turnStatusOff(email)
+
+        response= dict()
+
+        response['success'] = True
+        response['message'] = 'Psychologist status has been updated Successfully'
+        json_object = json.dumps(response)
+        return json_object
+    except Exception as error:
+        response = dict()
+        response['success'] = False
+        response['message'] = error
+        json_object = json.dumps(response)
+        return json_object
 
 
 def turnStatusOff(email):
@@ -71,5 +89,8 @@ def incrementSessionCount(user_id):
     psychologistDao.updateSessionCountById(user_id)
 
 def getPsychologistForSearchPage():
-    return psychologistDao.psyListForSearchPage()
+    psy= psychologistDao.psyListForSearchPage()
+    return jsonify({
+        "psyologistList": (psy)
+    })
 
