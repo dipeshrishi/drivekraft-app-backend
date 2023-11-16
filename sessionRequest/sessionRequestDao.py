@@ -110,6 +110,9 @@ def getValidSessionRequest(listner_Id):
 
     sessionRequestList = list()
 
+    if len(requestList) ==0:
+        return sessionRequestList
+
     for data in requestList:
         SessionRqst = sessionRequest.sessionRequest(data[0], data[1], data[2], data[3], data[4], data[5], data[6],
                                                     data[7], data[8])
