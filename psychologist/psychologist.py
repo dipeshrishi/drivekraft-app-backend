@@ -28,7 +28,7 @@ class psychologist:
     self.interests = interests
     self.languages = languages
     self.online = online
-    self.contact = contact
+    self.mobile = contact
     self.is_call = is_call
     self.is_chat = is_chat
     self.delta= delta

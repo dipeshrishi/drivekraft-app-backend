@@ -4,7 +4,7 @@ class user:
     self.name = name
     self.username = username
     self.email = emailId
-    self.contact = contact
+    self.mobile = contact
     self.totalSessions = totalSessions
     self.firebase_id=firebase_id
     self.firebase_name=firebase_name
