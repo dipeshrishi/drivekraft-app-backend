@@ -108,5 +108,6 @@ def updateSessionRequestStatus():
     return "updated"
 
 
-
+def getSessionByRequestId(id):
+    return sessionRequestDao.getSessionByRequestId(id)
 

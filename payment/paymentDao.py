@@ -52,7 +52,7 @@ def updateTranaction(transId,seconds_chatted,cost):
     # connection_pool,obj = connect()
     # mycursor = obj.cursor(buffered=True)
     mycursor = g.cursor
-    sql = f"Update transaction set seconds_chatted ='{seconds_chatted}' ,amount_deducted ='{cost}' ,updated_at =now() where id ='{transId}'"
+    sql = f"Update transaction set seconds_chatted ='{seconds_chatted}' ,amount_deducted ='{cost}' ,updated_at =now() where transaction_id ='{transId}'"
     mycursor.execute(sql)
     g.db.commit()
     # obj.commit()
