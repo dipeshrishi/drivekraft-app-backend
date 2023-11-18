@@ -150,3 +150,11 @@ def updatingSessionType():
         "status": 'Success',
         "message": "Session type call updated.",
     })
+
+
+def updateCallStatusByUserId(id,is_call):
+    userDao.updateCallStatusByUserId(id,is_call)
+
+
+def updateChatStatusByUserId(user_id,is_chat):
+    userDao.updateChatStatusByUserId(user_id, is_chat)

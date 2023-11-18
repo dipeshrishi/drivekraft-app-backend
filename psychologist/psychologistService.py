@@ -1,6 +1,7 @@
 from flask import request, jsonify
 from datetime import datetime,timedelta
 import psychologist.psychologistDao as psychologistDao
+import user.userService as userService
 import json
 import time
 
@@ -93,4 +94,25 @@ def getPsychologistForSearchPage():
     return jsonify({
         "psyologistList": (psy)
     })
+
+def updatePsychologistSessionType():
+    user = userService.getUser()
+    check = 0
+
+    if 'chat' in request.form:
+        check += 1
+        userService.updateCallStatusByUserId(user.id,request.form['chat'])
+
+    if 'call' in request.form:
+        check += 2
+        userService.updateCallStatusByUserId(user.id,request.form['call'])
+
+    if check == 3:
+        return jsonify({'status': 'Success', 'message': 'Session type chat & call updated.'})
+    elif check == 1:
+        return jsonify({'status': 'Success', 'message': 'Session type chat updated.'})
+    elif check == 2:
+        return jsonify({'status': 'Success', 'message': 'Session type call updated.'})
+    else:
+        return jsonify({'status': 'error', 'message': 'Session type not updated.'})
 
