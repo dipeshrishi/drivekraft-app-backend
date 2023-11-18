@@ -19,7 +19,7 @@ import sessionEntity.sessionEntityService as sessionEntityService
 
 app = Flask(__name__)
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
-logfileConfigs.logFileCongig()
+#logfileConfigs.logFileCongig()
 
 
 # Create the database connection pool
@@ -272,9 +272,10 @@ def addFeedbackForSessionRequest():
 def getFeedbacks():
         return feedbackService.getFeedback()
 
-@app.route('/psychologists/session-type', methods = ['POST'])
+#discarding and recording
+@app.route('/psychologists/session-type/dummy', methods = ['POST'])
 @database_connection
-def updatePsychologistSessionType():
+def updatePsychologistSessionType_dummy():
         return userService.updatingSessionType()
 
 
@@ -283,6 +284,13 @@ def updatePsychologistSessionType():
 def getUserSessionHistory():
         return sessionEntityService.getSessionHistoryForUser()
 
-#app.run(debug=True)
+
+
+@app.route('/api/psychologists/session-type', methods = ['POST'])
+@database_connection
+def updatePsychologistSessionType():
+        return psychologistService.updatePsychologistSessionType()
+
+app.run(debug=True)
 
 
