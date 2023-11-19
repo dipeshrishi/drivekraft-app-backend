@@ -55,6 +55,10 @@ def database_connection(view):
 
     return decorated_view
 
+@app.route("/drivekraft-next")
+def newUI():
+     return render_template(".next/index.html")
+
 @app.route("/")
 def index():
     logging.info("testt")
