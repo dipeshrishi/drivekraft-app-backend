@@ -105,18 +105,23 @@ def getUSerForFirebase():
 @app.route("/api/user", methods =['GET'])
 @database_connection
 def getUSer():
-    headers = request.headers.get('Authorization')
-    cache_key = f'data_{headers}'
-    data = cache.get(cache_key)
-    if data is None:
-        user = userService.getUser()
-        data = jsonify({
+    user = userService.getUser()
+    data = jsonify({
         "user": (user.__dict__)
     })
-    else:
-        logging.info("/api/user served by cache layer")
-    cache.set(cache_key, data, timeout=60)
     return data
+    # headers = request.headers.get('Authorization')
+    # cache_key = f'data_{headers}'
+    # data = cache.get(cache_key)
+    # if data is None:
+    #     user = userService.getUser()
+    #     data = jsonify({
+    #     "user": (user.__dict__)
+    # })
+    # else:
+    #     logging.info("/api/user served by cache layer")
+    # cache.set(cache_key, data, timeout=60)
+    # return data
 
 
 @app.route("/api/username/check", methods =['POST'])
@@ -262,7 +267,7 @@ def adminBoard():
 def requestStatusUpdate():
         return sessionRequestService.updateSessionRequestStatus()
 
-@app.route('/api/reviews', methods = ['POST'])
+@app.route('/api/api/reviews', methods = ['POST'])
 @database_connection
 def addFeedbackForSessionRequest():
         return feedbackService.addFeedback()

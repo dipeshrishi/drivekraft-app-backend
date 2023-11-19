@@ -62,7 +62,7 @@ def verifySessionRequestBySessionId(sessionRequestId):
     # disconnect(connection_pool, obj, mycursor)
     if data == None:
         return None
-    return sessionRequest.sessionRequest(data[0], data[1], data[2], data[3], True, data[5], data[6], data[7], data[8])
+        return sessionRequest.sessionRequest(data[0], data[1], data[2], data[3], True, data[5], data[6], data[7], data[8])
 
 
 def isExpiredOrCancelled(sessionRequestId):
@@ -118,8 +118,8 @@ def getValidSessionRequest(listner_Id):
                                                     data[7], data[8])
         user = userService.getUserById(SessionRqst.customer_id)
 
-        rqst = sessionFetchObject.sessionFetchObject(SessionRqst.id, SessionRqst.listener_id, SessionRqst.customer_id,SessionRqst.status,SessionRqst.session_type,user.firebase_id,
-                                                     user.username, SessionRqst.is_cancelled,SessionRqst.session_type ,SessionRqst.updated_at,
+        rqst = sessionFetchObject.sessionFetchObject(SessionRqst.id, SessionRqst.listener_id, SessionRqst.customer_id,SessionRqst.expiry_at,SessionRqst.status,SessionRqst.session_type,user.firebase_id,
+                                                     user.username, SessionRqst.is_cancelled,SessionRqst.updated_at,
                                                      SessionRqst.created_at)
         sessionRequestList.append(rqst.__dict__)
 

@@ -22,28 +22,28 @@ def getUserByContact(contactNumber):
     # connection_pool,obj = connect()
     # mycursor = obj.cursor(buffered=True)
     mycursor = g.cursor
-    query = f"select id,name, username ,emailId,contact,totalSessions,firebase_id,firebase_name,firebase_email,firebase_password,credits,role_id,is_online,is_busy from user where contact='{contactNumber}'"
+    query = f"select id,name, username ,emailId,contact,totalSessions,firebase_id,firebase_name,firebase_email,firebase_password,credits,role_id,is_online,is_busy,is_call,is_chat from user where contact='{contactNumber}'"
     mycursor.execute(query)
     data = mycursor.fetchone()
     # disconnect(connection_pool, obj, mycursor)
 
     if data == None:
         return None
-    return user.user(data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7],data[8],data[9],data[10],data[11],data[12],data[13])
+    return user.user(data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7],data[8],data[9],data[10],data[11],data[12],data[13],data[14],data[15])
 
 
 def getUserById(userId):
     # connection_pool,obj = connect()
     # mycursor = obj.cursor(buffered=True)
     mycursor = g.cursor
-    query = f"select id,name,username, emailId,contact,totalSessions,firebase_id,firebase_name,firebase_email,firebase_password,credits,role_id,is_online,is_busy from user where id='{userId}'"
+    query = f"select id,name,username, emailId,contact,totalSessions,firebase_id,firebase_name,firebase_email,firebase_password,credits,role_id,is_online,is_busy,is_call,is_chat from user where id='{userId}'"
     mycursor.execute(query)
     data = mycursor.fetchone()
     # disconnect(connection_pool, obj, mycursor)
 
     if data == None:
         return None
-    return user.user(data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7],data[8],data[9],data[10],data[11],data[12],data[13])
+    return user.user(data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7],data[8],data[9],data[10],data[11],data[12],data[13],data[14],data[15])
 
 
 
