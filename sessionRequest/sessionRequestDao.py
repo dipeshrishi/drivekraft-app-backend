@@ -118,7 +118,7 @@ def getValidSessionRequest(listner_Id):
                                                     data[7], data[8])
         user = userService.getUserById(SessionRqst.customer_id)
 
-        rqst = sessionFetchObject.sessionFetchObject(SessionRqst.id, SessionRqst.listener_id, SessionRqst.customer_id,
+        rqst = sessionFetchObject.sessionFetchObject(SessionRqst.id, SessionRqst.listener_id, SessionRqst.customer_id,SessionRqst.status,SessionRqst.session_type,user.firebase_id,
                                                      user.username, SessionRqst.is_cancelled,SessionRqst.session_type ,SessionRqst.updated_at,
                                                      SessionRqst.created_at)
         sessionRequestList.append(rqst.__dict__)
