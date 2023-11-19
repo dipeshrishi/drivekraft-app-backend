@@ -62,7 +62,7 @@ def verifySessionRequestBySessionId(sessionRequestId):
     # disconnect(connection_pool, obj, mycursor)
     if data == None:
         return None
-        return sessionRequest.sessionRequest(data[0], data[1], data[2], data[3], True, data[5], data[6], data[7], data[8])
+    return sessionRequest.sessionRequest(data[0], data[1], data[2], data[3], True, data[5], data[6], data[7], data[8])
 
 
 def isExpiredOrCancelled(sessionRequestId):
