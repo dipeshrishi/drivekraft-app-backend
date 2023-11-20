@@ -133,7 +133,7 @@ def updateUserAvailStatus(user_id,status):
     # connection_pool,obj = connect()
     # mycursor = obj.cursor(buffered=True)
     mycursor = g.cursor
-    sql = f"Update user set is_online ='{status}',updated =now() where id ='{user_id}'"
+    sql = f"Update user set is_online ='{status}', is_chat='{status}',is_call ='{status}',updated =now() where id ='{user_id}'"
     print(sql)
     mycursor.execute(sql)
     g.db.commit()

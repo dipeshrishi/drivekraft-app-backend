@@ -108,11 +108,11 @@ def updatePsychologistSessionType():
         userService.updateCallStatusByUserId(user.id,request.form['call'])
 
     if check == 3:
-        return jsonify({'status': 'Success', 'message': 'Session type chat & call updated.'})
+        return jsonify({'status': 'Success', 'msg': 'Session type chat & call updated.'})
     elif check == 1:
-        return jsonify({'status': 'Success', 'message': 'Session type chat updated.'})
+        return jsonify({'status': 'Success', 'msg': 'Session type chat updated.'})
     elif check == 2:
-        return jsonify({'status': 'Success', 'message': 'Session type call updated.'})
+        return jsonify({'status': 'Success', 'msg': 'Session type call updated.'})
     else:
-        return jsonify({'status': 'error', 'message': 'Session type not updated.'})
+        return jsonify({'status': 'error', 'msg': 'Session type not updated.'})
 
