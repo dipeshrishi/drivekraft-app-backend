@@ -23,7 +23,7 @@ def noOfUsersAcquiredInAGivenDay(current_date):
     # mycursor = obj.cursor(buffered=True)
 
     mycursor = g.cursor
-    query = f"select count(*) from user where created = '{current_date}' "
+    query = f"select count(*) from user where created rlike '{current_date}' "
     mycursor.execute(query)
     data = mycursor.fetchone()
     # disconnect(connection_pool, obj, mycursor)

@@ -59,7 +59,7 @@ def database_connection(view):
 @app.route("/")
 def index():
     logging.info("testt")
-    return "test"
+    return render_template("index.html")
 
 @app.route("/home")
 @app.route("/index.html")
