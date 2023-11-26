@@ -182,3 +182,30 @@ ALTER TABLE transaction Add COLUMN session_type varchar(50)  DEFAULT 'chat';
 
 -- for actuals ession count creating column called delta which will be added
 ALTER TABLE psychologist Add COLUMN delta INT DEFAULT 0;
+
+
+-- creating table environment properties
+CREATE TABLE environmentProperties(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        name varchar(50)  ,
+        `value` varchar(50) DEFAULT '-1',
+        created_at DATETIME,
+        updated_at DATETIME
+        );
+
+
+-- insert value in environmentProperties
+insert ignore into environmentProperties values(null,'lastLastMarketingDateUpdatemail','2023-11-17', now(),now())
+insert ignore into environmentProperties values(null,'gettingDailySpend','300', now(),now())
+
+
+-- creating table for marketing Dashboard
+CREATE TABLE marketingDashboard(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        dateValue  varchar(50) ,
+        dailySpend varchar(7),
+        websiteVisits varchar(7),
+        dailyAppDownloads varchar(7),
+        newUsersAcquired varchar(7),
+        sessionByNewUsers varchar(7)
+        );

@@ -14,6 +14,7 @@ import payment.paymentService as paymentService
 import admin.adminService as adminService
 import feedback.feedbackService as feedbackService
 import sessionEntity.sessionEntityService as sessionEntityService
+import tracking.trackingService as trackingService
 
 
 
@@ -295,6 +296,14 @@ def getUserSessionHistory():
 @database_connection
 def updatePsychologistSessionType():
         return psychologistService.updatePsychologistSessionType()
+
+
+@app.route('/api/track/marketing-campaign', methods = ['GET'])
+@database_connection
+def dashboardForMarktingCampaign():
+    data= trackingService.getDataForMarketingDashBoard()
+    return render_template("mrktDashboard.html", data=data)
+
 
 app.run(debug=True)
 
