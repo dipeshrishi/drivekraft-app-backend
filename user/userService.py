@@ -43,6 +43,8 @@ def getUser():
     logging.info("user obtained token from request")
     tokenValue = getTokenFromRequest()
     token = otpService.getTokenFromTokenValue(tokenValue)
+    if token==None:
+        return None
     user = userDao.getUserById(token.userId)
     logging.info(f"token value {tokenValue} successfully from request")
     return user

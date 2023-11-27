@@ -18,10 +18,10 @@ def connect():
     connection_pool = pooling.MySQLConnectionPool(pool_name="drivekraft_db_pool1",
                                                   pool_size=10  ,
                                                   pool_reset_session=True,
-                                                  host='127.0.0.1',
-                                                  database='drivekraft_backend',
-                                                  user='root',
-                                                  password='root')
+                                                  host='drivekraftbackend.mysql.pythonanywhere-services.com',
+                                                  database='drivekraftbacken$drivekraft_backend',
+                                                  user='drivekraftbacken',
+                                                  password='wearecodingdb')
 
     # Get connection object from a pool
     connection_object = connection_pool.get_connection()

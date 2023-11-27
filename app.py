@@ -20,7 +20,7 @@ import tracking.trackingService as trackingService
 
 app = Flask(__name__)
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
-#logfileConfigs.logFileCongig()
+logfileConfigs.logFileCongig()
 
 
 # Create the database connection pool
@@ -305,6 +305,6 @@ def dashboardForMarktingCampaign():
     return render_template("mrktDashboard.html", data=data)
 
 
-app.run(debug=True)
+#app.run(debug=True)
 
 
