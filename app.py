@@ -15,6 +15,7 @@ import admin.adminService as adminService
 import feedback.feedbackService as feedbackService
 import sessionEntity.sessionEntityService as sessionEntityService
 import tracking.trackingService as trackingService
+from dailyMidNightCron import dailyCron
 
 
 
@@ -304,6 +305,18 @@ def dashboardForMarktingCampaign():
     data= trackingService.getDataForMarketingDashBoard()
     return render_template("mrktDashboard.html", data=data)
 
+@app.route('/api/dailyCron', methods = ['GET'])
+@database_connection
+def midnightCron():
+    dailyCron()
+    return "cron executed"
+
+
+@app.route('/api/active-listner-Count', methods = ['GET'])
+@database_connection
+def activelistnerCount():
+    trackingService.countActiveListnersCron()
+    return "cron exectured"
 
 #app.run(debug=True)
 

@@ -73,3 +73,23 @@ def updateLateTrackingData(todaysDate):
     g.db.commit()
 
     return
+
+def getActiveListnersDetails():
+    mycursor = g.cursor
+    query = f"select count(*) from psychologist where online =1"
+    mycursor.execute(query)
+    dataCount = mycursor.fetchone()
+
+    query = f"select group_concat(name) from psychologist where online =1"
+    mycursor.execute(query)
+    dataNameList = mycursor.fetchone()
+
+    return dataCount[0],dataNameList[0]
+
+
+def updateActiveListnerData(dataCount,dataNameList,current_date,current_time):
+    mycursor = g.cursor
+    sql = f"Insert into activeListnerCount values(null,'{current_date}','{current_time}','{dataCount}','{dataNameList}')"
+    mycursor.execute(sql)
+    g.db.commit()
+    return

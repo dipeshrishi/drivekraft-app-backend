@@ -209,3 +209,13 @@ CREATE TABLE marketingDashboard(
         newUsersAcquired varchar(7),
         sessionByNewUsers varchar(7)
         );
+
+
+-- creating table for activeListnerCount
+CREATE TABLE activeListnerCount(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        dateValue  varchar(50) ,
+        currentTime varchar(50),
+        countOfActiveListner varchar(7),
+        nameList varchar(200)
+        );

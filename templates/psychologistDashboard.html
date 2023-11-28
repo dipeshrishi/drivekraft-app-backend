@@ -1,32 +1,65 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha256-/ykJw/wDxMa0AQhHDYfuMEwVb4JHMx9h4jD4XvHqVzU=" crossorigin="anonymous" />
-<strong>Drivekraft Listners report !!</strong>
-<br>
-<br>
-<table border="2px black solid">
-  <thead>
-    <tr>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha256-/ykJw/wDxMa0AQhHDYfuMEwVb4JHMx9h4jD4XvHqVzU=" crossorigin="anonymous" />
+  <style>
+    body {
+      padding: 20px;
+    }
+
+    table {
+      width: 100%;
+      margin-bottom: 1rem;
+      background-color: transparent;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 2px solid #dee2e6;
+    }
+
+    th {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    tbody tr:hover {
+      background-color: rgba(0, 0, 0, 0.075);
+    }
+  </style>
+  <title>Drivekraft Listeners Report</title>
+</head>
+<body>
+
+<div class="container">
+  <h2 class="mt-4 mb-4">Drivekraft Listeners Report</h2>
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
         <th>Name</th>
         <th>Hours active yesterday</th>
-        <th>Total Request Recieved</th>
+        <th>Total Request Received</th>
         <th>Total Session</th>
         <th>Missed Requests</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for value in data %}
+        <tr>
+          <td>{{ value[0] }}</td>
+          <td>{{ value[2] }}</td>
+          <td>{{ value[4]-50 }}</td>
+          <td>{{ value[1]-value[6] }}</td>
+          <td>{{ value[5] }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 
-
-
-
-    </tr>
-  </thead>
-  <tbody border="2px black solid">
-  {% for value in data %}
-   <tr>
-
-       <td> {{ value[0] }}</td>
-       <td> {{ value[2] }}</td>
-       <td> {{ value[4]-50 }} </td>
-       <td> {{ value[1]-value[6] }} </td>
-       <td> {{ value[5] }}</td>
-
-   </tr>
-  {% endfor %}
-  </tbody>
-</table>
+</body>
+</html>

@@ -32,3 +32,12 @@ def updateMrktDataForGivenDate(current_date,getDailySpend):
     noOfSessions = trackingDao.noOfSessionsByNewUsers(current_date)
     trackingDao.insertIntomarketingDashboard(current_date,getDailySpend,"-","-",noOfUsersAcquird,noOfSessions)
     return
+
+
+def countActiveListnersCron():
+    dataCount,dataNameList = trackingDao.getActiveListnersDetails()
+    current_datetime = datetime.now()
+    current_date = current_datetime.date()
+    current_time = current_datetime.time()
+    trackingDao.updateActiveListnerData(dataCount,dataNameList,current_date,current_time)
+    return

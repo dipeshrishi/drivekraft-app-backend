@@ -2,16 +2,21 @@
 from db import connect, disconnect
 from psychologist import psychologistService
 from admin import adminService
+from db import connect, disconnect
+from flask import  g
+
+
 
 def dailyCron():
     # new new entry for all active listners
-    connection_pool,obj = connect()
-    mycursor = obj.cursor(buffered=True)
+    # connection_pool,obj = connect()
+    # mycursor = obj.cursor(buffered=True)
+    mycursor = g.cursor
     query = f"Select distinct u.emailId from activeTimes at join psychologist p on p.id= at.psyId join user u on u.id= p.user_id	where at.endTime='0'"
     print(query)
     mycursor.execute(query)
     data = mycursor.fetchall()
-    disconnect(connection_pool, obj, mycursor)
+    # disconnect(connection_pool, obj, mycursor)
     print("dta", data)
 
     for name in data:
@@ -29,8 +34,9 @@ def toggleStatus(name):
 
 
 def copyTodayCurrentTimeToYst():
-    connection_pool,obj = connect()
-    mycursor = obj.cursor(buffered=True)
+    # connection_pool,obj = connect()
+    # mycursor = obj.cursor(buffered=True)
+    mycursor = g.cursor
     query = f"Select id,todayCurrentActiveTime  from psychologist "
     mycursor.execute(query)
     dataList = mycursor.fetchall()
@@ -39,13 +45,14 @@ def copyTodayCurrentTimeToYst():
         query1 = f"update psychologist set todayCurrentActiveTime ='0' , yesterDayActiveTime ='{data[1]}'  where id ='{data[0]}'"
         print("bla", query1)
         mycursor.execute(query1)
-    obj.commit()
-    disconnect(connection_pool, obj, mycursor)
+    g.db.commit()
+    # obj.commit()
+    # disconnect(connection_pool, obj, mycursor)
 
     return
 
 
-dailyCron()
+
 
 #     obj = connect()
 #     mycursor = obj.cursor(buffered=True)
