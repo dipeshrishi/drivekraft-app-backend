@@ -93,3 +93,11 @@ def updateActiveListnerData(dataCount,dataNameList,current_date,current_time):
     mycursor.execute(sql)
     g.db.commit()
     return
+
+def getListnerCountPerHour():
+    mycursor = g.cursor
+    query = f"select dateValue,currentTime,countOfActiveListner,nameList from activeListnerCount order by id desc"
+    mycursor.execute(query)
+    dataCount = mycursor.fetchall()
+
+    return dataCount

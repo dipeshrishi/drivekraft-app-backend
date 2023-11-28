@@ -318,6 +318,13 @@ def activelistnerCount():
     trackingService.countActiveListnersCron()
     return "cron exectured"
 
+
+@app.route('/api/dashboard-active-listner-count', methods = ['GET'])
+@database_connection
+def activelistnerCountDashboard():
+    data=trackingService.activelistnerCountDashboard()
+    return render_template("listnersPerHourDashboard.html",data=data)
+
 #app.run(debug=True)
 
 

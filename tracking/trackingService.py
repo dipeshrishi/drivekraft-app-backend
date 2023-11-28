@@ -41,3 +41,8 @@ def countActiveListnersCron():
     current_time = current_datetime.time()
     trackingDao.updateActiveListnerData(dataCount,dataNameList,current_date,current_time)
     return
+
+
+def activelistnerCountDashboard():
+    data= trackingDao.getListnerCountPerHour()
+    return data
