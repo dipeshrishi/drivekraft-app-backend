@@ -9,11 +9,11 @@ def getDataForMarketingDashBoard():
     todaysDate = date.today()
 
     current_date = (datetime.strptime(lastUpdatedDate, "%Y-%m-%d") + timedelta(days=1)).date()
-    while current_date < todaysDate:
+    while current_date <= todaysDate:
         print(current_date)
-        current_date += timedelta(days=1)
         dateinReqFormat=currentDateinyyyymmddFormat(current_date)
         updateMrktDataForGivenDate(dateinReqFormat,getDailySpend)
+        current_date += timedelta(days=1)
 
     data= trackingDao.getDataForDashBoard()
     trackingDao.updateLateTrackingData(todaysDate)
