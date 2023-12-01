@@ -108,6 +108,10 @@ def getUSerForFirebase():
 @database_connection
 def getUSer():
     user = userService.getUser()
+    if user.role_id ==2:
+        psy=psychologistService.getPsychologistById(user.id)
+        user.totalSessions = psy.session_count
+        user.img = psy.profile_image
     data = jsonify({
         "user": (user.__dict__)
     })
