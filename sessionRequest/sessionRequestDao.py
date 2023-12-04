@@ -156,3 +156,36 @@ def getSessionByRequestId(Id):
     if data == None:
         return None
     return sessionRequest.sessionRequest(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7] , data[8])
+
+
+
+def getSessionRequestForAListnerByListenerId(listner_Id):
+    # connection_pool,obj = connect()
+    # mycursor = obj.cursor(buffered=True)
+    mycursor = g.cursor
+    query = f"select id,listener_id,is_cancelled,customer_id,status,session_type, expiry_at,updated_at,created_at from sessionRequest where listener_id='{listner_Id}' "
+    print(query)
+    mycursor.execute(query)
+    requestList = mycursor.fetchall()
+    print(query)
+    # disconnect(connection_pool, obj, mycursor)
+
+    sessionRequestList = list()
+
+    if len(requestList) == 0:
+        return sessionRequestList
+
+    for data in requestList:
+        SessionRqst = sessionRequest.sessionRequest(data[0], data[1], data[2], data[3], data[4], data[5], data[6],
+                                                    data[7], data[8])
+        user = userService.getUserById(SessionRqst.customer_id)
+
+        rqst = sessionFetchObject.sessionFetchObject(SessionRqst.id, SessionRqst.listener_id, SessionRqst.customer_id,
+                                                     SessionRqst.expiry_at, SessionRqst.status,
+                                                     SessionRqst.session_type, user.firebase_id,
+                                                     user.username, SessionRqst.is_cancelled, SessionRqst.updated_at,
+                                                     SessionRqst.created_at)
+        sessionRequestList.append(rqst.__dict__)
+
+    # print(sessionRequest.__dict__)
+    return sessionRequestList

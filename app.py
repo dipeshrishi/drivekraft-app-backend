@@ -329,6 +329,14 @@ def activelistnerCountDashboard():
     data=trackingService.activelistnerCountDashboard()
     return render_template("listnersPerHourDashboard.html",data=data)
 
+
+@app.route('/api/sessionRequestList-by-lisnters', methods = ['POST'])
+@database_connection
+def sessionRequestList():
+    return sessionRequestService.getSessionRequestListForAListner()
+
+
+
 #app.run(debug=True)
 
 

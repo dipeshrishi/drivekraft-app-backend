@@ -111,3 +111,10 @@ def updateSessionRequestStatus():
 def getSessionByRequestId(id):
     return sessionRequestDao.getSessionByRequestId(id)
 
+def getSessionRequestListForAListner():
+    user = userService.getUser()
+    rqst = sessionRequestDao.getSessionRequestForAListnerByListenerId(user.id)
+    return jsonify({
+        "sessions": (rqst)
+    })
+
