@@ -1,0 +1,103 @@
+|-- app/
+|   |-- static/
+|   |   |-- css/
+|   |   |-- js/
+|   |   |-- images/
+|   |
+|   |-- templates/
+|   |   |-- index.html
+|   |   |-- ...
+|   |-- _init_.py
+|   |
+|   |-- routes/
+|   |   |-- lead_routes.py
+|   |   |-- session_routes.py
+|   |   |-- auth_routes.py
+|   |   |-- ...
+|   |
+|   |-- models/
+|   |   |-- dao/
+|   |   |   |-- user_dao.py
+|   |   |   |-- user_state_dao.py
+|   |   |   |-- message_template_dao.py
+|   |   |   |-- session_dao.py  # Add a new DAO for sessions, for example
+|   |   |   |-- ...
+|   |   |
+|   |   |-- mongo/
+|   |   |   |-- message_templates.py
+|   |   |   |-- message_send_history.py
+|   |   |
+|   |   |-- mysql/
+|   |   |   |-- user.py
+|   |   |   |-- user_state.py
+|   |   |   |-- otp.py
+|   |
+|   |-- data_layer/
+|   |   |-- message_templates.py
+|   |   |-- message_send_history.py
+|   |
+|   |-- services/
+|   |   |-- lead_service.py
+|   |   |-- notification_service.py
+|   |   |-- messaging_service.py
+|   |   |-- ...
+|   |
+|   |-- utils/
+|   |   |-- decorators.py
+|   |   |-- helpers.py
+|   |
+|   |-- logs/
+|   |   |-- daily_logs
+|   |
+|   |-- config.py
+|   |-- create_app.py
+|
+|-- tests/
+|   |-- unit/
+|   |   |-- test_lead_routes.py
+|   |   |-- test_session_routes.py
+|   |   |-- test_auth_routes.py
+|   |   |-- ...
+|   |-- integration/
+|   |   |-- ...
+|
+|-- requirements.txt
+|-- run.py
+|-- .env
+
+========
+
+Use cases
+-> able to upload the leads data 
+	-> upload CSV and process each row , check if the data already exits then skip else upload it 
+-> send otp
+-> run a cron or something to check if manaul message was send 2 days back i.e (if updated time > 2 days and app hasnt been installed), send them app_link message.. need to plan to send multiple messages i guess 2 messages.. both need to be different
+-> is session missed then , appology message and suggestions.. need interaction with drivekraft code
+-> message to psychologist on session missed
+-> remainder to have session again (creative way)
+-> integrating analytics and monitoring tools
+
+
+Mysql Models
+-> User
+	-> id, name , contactnumer , created , total_no_of_messages_send 
+-> Otp
+	-> id, value, user_id, response_code,created, expires at	
+-> 	user_state
+	-> id, user_id, state , moved_to_this_state,last_msg_time
+
+
+Mongo
+-> message_templates
+	-> id, name, config, created, updated
+
+-> message_send_history
+	-> id, user_id, template_code, msg, created, updated			
+
+
+states
+app_not_downloaded   				
+app_downloaded_but_no_session	
+session_requested_but_cancel       
+session_requested_but_missed   
+had_a_sesison_but_not_repeated

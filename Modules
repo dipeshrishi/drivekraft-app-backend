@@ -1,0 +1,142 @@
+Modules
+=> OTP 
+	-> Send OTP
+	-> Verify OTP
+	-> Resend OTP
+	-> Auth Generation
+	-> Identification
+	-> Firebase auth key creation
+
+=> User
+	-> UpdateBalance
+	-> SendSessionRequest
+	-> CHeckSessionHistory
+
+
+=> Lisnter
+	-> CheckRequests
+	-> UpdateStatus
+
+=> Payment
+	-> AcceptPayment
+	-> VerifyModule
+
+=> Nortification
+
+
+=> Message
+	-> SendWhatsappMessage
+	-> SendTextMessage
+	
+=> Chat
+
+=> Call	
+-----------------------------------
+
+
+-> User (id, name , contactnumer , created, updated,firebaseId,roleId,balance,isBlocked)
+-> user_role(id,type)
+-> Psychologist(id, name,userId,profile_image,enabled, description, yearsOfExp,education,gender,age,interest,language)
+-> PsychologistData(id,psyId,sessionCount,rating,preferenceOrder,LastSeen,missedRequestCount,TotalRequestsReceieveCount)
+-> SessionRequest(id,psyID,userID,created,update,expiredAt,session_request_status,Mode)
+-> SesssionRequestMapping
+-> Session(id, SessionRequestid,Created,updated,Duration,review_id,droppedby)
+-> Review(id,sessionid,rating,comment)
+-> PsychologistReview(id,sessionId,tag)
+-> Payment(id , order_id, payment_id, signature,amount,userId )
+paymentGateway: 
+    created,updated
+ -> Psychologist(
+	 id: 
+	     psyId: 
+	   startTime: 
+	   endTime: 
+	   startEpoch: 
+	   endEpoch: 
+	   duration:  )
+-> activeListenerCount(
+id: 1
+           dateValue: 2023-11-28
+         currentTime: 18:05:46.106749
+countOfActiveListner: 5
+            nameList: Tanmay,Ayushi,Akshi,Sejal,Saurabh
+
+)
+
+-> environmentProperties | CREATE TABLE `environmentProperties` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `value` varchar(50) DEFAULT '-1',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+
+ ->Notification (id,userid,typeOfNotification,created)
+ ->WhatsappMessage(id,userid,message,created)
+
+
+
+
+
+--------------------------------------------
+	Payment gateway  => Mode  => Bank
+	-> razorpay
+	-> Justpay
+	-> Stripe
+	-> Pypal
+
+
+
+	===========
+
+	Mysql Models
+-> User
+	-> id, name , contactnumer , created , total_no_of_messages_send 
+-> Otp
+	-> id, value, user_id, response_code,created, expires at	
+-> 	user_state
+	-> id, user_id, state , moved_to_this_state,last_msg_time
+
+
+Mongo
+-> message_templates
+	-> id, name, config, created, updated
+
+-> message_send_history
+	-> id, user_id, template_code, msg, created, updated			
+
+
+states
+app_not_downloaded   				
+app_downloaded_but_no_session	
+session_requested_but_cancel       
+session_requested_but_missed   
+had_a_sesison_but_not_repeated
+
+
+
+
+Status(moved to firebase)
+Offline
+Idle
+Busy
+
+SessionRequestMapping
+Accepted
+Rejected 
+Cancelled 
+Missed
+
+Droppedby
+User
+Listener
+insufficient_balance
+
+isBlocked
+Universally blocked 
+
+
+Tag
+BreakUp
+Career_issues
+.....
