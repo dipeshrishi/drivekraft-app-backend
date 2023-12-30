@@ -2,6 +2,7 @@ from flask import g
 from app.Models.mysql.user import User
 from app.utils import currentTime
 
+
 def addUser(contactNumber):
     now = currentTime()
     session = g.session
@@ -10,6 +11,7 @@ def addUser(contactNumber):
     session.commit()
 
     return True
+
 
 def getUser(contactNumber):
 

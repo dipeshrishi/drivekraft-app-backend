@@ -1,9 +1,9 @@
 from app.database import db
 
 class PsychologistData(db.Model):
-    __tablename__ = 'psychologist_data'
+    __tablename__ = 'psychologistData'
     id = db.Column(db.Integer, primary_key=True)
-    psyId = db.Column(db.Integer, db.ForeignKey('psychologist.id'), nullable=False)
+    psychologistId = db.Column(db.Integer, db.ForeignKey('psychologist.id', ondelete='CASCADE'), nullable=False)
     sessionCount = db.Column(db.Integer)
     rating = db.Column(db.Float)
     preferenceOrder = db.Column(db.Integer)
@@ -11,5 +11,6 @@ class PsychologistData(db.Model):
     missedRequestCount = db.Column(db.Integer)
     totalRequestsReceivedCount = db.Column(db.Integer)
 
-    psychologist = db.relationship('Psychologist', backref='psychologist_data')
+    psychologist = db.relationship('Psychologist', backref='psychologistData')
+
         

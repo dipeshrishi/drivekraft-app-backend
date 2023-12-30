@@ -1,7 +1,7 @@
 from flask import Blueprint,jsonify
 from app.Models.mysql import user
 from app.Services import userService
-from app.database import create_db_session
+from app.util import create_db_session
 from flask import Blueprint
 
 

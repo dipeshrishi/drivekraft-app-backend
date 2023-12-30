@@ -8,12 +8,12 @@ class User(db.Model):
     created = db.Column(db.TIMESTAMP)
     updated = db.Column(db.TIMESTAMP)
     firebaseId = db.Column(db.String(255))
-    firebaseName = db.Column(db.String(255)) 
-    firebaseEmail = db.Column(db.String(255))  
+    firebaseName = db.Column(db.String(255))
+    firebaseEmail = db.Column(db.String(255))
     firebasePassword = db.Column(db.String(255))
-    roleId = db.Column(db.Integer, db.ForeignKey('user_role.id'), nullable=False)  # Foreign key relationship
+    roleId = db.Column(db.Integer, db.ForeignKey('user_role.id'), nullable=False)
     balance = db.Column(db.DECIMAL(10, 2))
     isBlocked = db.Column(db.Boolean)
 
-    userRole = db.relationship('UserRole', backref='users')
+    userRole = db.relationship('app.Models.mysql.userRole.UserRole', backref='users')
     

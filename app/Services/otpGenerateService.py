@@ -3,13 +3,13 @@ from app.Contract.Response.otpGenerateResponse import otpGenerateResponse
 from app.Contract.Response.otpVerificationResponse import otpVerificationResponse
 from app.Contract.Request.otpVerficationRequest import otpVerificationRequest
 from random import randint
-from app.utils import validateContactNumber
+from app.utils.validateContactNumber import validateContactNumber
 from app.Services import userService
 from app.utils import currentTime
 from app.Models.DAO import otpDAO
 
 def generateOtp(request : otpGenerateRequest) -> otpGenerateResponse:
-    validate = validateContactNumber(otpGenerateRequest.phoneNo)
+    validate = validateContactNumber(request.contactNumber)
     if(validate):
         user = userService.getUserByContact(contactNumber=request.contactNumber)
         if user is None:
@@ -20,7 +20,7 @@ def generateOtp(request : otpGenerateRequest) -> otpGenerateResponse:
         response = otpGenerateResponse(successful=True,otp=otp,created=created)
         return response
     else:
-        response = otpGenerateResponse(successful="false",error="Invalid Phone Number")
+        response = otpGenerateResponse(successful=False,error="Invalid Phone Number")
 
 # def verifyOtp(request:otpVerificationRequest) ->otpVerificationResponse:
     
