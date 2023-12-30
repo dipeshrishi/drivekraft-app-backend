@@ -1,0 +1,4 @@
+ORDER_URL="https://api.razorpay.com/v1/orders"
+ORDER_CURRENCY ="INR"
+ORDER_RECEIPT ="Drivekraft"
+ORDER_AUTHORIZATION ="Basic cnpwX2xpdmVfVFR2bFp1VDZDOVZZQ2Y6OXhVNVBhUnVFbktwVUJvQWh1OEtwRUhR"
