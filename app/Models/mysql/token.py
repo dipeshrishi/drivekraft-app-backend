@@ -7,5 +7,5 @@ class Token(db.Model):
     value = db.Column(db.String(255))
     created = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
     expired = db.Column(db.TIMESTAMP)
-    
-    user = db.relationship('User', backref='tokens')
+
+    user = db.relationship('app.Models.mysql.user.User', backref='tokens')

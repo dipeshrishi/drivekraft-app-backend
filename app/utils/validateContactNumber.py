@@ -1,5 +1,5 @@
-def validatePhoneNumber(phone_number: str):
-    if len(phone_number) == 10 and phone_number.isdigit():
+def validateContactNumber(contactNumber: str):
+    if len(contactNumber) == 10 and contactNumber.isdigit():
         return True
     else:
         return False
