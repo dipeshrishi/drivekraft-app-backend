@@ -7,9 +7,10 @@ from app.Contract.Request.placeRazorpayOrderRequest import confirmRazorpayOrderR
 import json
 from ..Configurations.razorpay import ORDER_URL,ORDER_RECEIPT,ORDER_AUTHORIZATION,ORDER_CURRENCY
 import requests
+from app.Models.DAO import paymentDao
 
 
-def createRazorpayOrder(request : createRazorpayOrderRequest) -> createRazorpayOrderResponse:
+def createOrder(request : createRazorpayOrderRequest) -> createRazorpayOrderResponse:
     amountInPaisa = int(request.amount)*100
     payload = getPayloadForOrder(amountInPaisa)
     headers = getHeaderForOrder()
@@ -41,13 +42,12 @@ def placeOrder(request : placeRazorpayOrderRequest) -> placeRazorpayOrderRespons
     sessionRequest = sessionRequestService.getSessionByRequestId(request.session_request_id)
 
     if transactional == None:
-        transId = paymentDao.createTranaction(user.id, request.psychologist_id,
-                                              request.session_request_id,
-                                              request.seconds_chatted, cost, sessionRequest.session_type)
-    else:
-        paymentDao.updateTranaction(request.transaction_id, request.seconds_chatted, cost)
+         paymentDao.createTranaction(userId = user.id,razorpayOrderRequest = request,cost=cost, sessionType = sessionRequest.session_type )
 
-    userDao.updateUserBalance(user.id, user.credits - 5)
+    else:
+        paymentDao.updateTranaction(razorpayOrderRequest = request, cost=cost)
+
+    userDao.updateUserBalance(user.id, user.credits - 5) #Todo create this function in user dao
     sufficent_balance = True
     availability = True
 
@@ -69,33 +69,28 @@ def confirmOrder(request : confirmRazorpayOrderRequest) -> confirmRazorpayOrderR
     response_string = request.response
     payload = json.loads(response_string)
     if 'razorpay_payment_id' in payload:
-        print("aaa")
-        paymentDao.updatePamentOrder(payload['razorpay_order_id'], payload['razorpay_payment_id'],
-                                     payload['razorpay_signature'], 'razorpay')
-        print("bbb")
-        url = f"https://api.razorpay.com/v1/orders/{payload['razorpay_order_id']}"
-        print(url)
+        paymentDao.updatePamentOrder(order_id=payload['razorpay_order_id'],payment_id= payload['razorpay_payment_id'],
+                                     signature=payload['razorpay_signature'], gateway='razorpay')
 
+        url= getRazorpayURl(payload['razorpay_order_id'])
         payload = {}
-        headers = {
-            'Content-Type': 'application/json',
-            'Authorization': 'Basic cnpwX2xpdmVfVFR2bFp1VDZDOVZZQ2Y6OXhVNVBhUnVFbktwVUJvQWh1OEtwRUhR'
-        }
+        headers = getHeaderForOrder()
 
         response = requests.request("GET", url, headers=headers, data=payload)
-        logging.info(response.status_code)
+
         if response.status_code == 200:
             responseDict = json.loads(response.text)
             if responseDict['status'] == 'paid':
                 # paymentDao.updateOrderStatus(payload['razorpay_order_id'],True) #will add filed in future and do this
-                userService.addUserCredit(responseDict['amount'] / 100)
+                userService.addUserCredit(responseDict['amount'] / 100) #Todo create this in user service
 
-                return jsonify({'msg': 'Your payment id is ' + payload['razorpay_order_id'] + '.', 'status': 'success',
-                                'title': 'Session Booked.'})
+                response = confirmRazorpayOrderResponse(msg ='Your payment id is ' + payload['razorpay_order_id'] + '.',status= 'success',title ="Session Booked")
+                return response
 
         else:
-            return jsonify({'msg': 'Payment Failed.', 'status': 'error', 'title': 'Error'})
-
+            response = confirmRazorpayOrderResponse(msg='Payment Failed',
+                                                    status='error', title="Error")
+            return response
 
 def getPayloadForOrder(amountInPaisa):
     payload = json.dumps({
@@ -114,3 +109,7 @@ def getHeaderForOrder():
     }
 
     return headers
+
+def getRazorpayURl(order_id):
+    url = f"https://api.razorpay.com/v1/orders/{order_id}"
+    return url
