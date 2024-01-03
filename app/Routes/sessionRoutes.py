@@ -37,3 +37,10 @@ def fetchSessionRequest():
     sessionFetchRequest = fetchSessionRequest.fetchSessionRequest(request.get_json())
     response = sessionService.fetchSessionRequest().__dict__
     return jsonify(response)
+
+@sessionBlueprint.route('/book/request/confirm', methods =['POST'])
+@create_db_session
+def confirmSessionRequest():
+    sessionConfirmRequest = confirmSessionRequest.confirmSessionRequest(request.get_json())
+    response = sessionService.confirmSessionRequest(sessionConfirmRequest).__dict__
+    return jsonify(response)

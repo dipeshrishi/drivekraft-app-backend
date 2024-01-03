@@ -28,5 +28,14 @@ def fetchSessionRequestByUserId(user_id):
     session = g.session
     now = currentTime.getCurrentTime()
     verifiedSessionRequest = session.query(sessionRequest).filter_by(psychologistId=user_id,
-                                                                     sessionRequestStatusId='CREATED',expired >now).one()    #todo kindly fix this expiry issue
+                                                                     sessionRequestStatus='CREATED',expired >now).one()    #todo kindly fix this expiry issue
     return verifiedSessionRequest
+
+def isExpiredOrCancelled(sessionRequestId):
+    session = g.session
+    sessionStatus = session.query(sessionRequest).filter_by(id=sessionRequestId,sessionRequestStatus='CREATED',expired >now).one()    #todo kindly fix this expiry issue
+
+    if sessionStatus ==None:
+        return True
+
+    return False
