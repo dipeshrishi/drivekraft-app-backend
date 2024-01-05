@@ -8,7 +8,7 @@ def getUserRole()-> Role:
         pivot= Pivot(PSYCHOLOGIST_ROLE_ID,user.id)
         response = Role(user.create, user.id, PSYCHOLOGIST_ROLE_LABEL, PSYCHOLOGIST_ROLE_NAME, pivot, user.updated)
         return response
-    else
+    else :
         pivot = Pivot(CUSTOMER_ROLE_ID, user.id)
         response = Role(user.create, user.id, CUSTOMER_ROLE_LABEL, CUSTOMER_ROLE_NAME, pivot, user.updated)
         return response
