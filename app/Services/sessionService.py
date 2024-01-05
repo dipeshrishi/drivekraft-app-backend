@@ -7,6 +7,7 @@ from app.Contract.Request.cancelSessionRequest import cancelSessionRequest
 from app.Contract.Response.confirmSessionResponse import confirmSessionResponse
 from app.Contract.Request.confirmSessionRequest import confirmSessionRequest
 from app.Models.DAO import sessionDao
+from sqlalchemy import null
 
 SESSION_REQUEST_STATUS= 0
 SESSION_REQUEST_ISCANCELLED =0
