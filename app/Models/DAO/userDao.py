@@ -12,7 +12,7 @@ def addUser(contactNumber):
     session.add(new_user)
     session.commit()
 
-    return True
+    return new_user
 
 
 def getUserByContact(contactNumber):
