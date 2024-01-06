@@ -7,9 +7,11 @@ from app.Contract.Request.cancelSessionRequest import cancelSessionRequest
 from app.Contract.Response.confirmSessionResponse import confirmSessionResponse
 from app.Contract.Request.confirmSessionRequest import confirmSessionRequest
 from app.Models.DAO import sessionDao
+from sqlalchemy import null
 from ..Models.mysql.sessionRequest import SessionRequest
 from ..Models.mysql.user import User
 from ..Services import userService
+
 SESSION_REQUEST_STATUS= 0
 SESSION_REQUEST_ISCANCELLED =0
 SESSION_REQUEST_EXPIRED_STATUS=False
