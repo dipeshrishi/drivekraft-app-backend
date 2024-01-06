@@ -1,12 +1,15 @@
 from datetime import datetime, timedelta
 from app.utils import currentTime
-from app.Models.mysql.otp import otp
+from app.Models.mysql.otp import Otp
 from flask import g
+from sqlalchemy import and_
+from sqlalchemy.orm.exc import NoResultFound
+
 
 def addOtp(userId,otpValue):
     session = g.session
     now = currentTime.getCurrentTime()
-    new_otp = otp(otp=otpValue,userId=userId, created=now)
+    new_otp = Otp(otp=otpValue,userId=userId, created=now)
 
     session.add(new_otp)
 
@@ -16,6 +19,18 @@ def addOtp(userId,otpValue):
     
 def getOtpbyUserId(userId):
     session = g.session
-    otp = session.query(otp).filter_by(userId=userId).one()
-
+    otp = session.query(Otp).filter_by(userId=userId).one()
+    print(otp)
     return otp
+
+def getOtp(userId):
+    session = g.session
+    now = currentTime.getCurrentTime()
+    try:
+        otp = session.query(Otp).filter(
+            and_(Otp.userId == userId, Otp.created >= now - timedelta(minutes=2))
+        ).one()
+        return otp.otp
+    except NoResultFound:
+        return None
+    
