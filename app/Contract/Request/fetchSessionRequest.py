@@ -1,3 +1,3 @@
 
-class fetchSessionRequest:
-    def __init__(self):
+# class fetchSessionRequest:
+#     def __init__(self):

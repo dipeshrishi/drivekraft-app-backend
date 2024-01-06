@@ -8,14 +8,17 @@ from app.Contract.Response.confirmSessionResponse import confirmSessionResponse
 from app.Contract.Request.confirmSessionRequest import confirmSessionRequest
 from app.Models.DAO import sessionDao
 from sqlalchemy import null
+from ..Models.mysql.sessionRequest import SessionRequest
+from ..Models.mysql.user import User
+from ..Services import userService
 
 SESSION_REQUEST_STATUS= 0
 SESSION_REQUEST_ISCANCELLED =0
 SESSION_REQUEST_EXPIRED_STATUS=False
 SESSION_REQUEST_VaLID_STATUS=True
 
-def sendSessionRequest(request : sendSessionRequest) -> sendSessionResponse:
-    session_type = null
+def send_Session_Request(request : sendSessionRequest) -> sendSessionResponse:
+    session_type = None
 
     try:
         session_type=request.session_type
@@ -24,9 +27,10 @@ def sendSessionRequest(request : sendSessionRequest) -> sendSessionResponse:
     except:
         session_type = 'chat'
 
-    user = userService.getUser() #Todo by Gavy
-    sessionDao.createRequest(request.listener_id,session_type,user.id)
-    #Todo return session Id which is cretaed above in respose
+    user = userService.getUserDetails()
+    userCurrentSession = sessionDao.createRequest(request.listener_id,session_type,user.id)
+    response = sendSessionResponse(id=userCurrentSession.id)
+    return response
 
 def cancelSessionRequest(request : cancelSessionRequest) -> cancelSessionResponse:
     try:
@@ -49,17 +53,28 @@ def verifySessionRequest(request : verifySessionRequest) -> verifySessionRespons
     return response
 
 def fetchSessionRequest():
-    user = userService.getUser()  # Todo by Gavy
-    SessionRequest= sessionDao.fetchSessionRequestByUserId(user.id)
-    customerId = SessionRequest.userId
-    customer= userService.getUserById(customerId)  # Todo by Gavy
+    user = userService.getUserDetails()
+    sessionRequest= sessionDao.fetchSessionRequestByUserId(user.id)
+    customerId = sessionRequest.userId
+    customer= userService.getUserById(customerId)
 
-    return createVerifySessionRequest(SessionRequest,customer)
+    return createVerifySessionRequest(sessionRequest,customer)
 
 
-def createVerifySessionRequest(sessionRequest : SessionRequest,customer: user):
-    response = verifySessionResponse( id=sessionRequest.id, listener_id= sessionRequest.psychologistId, customer_id=user.id , status= SESSION_REQUEST_STATUS, session_type =sessionRequest.mode, customer_firebase_id = user.firebaseId, username= user.name,
-                 is_cancelled = SESSION_REQUEST_ISCANCELLED, expiry_at = sessionRequest.expired))
+def createVerifySessionRequest(sessionRequest : SessionRequest,customer : User):
+
+    # response = verifySessionResponse( id=sessionId,
+    #                                   listener_id= sessionRequest.psychologistId,
+    #                                   customer_id=customer.id ,
+    #                                   status= SESSION_REQUEST_STATUS,
+    #                                   session_type =sessionRequest.mode,
+    #                                   customer_firebase_id = user.firebaseId,
+    #                                   username= user.name,
+    #              is_cancelled = SESSION_REQUEST_ISCANCELLED, expiry_at = sessionRequest.expired))
+    response = verifySessionResponse(id=sessionRequest.id,listener_id=sessionRequest.psychologistId,
+                                     customer_id=customer.id,status= SESSION_REQUEST_STATUS,
+                                     session_type=sessionRequest.mode,customer_firebase_id=customer.firebaseId,
+                                     username=customer.name)
     return response
     #todo need to fix response at android side as well--> need to remove list , created and updated as well
 

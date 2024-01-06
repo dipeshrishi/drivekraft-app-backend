@@ -1,5 +1,6 @@
 def validateContactNumber(contactNumber: str):
-    if len(contactNumber) == 10 and contactNumber.isdigit():
+    print(contactNumber)
+    if len(contactNumber) == 10:
         return True
     else:
         return False

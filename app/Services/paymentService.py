@@ -4,6 +4,7 @@ from app.Contract.Response.createRazorpayOrderResponse import createRazorpayOrde
 from app.Contract.Request.placeRazorpayOrderRequest import placeRazorpayOrderRequest
 from app.Contract.Response.createRazorpayOrderResponse import confirmRazorpayOrderResponse
 from app.Contract.Request.placeRazorpayOrderRequest import confirmRazorpayOrderRequest
+import userService
 import json
 from ..Configurations.razorpay import ORDER_URL,ORDER_RECEIPT,ORDER_AUTHORIZATION,ORDER_CURRENCY
 import requests
@@ -17,10 +18,10 @@ def createOrder(request : createRazorpayOrderRequest) -> createRazorpayOrderResp
 
     response = requests.request("POST", ORDER_URL, headers=headers, data=payload)
 
-    userId = userService.getUser().id # ToDo need to get function from Gavy
+    user = userService.getUserDetails()
 
     responseDict = json.loads(response.text)
-    paymentDao.storePaymentOrder(responseDict, userId)
+    paymentDao.storePaymentOrder(responseDict, user.id)
 
     response = createRazorpayOrderResponse(order_id=responseDict['id'],currency=ORDER_CURRENCY,amount= responseDict['amount']/100)
 
@@ -29,7 +30,7 @@ def createOrder(request : createRazorpayOrderRequest) -> createRazorpayOrderResp
 
 
 def placeOrder(request : placeRazorpayOrderRequest) -> placeRazorpayOrderResponse:
-    user = userService.getUser()
+    user = userService.getUserDetails()
 
     if user.credits < 5:
         response = placeRazorpayOrderResponse(user_credits=user.credits,
@@ -39,25 +40,25 @@ def placeOrder(request : placeRazorpayOrderRequest) -> placeRazorpayOrderRespons
 
     transactional = paymentDao.getTransactionaByTransId(request.transaction_id)
     cost = int((int(request.seconds_chatted) + 60) / 60) * 5
-    sessionRequest = sessionRequestService.getSessionByRequestId(request.session_request_id)
+    sessionRequest = sessionService.getSessionByRequestId(request.session_request_id) # needs clarification
 
     if transactional == None:
          paymentDao.createTranaction(userId = user.id,razorpayOrderRequest = request,cost=cost, sessionType = sessionRequest.session_type )
 
     else:
-        paymentDao.updateTranaction(razorpayOrderRequest = request, cost=cost)
+        paymentDao.updateTransaction(razorpayOrderRequest = request, cost=cost)
 
-    userDao.updateUserBalance(user.id, user.credits - 5) #Todo create this function in user dao
+    userService.updateUserBalance(user.id, user.balance - 5)
     sufficent_balance = True
     availability = True
 
-    if user.credits <25:
+    if user.balance <25:
         sufficent_balance = False
 
-    if user.credits <5:
+    if user.balance <5:
         availability = False
 
-    response = placeRazorpayOrderResponse(user_credits=user.credits,
+    response = placeRazorpayOrderResponse(user_credits=user.balance,
                                           status="Success", msg="Sufficient credits", credits_availablility=availability,
                                           credits_sufficient_for_five_minutes=sufficent_balance)
     return response
@@ -69,8 +70,8 @@ def confirmOrder(request : confirmRazorpayOrderRequest) -> confirmRazorpayOrderR
     response_string = request.response
     payload = json.loads(response_string)
     if 'razorpay_payment_id' in payload:
-        paymentDao.updatePamentOrder(order_id=payload['razorpay_order_id'],payment_id= payload['razorpay_payment_id'],
-                                     signature=payload['razorpay_signature'], gateway='razorpay')
+        paymentDao.updatePaymentOrder(order_id=payload['razorpay_order_id'], payment_id= payload['razorpay_payment_id'],
+                                      signature=payload['razorpay_signature'], gateway='razorpay')
 
         url= getRazorpayURl(payload['razorpay_order_id'])
         payload = {}
@@ -82,7 +83,7 @@ def confirmOrder(request : confirmRazorpayOrderRequest) -> confirmRazorpayOrderR
             responseDict = json.loads(response.text)
             if responseDict['status'] == 'paid':
                 # paymentDao.updateOrderStatus(payload['razorpay_order_id'],True) #will add filed in future and do this
-                userService.addUserCredit(responseDict['amount'] / 100) #Todo create this in user service
+                userService.addUserCredit(responseDict['amount'] / 100)
 
                 response = confirmRazorpayOrderResponse(msg ='Your payment id is ' + payload['razorpay_order_id'] + '.',status= 'success',title ="Session Booked")
                 return response
