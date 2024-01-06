@@ -7,7 +7,7 @@ from app.Contract.Request import userUpdateFirebaseDetailsRequest
 from ..authenticate import authenticate_user
 
 
-userBlueprint = Blueprint('user', __name__,url_prefix='api')
+userBlueprint = Blueprint('user', __name__,url_prefix='/api')
 
 
 @userBlueprint.route('/user/firebase',methods=['GET','POST'])
@@ -39,6 +39,6 @@ def getUserRoleDetails():
 @format_request_data
 @create_db_session
 @authenticate_user
-def getUserRoleDetails():
+def fetchUserRoleDetails():
     response = userService.getUserBalance().__dict__
     return jsonify(response)
