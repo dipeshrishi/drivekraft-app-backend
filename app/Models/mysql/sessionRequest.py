@@ -15,4 +15,3 @@ class SessionRequest(db.Model):
     psychologist = db.relationship('Psychologist', backref='sessionRequests', foreign_keys=[psychologistId])
     sessionRequestStatus = db.relationship('SessionRequestStatusMapping', backref='sessionRequests', foreign_keys=[sessionRequestStatusId])
 
-    #todo will make sessionRequestStatusId to sessionRequestStatus,string or enum the ay you want

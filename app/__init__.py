@@ -1,6 +1,5 @@
-from flask import Flask,g
-from .utils import currentTime
-from .util import create_db_session
+from flask import Flask
+from .cache import cache
 from .Models.mysql import (otp,
 paymentGateway,
 listenerActiveStamps,
@@ -20,12 +19,20 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost:3306/drivekraft_backend_v2'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+    app.config['CACHE_TYPE'] = 'simple'
+    cache.init_app(app)
+    
     db.init_app(app)
     with app.app_context():
         db.create_all()
+        # app.wsgi_app = RequestFormatMiddleware(app.wsgi_app)
 
     from .Routes import otpRoutes
     app.register_blueprint(otpRoutes.otpBlueprint)
+    from .Routes import userRoutes
+    app.register_blueprint(userRoutes.userBlueprint)
+
+    
 
     @app.route('/')
     # @create_db_session
