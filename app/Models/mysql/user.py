@@ -12,7 +12,7 @@ class User(db.Model):
     firebaseName = db.Column(db.String(255))
     firebaseEmail = db.Column(db.String(255))
     firebasePassword = db.Column(db.String(255))
-    roleId = db.Column(db.Integer, db.ForeignKey('user_role.id'), nullable=False)
+    roleId = db.Column(db.Integer, db.ForeignKey('userRole.id'), nullable=False)
     balance = db.Column(db.DECIMAL(10, 2))
     isBlocked = db.Column(db.Boolean)
 
