@@ -27,6 +27,11 @@ def create_app():
     db.init_app(app)
     with app.app_context():
         db.create_all()
+        customer_role = userRole.UserRole(type='CUSTOMER')
+        psychologist_role = userRole.UserRole(type='PSYCHOLOGIST')
+        db.session.add(customer_role)
+        db.session.add(psychologist_role)
+        db.session.commit()
 
     from .Routes import otpRoutes
     app.register_blueprint(otpRoutes.otpBlueprint)
