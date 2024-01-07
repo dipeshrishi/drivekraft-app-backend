@@ -18,7 +18,7 @@ class Psychologist(db.Model):
     interest = db.Column(db.String(255))
     language = db.Column(db.String(20))
     online = db.Column(db.Integer)
-    busy = db.column(db.Integer)
+    busy = db.Column(db.Integer)
 
     user = db.relationship('User', backref='psychologists')
 
