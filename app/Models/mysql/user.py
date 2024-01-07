@@ -4,7 +4,8 @@ class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
-    contactNumber = db.Column(db.String(15))
+    contactNumber = db.Column(db.String(10))
+    username = db.Column(db.String(15))
     created = db.Column(db.TIMESTAMP)
     updated = db.Column(db.TIMESTAMP)
     firebaseId = db.Column(db.String(255))

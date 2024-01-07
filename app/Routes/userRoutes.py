@@ -3,7 +3,7 @@ from app.Models.mysql import user
 from app.Services import userService
 from app.util import create_db_session,format_request_data
 from flask import Blueprint
-from app.Contract.Request import userUpdateFirebaseDetailsRequest
+from app.Contract.Request import userUpdateFirebaseDetailsRequest,checkUsernameRequest,confirmUsernameRequest
 from ..authenticate import authenticate_user
 
 
@@ -19,7 +19,7 @@ def updateUserFirebaseData():
     response = userService.updateUserFirebaseDetails(userRequest).__dict__
     return jsonify(response)
 
-@userBlueprint.route('/role')
+@userBlueprint.route('/user')
 @format_request_data
 @create_db_session
 @authenticate_user
@@ -27,18 +27,28 @@ def getUserDetails():
     response = userService.getUserDetails().__dict__
     return jsonify(response)
 
-@userBlueprint.route('/user')
-@format_request_data
-@create_db_session
-@authenticate_user
-def getUserRoleDetails():
-    response = userService.getUserRole().__dict__
-    return jsonify(response)
-
-@userBlueprint.route('/check/user/balance')
+@userBlueprint.route('/check/user/bal')
 @format_request_data
 @create_db_session
 @authenticate_user
 def fetchUserRoleDetails():
     response = userService.getUserBalance().__dict__
+    return jsonify(response)
+
+@userBlueprint.route('/username/check')
+@format_request_data
+@create_db_session
+@authenticate_user
+def checkForUsername():
+    requestData = checkUsernameRequest.CheckUsernameRequest(**request.json_data)
+    response = userService.checkUsername(requestData).__dict__
+    return jsonify(response)
+
+@userBlueprint.route('/username/check/confirm')
+@format_request_data
+@create_db_session
+@authenticate_user
+def confirmUsername():
+    requestConfirm = confirmUsernameRequest.ConfirmUsernameRequest(**request.json_data)
+    response = userService.confirmUsername(requestConfirm).__dict__
     return jsonify(response)
