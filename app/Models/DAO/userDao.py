@@ -14,6 +14,27 @@ def addUser(contactNumber):
 
     return new_user
 
+def addUser(contactNumber):
+    now = getCurrentTime()
+    session = g.session
+    new_user = User(contactNumber=contactNumber, created=now, updated=now, roleId=1)
+    session.add(new_user)
+    session.commit()
+
+    return new_user
+def findUserByUsername(username):
+    session = g.session
+    return session.query(User).filter_by(username=username).count() == 0
+
+def assignUsername(username,userId):
+    session = g.session
+    user = session.query(User).filter_by(id=userId)
+    user.username = username
+    session.commit()
+
+    return True
+
+
 
 def getUserByContact(contactNumber):
     session = g.session

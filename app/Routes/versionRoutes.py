@@ -4,7 +4,7 @@ from app.Contract.Response.versionResponse import versionResponse
 
 
 
-versionBlueprint = Blueprint('version', __name__,url_prefix='api')
+versionBlueprint = Blueprint('version', __name__,url_prefix='/api')
 
 @versionBlueprint.route('/app/ver', methods =['GET'])
 @create_db_session
