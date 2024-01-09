@@ -5,7 +5,7 @@ from app.Services import sessionService
 from app.authenticate import authenticate_user
 
 
-sessionBlueprint = Blueprint('session', __name__,url_prefix='api/session')
+sessionBlueprint = Blueprint('session', __name__,url_prefix='/api/session')
 
 @sessionBlueprint.route('/book/request', methods =['POST'])
 @create_db_session

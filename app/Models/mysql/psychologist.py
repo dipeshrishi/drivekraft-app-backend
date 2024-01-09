@@ -20,5 +20,5 @@ class Psychologist(db.Model):
     online = db.Column(db.Integer)
     busy = db.Column(db.Integer)
 
-    user = db.relationship('User', backref='psychologists')
+    user = db.relationship('User', backref='psychologists',foreign_keys=[userId])
 

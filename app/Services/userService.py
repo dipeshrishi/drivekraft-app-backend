@@ -8,6 +8,7 @@ from app.Contract.Response.checkUsernameResponse import CheckUsernameResponse
 from app.Contract.Request.checkUsernameRequest import CheckUsernameRequest
 from app.Contract.Request.confirmUsernameRequest import ConfirmUsernameRequest
 from app.Contract.Response.confirmUsernameResponse import ConfirmUsernameResponse
+from app.Contract.Response.userBalanceResponse import userBalanceResponse
 from app.Models.DAO.tokenDAO import getToken
 from app.cache import cache
 from flask import g
@@ -38,10 +39,11 @@ def checkUsername(request: CheckUsernameRequest) -> CheckUsernameResponse:
     return response
 
 def confirmUsername(request: ConfirmUsernameRequest) -> ConfirmUsernameResponse:
+    user = getUserDetails()
     if (len(request.username) < 4):
         response = CheckUsernameResponse(message="Username must be greater than 4 characters", status=False)
     else:
-        result = userDao.assignUsername(request.username)
+        result = userDao.assignUsername(request.username,user.id)
         if (result):
             response = CheckUsernameResponse(message="Username is available", status=True)
         else:
@@ -55,7 +57,8 @@ def updateUserBalance(userId, newBalance):
 
 def getUserBalance():
     user = getUserDetails()
-    return user.balance
+    response = userBalanceResponse(successful=True , balance=user.balance)
+    return response
 
 
 def addUserCredit(credits):
@@ -81,7 +84,6 @@ def getUserByContact(contactNumber):
     return userDao.getUserByContact(contactNumber)
 
 
-@cache.memoize(timeout=600)
 def getUserByToken(tokenValue):
     token = getToken(tokenValue)
     if token is None:
@@ -92,8 +94,8 @@ def getUserByToken(tokenValue):
 
 
 def getUserDetails():
-    return getUserByToken(g.tokenValue)
-
+    user = getUserByToken(g.tokenValue)
+    return user
 
 def getUserById(userId):
     user = userDao.getUserById(userId)

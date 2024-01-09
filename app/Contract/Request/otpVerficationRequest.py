@@ -1,4 +1,4 @@
 class otpVerificationRequest:
-    def __init__(self,contactNumber,otp):
-        self.contactNumber = contactNumber
+    def __init__(self,mobile,otp):
+        self.mobile = mobile
         self.otp = otp

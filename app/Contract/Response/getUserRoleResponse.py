@@ -4,13 +4,16 @@ class Role:
         self.id = id
         self.label = label
         self.name = name
-        self.pivot = Pivot(**pivot) if pivot else None
+        self.pivot = pivot.to_dict() if pivot else None
         self.updated_at = updated_at
 
 class Pivot:
     def __init__(self, role_id, user_id):
         self.role_id = role_id
         self.user_id = user_id
+
+    def to_dict(self):
+        return {'role_id': self.role_id, 'user_id': self.user_id}
 
 
 

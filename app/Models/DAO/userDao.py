@@ -26,10 +26,11 @@ def findUserByUsername(username):
     session = g.session
     return session.query(User).filter_by(username=username).count() == 0
 
-def assignUsername(username,userId):
+def assignUsername(newUsername,userId):
     session = g.session
-    user = session.query(User).filter_by(id=userId)
-    user.username = username
+    user = session.query(User).filter_by(id=userId).first()
+    print(user.id)
+    user.username = newUsername
     session.commit()
 
     return True

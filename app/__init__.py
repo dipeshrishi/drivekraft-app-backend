@@ -37,6 +37,16 @@ def create_app():
     app.register_blueprint(otpRoutes.otpBlueprint)
     from .Routes import userRoutes
     app.register_blueprint(userRoutes.userBlueprint)
+    from .Routes import roleRoutes
+    app.register_blueprint(roleRoutes.roleBlueprint)
+    from .Routes import paymentRoutes
+    app.register_blueprint(paymentRoutes.paymentBlueprint)
+    from .Routes import psychologistRoutes
+    app.register_blueprint(psychologistRoutes.psychologistBlueprint)
+    from .Routes import sessionRoutes
+    app.register_blueprint(sessionRoutes.sessionBlueprint)
+    from .Routes import versionRoutes
+    app.register_blueprint(versionRoutes.versionBlueprint)
 
     app.logger.setLevel(logging.INFO)
 

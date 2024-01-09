@@ -2,7 +2,7 @@ from app.Contract.Response.allPsychologistResponse import allPsychologistRespons
 from ..Contract.Response.setPsychologistBusyResponse import setPsychologistBusyResponse
 from ..Contract.Response.updatePsychologistStatusResponse import updatePsychologistStatusResponse
 from app.Models.DAO import psychologistDao
-import userService
+from app.Services import userService
 
 def getAllPsychologist()-> allPsychologistResponse:
     response= psychologistDao.getAllPsychologist()

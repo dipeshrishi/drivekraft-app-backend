@@ -1,14 +1,16 @@
 from app.Contract.Response.placeRazorpayOrderResponse import placeRazorpayOrderResponse
-from app.Contract.Request.createRazorpayOrderRequest import createRazorpayOrderRequest
+from app.Contract.Request.createPaymentOrderRequest import createRazorpayOrderRequest
 from app.Contract.Response.createRazorpayOrderResponse import createRazorpayOrderResponse
-from app.Contract.Request.placeRazorpayOrderRequest import placeRazorpayOrderRequest
-from app.Contract.Response.createRazorpayOrderResponse import confirmRazorpayOrderResponse
-from app.Contract.Request.placeRazorpayOrderRequest import confirmRazorpayOrderRequest
-import userService
+from app.Contract.Request.placePaymentOrderRequest import placeRazorpayOrderRequest
+from app.Contract.Request.confirmPaymentOrderRequest import confirmPaymentOrderRequest
+from app.Contract.Response.confirmRazorpayOrderResponse import confirmRazorpayOrderResponse
+from app.Contract.Request.placePaymentOrderRequest import placeRazorpayOrderRequest
+from app.Services.userService import getUserDetails
 import json
 from ..Configurations.razorpay import ORDER_URL,ORDER_RECEIPT,ORDER_AUTHORIZATION,ORDER_CURRENCY
 import requests
 from app.Models.DAO import paymentDao
+from app.Services import sessionService
 
 
 def createOrder(request : createRazorpayOrderRequest) -> createRazorpayOrderResponse:
@@ -18,7 +20,7 @@ def createOrder(request : createRazorpayOrderRequest) -> createRazorpayOrderResp
 
     response = requests.request("POST", ORDER_URL, headers=headers, data=payload)
 
-    user = userService.getUserDetails()
+    user = getUserDetails()
 
     responseDict = json.loads(response.text)
     paymentDao.storePaymentOrder(responseDict, user.id)
@@ -30,7 +32,7 @@ def createOrder(request : createRazorpayOrderRequest) -> createRazorpayOrderResp
 
 
 def placeOrder(request : placeRazorpayOrderRequest) -> placeRazorpayOrderResponse:
-    user = userService.getUserDetails()
+    user = getUserDetails()
 
     if user.credits < 5:
         response = placeRazorpayOrderResponse(user_credits=user.credits,
@@ -66,7 +68,7 @@ def placeOrder(request : placeRazorpayOrderRequest) -> placeRazorpayOrderRespons
     # Todo need to make changes in android as well
 
 
-def confirmOrder(request : confirmRazorpayOrderRequest) -> confirmRazorpayOrderResponse:
+def confirmOrder(request : confirmPaymentOrderRequest) -> confirmRazorpayOrderResponse:
     response_string = request.response
     payload = json.loads(response_string)
     if 'razorpay_payment_id' in payload:

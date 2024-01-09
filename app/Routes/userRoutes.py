@@ -24,18 +24,18 @@ def updateUserFirebaseData():
 @create_db_session
 @authenticate_user
 def getUserDetails():
-    response = userService.getUserDetails().__dict__
-    return jsonify(response)
+    response = userService.getUserDetails().as_dict()
+    return response
 
 @userBlueprint.route('/check/user/bal')
 @format_request_data
 @create_db_session
 @authenticate_user
-def fetchUserRoleDetails():
+def fetchUserBalanceDetails():
     response = userService.getUserBalance().__dict__
     return jsonify(response)
 
-@userBlueprint.route('/username/check')
+@userBlueprint.route('/username/check',methods=['GET','POST'])
 @format_request_data
 @create_db_session
 @authenticate_user
@@ -44,7 +44,7 @@ def checkForUsername():
     response = userService.checkUsername(requestData).__dict__
     return jsonify(response)
 
-@userBlueprint.route('/username/check/confirm')
+@userBlueprint.route('/username/check/confirm',methods=['GET','POST'])
 @format_request_data
 @create_db_session
 @authenticate_user
