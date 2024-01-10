@@ -8,12 +8,11 @@ import random,string
 
 
 def verifyOtp(request : otpVerificationRequest) -> otpVerificationResponse:
-    validate = validateContactNumber(request.contactNumber)
+    validate = validateContactNumber(request.mobile)
     if(validate):
-        user = userService.getUserByContact(contactNumber=request.contactNumber)
-        print(user)
+        user = userService.getUserByContact(request.mobile)
         otp = otpDAO.getOtp(userId=user.id)
-        if otp != request.otp:
+        if str(otp) != request.otp:
             response = otpVerificationResponse(successful="false",error="{'message':'OTP does not match.'}", statusCode=401)
             return response
         tokenValue= getToken()

@@ -18,6 +18,6 @@ class PsychologistData(db.Model):
     firebaseEmail = db.Column(db.String(255))
     firebasePassword = db.Column(db.String(255))
 
-    psychologist = db.relationship('Psychologist', backref='psychologistData')
+    psychologist = db.relationship('Psychologist', backref='psychologistData',foreign_keys=[psychologistId])
 
         

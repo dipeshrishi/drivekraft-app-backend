@@ -1,4 +1,4 @@
 class otpGenerateRequest:
-    def __init__(self,contactNumber,created=None):
-        self.contactNumber = contactNumber
+    def __init__(self,mobile,created=None):
+        self.mobile = mobile
         self.created = created
