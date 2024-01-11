@@ -28,7 +28,7 @@ def getOtp(userId):
     now = currentTime.getCurrentTime()
     try:
         otp = session.query(Otp).filter(
-            and_(Otp.userId == userId, Otp.created >= now - timedelta(minutes=2))
+            and_(Otp.userId == userId, Otp.created >= now - timedelta(minutes=10))
         ).one()
         return otp.otp
     except NoResultFound:
