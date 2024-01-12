@@ -12,6 +12,7 @@ from app.Models.DAO import otpDAO
 
 def generateOtp(request : otpGenerateRequest) -> otpGenerateResponse:
     validate = validateContactNumber(request.mobile)
+    created = getCurrentTime()
     print(validate)
     if(validate):
         if googleVerificationOtp(request.mobile):
@@ -19,7 +20,7 @@ def generateOtp(request : otpGenerateRequest) -> otpGenerateResponse:
             otpDAO.addOtp(1, otp)
         else:
             user = userService.getUserByContact(contactNumber=request.mobile)
-            created = getCurrentTime()
+
             if user is None:
                 user = userService.createUser(contactNumber=request.mobile)
                 otp = generateOtpInternal()

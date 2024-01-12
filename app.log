@@ -1,4 +1,4 @@
-2024-01-11 08:48:27,810 - app - ERROR - Exception on /api/psychologist [GET]
+2024-01-13 00:28:52,122 - app - ERROR - Exception on /api/login-send-otp [POST]
 Traceback (most recent call last):
   File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 1455, in wsgi_app
     response = self.full_dispatch_request()
@@ -12,15 +12,169 @@ Traceback (most recent call last):
   File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 852, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 18, in wrapper
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 20, in wrapper
     raise e
-  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 12, in wrapper
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 14, in wrapper
     result = func(*args, **kwargs)
              ^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 36, in wrapper
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 39, in wrapper
     return func(*args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/virender/Desktop/DriveKraft-Backend/app/Routes/psychologistRoutes.py", line 16, in getAllPsychologist
-    response = psychologistService.getAllPsychologist().__dict__
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'list' object has no attribute '__dict__'
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/Routes/otpRoutes.py", line 15, in generateNewOtp
+    otpRequest = otpGenerateRequest.otpGenerateRequest(**request.json_data)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: app.Contract.Request.otpGenerateRequest.otpGenerateRequest() argument after ** must be a mapping, not NoneType
+2024-01-13 01:35:03,040 - app - ERROR - Exception on /api/psychologist/create [POST]
+Traceback (most recent call last):
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 21, in wrapper
+    raise e
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 40, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/Routes/psychologistRoutes.py", line 41, in createPsychologist
+    requestData = createPsychologistRequest.createPsychologistRequest(**request.json_data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: createPsychologistRequest.__init__() got an unexpected keyword argument 'education  '
+2024-01-13 01:35:19,723 - app - ERROR - Exception on /api/psychologist/create [POST]
+Traceback (most recent call last):
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 21, in wrapper
+    raise e
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 40, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/Routes/psychologistRoutes.py", line 42, in createPsychologist
+    response = psychologistService.createPsychologist(requestData).__dict__
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/Services/psychologistService.py", line 67, in createPsychologist
+    result = psychologistDao.createPsychologist(psychologist, psychologistData)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/Models/DAO/psychologistDao.py", line 52, in createPsychologist
+    return {'id':psy.id,'dataId':psyData.id}
+                 ^^^^^^
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-01-13 01:36:57,026 - app - ERROR - Exception on /api/psychologist/create [POST]
+Traceback (most recent call last):
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 21, in wrapper
+    raise e
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 40, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/Routes/psychologistRoutes.py", line 42, in createPsychologist
+    response = psychologistService.createPsychologist(requestData).__dict__
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/Services/psychologistService.py", line 67, in createPsychologist
+    result = psychologistDao.createPsychologist(psychologist, psychologistData)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/Models/DAO/psychologistDao.py", line 54, in createPsychologist
+    return {'id':psy.id,'dataId':psyData.id}
+                 ^^^^^^
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-01-13 01:37:03,269 - app - ERROR - Exception on /api/psychologist/create [POST]
+Traceback (most recent call last):
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 21, in wrapper
+    raise e
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 40, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/Routes/psychologistRoutes.py", line 42, in createPsychologist
+    response = psychologistService.createPsychologist(requestData).__dict__
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/Services/psychologistService.py", line 67, in createPsychologist
+    result = psychologistDao.createPsychologist(psychologist, psychologistData)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/Models/DAO/psychologistDao.py", line 54, in createPsychologist
+    return {'id':psy.id,'dataId':psyData.id}
+                 ^^^^^^
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-01-13 01:44:11,113 - app - ERROR - Exception on /api/psychologist/create [POST]
+Traceback (most recent call last):
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 21, in wrapper
+    raise e
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 40, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/Routes/psychologistRoutes.py", line 42, in createPsychologist
+    response = psychologistService.createPsychologist(requestData).__dict__
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/Services/psychologistService.py", line 67, in createPsychologist
+    result = psychologistDao.createPsychologist(psychologist)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/Models/DAO/psychologistDao.py", line 54, in createPsychologist
+    return psy.id
+           ^^^^^^
+AttributeError: 'NoneType' object has no attribute 'id'

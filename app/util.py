@@ -1,6 +1,9 @@
-from flask import g,request
+import logging
+
+from flask import g, request
 from functools import wraps
 from app.database import db
+
 
 def create_db_session(func):
     @wraps(func)
@@ -20,6 +23,7 @@ def create_db_session(func):
             g.session.close()
 
     return wrapper
+
 
 def format_request_data(func):
     @wraps(func)

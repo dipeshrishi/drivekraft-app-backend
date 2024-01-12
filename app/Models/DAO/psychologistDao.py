@@ -6,10 +6,10 @@ from sqlalchemy.orm.exc import NoResultFound
 
 def getAllPsychologist():
     session = g.session
-    psychologist_entire_details_obj = session.query(Psychologist, PsychologistData).\
-        join(Psychologist, PsychologistData.psychologistId == Psychologist.id).\
-        filter(Psychologist.enabled == True).\
-        order_by(PsychologistData.online.desc(), PsychologistData.isBusy).\
+    psychologist_entire_details_obj = session.query(Psychologist, PsychologistData). \
+        join(Psychologist, PsychologistData.psychologistId == Psychologist.id). \
+        filter(Psychologist.enabled == True). \
+        order_by(PsychologistData.online.desc(), PsychologistData.isBusy). \
         all()
 
     result_list = [
@@ -18,6 +18,7 @@ def getAllPsychologist():
     ]
 
     return result_list
+
 
 def setStatusBusy(psychologist_id):
     session = g.session
@@ -28,7 +29,8 @@ def setStatusBusy(psychologist_id):
         return False
     return True
 
-def updateBusyStatus(busy,id):
+
+def updateBusyStatus(busy, id):
     session = g.session
     try:
         psychologist = session.query(Psychologist).filter_by(userId=id).first()
@@ -41,3 +43,22 @@ def updateBusyStatus(busy,id):
         return None
     return psychologistData
 
+
+def createPsychologist(psychologist: Psychologist):
+    session = g.session
+    try:
+        session.add(psychologist)
+        session.commit()
+    except:
+        return None
+    return psychologist.id
+
+
+def createPsychologistData(psychologistData: PsychologistData):
+    session = g.session
+    try:
+        session.add(psychologistData)
+        session.commit()
+    except:
+        return None
+    return psychologistData.id

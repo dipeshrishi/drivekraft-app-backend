@@ -5,19 +5,11 @@ from app.utils.currentTime import getCurrentTime
 from sqlalchemy.orm.exc import NoResultFound
 
 
-def addUser(contactNumber):
-    now = getCurrentTime()
-    session = g.session
-    new_user = User(contactNumber=contactNumber, created=now, updated=now, roleId=1)
-    session.add(new_user)
-    session.commit()
-
-    return new_user
 
 def addUser(contactNumber):
     now = getCurrentTime()
     session = g.session
-    new_user = User(contactNumber=contactNumber, created=now, updated=now, roleId=1)
+    new_user = User(contactNumber=contactNumber, created=now, updated=now, roleId=2)
     session.add(new_user)
     session.commit()
 
@@ -29,7 +21,7 @@ def findUserByUsername(username):
 def assignUsername(newUsername,userId):
     session = g.session
     user = session.query(User).filter_by(id=userId).first()
-    print(user.id)
+
     user.username = newUsername
     session.commit()
 
