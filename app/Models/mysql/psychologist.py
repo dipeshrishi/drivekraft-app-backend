@@ -8,7 +8,7 @@ class Psychologist(db.Model):
     profile_image = db.Column(db.String(255))
     contactNumber = db.Column(db.String(15))
     emailId = db.Column(db.String(30))
-    enabled = db.Column(db.Boolean)
+    enabled = db.Column(db.Boolean,default= False)
     description = db.Column(db.Text)
     shortDescription = db.Column(db.Text)
     yearsOfExp = db.Column(db.Integer)

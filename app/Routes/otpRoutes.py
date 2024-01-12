@@ -5,13 +5,14 @@ from app.Contract.Request import otpGenerateRequest,otpVerficationRequest
 from app.util import create_db_session,format_request_data
 from flask import Blueprint
 from functools import wraps
-
+import logging
 otpBlueprint = Blueprint('otp', __name__,url_prefix='/api')
 
 @otpBlueprint.route('/login-send-otp',methods=['GET','POST'])
 @create_db_session
 @format_request_data
 def generateNewOtp():
+    logging.info(request.json_data);
     otpRequest = otpGenerateRequest.otpGenerateRequest(**request.json_data)
     response = otpGenerateService.generateOtp(otpRequest).__dict__
     return jsonify(response)

@@ -1,6 +1,9 @@
-from flask import g,request
+import logging
+
+from flask import g, request
 from functools import wraps
 from app.database import db
+
 
 def create_db_session(func):
     @wraps(func)
@@ -21,11 +24,15 @@ def create_db_session(func):
 
     return wrapper
 
+
 def format_request_data(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         content_type = request.headers.get('Content-Type', '').lower()
         if 'multipart/form-data' in content_type:
+            request.json_data = request.form.to_dict()
+        elif 'application/x-www-form-urlencoded' in content_type:
+            # For 'application/x-www-form-urlencoded', use request.form.to_dict()
             request.json_data = request.form.to_dict()
         else:
             try:

@@ -71,7 +71,7 @@ def createUser(contactNumber):
     if (validate):
         user = createUserInternal(contactNumber=contactNumber)
         return user
-    return ""
+    return None
 
 
 def createUserInternal(contactNumber):
