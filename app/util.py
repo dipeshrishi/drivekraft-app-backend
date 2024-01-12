@@ -31,6 +31,9 @@ def format_request_data(func):
         content_type = request.headers.get('Content-Type', '').lower()
         if 'multipart/form-data' in content_type:
             request.json_data = request.form.to_dict()
+        elif 'application/x-www-form-urlencoded' in content_type:
+            # For 'application/x-www-form-urlencoded', use request.form.to_dict()
+            request.json_data = request.form.to_dict()
         else:
             try:
                 request.json_data = request.get_json()
