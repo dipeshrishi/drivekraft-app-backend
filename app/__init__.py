@@ -18,7 +18,7 @@ from logging.handlers import TimedRotatingFileHandler
 
 def create_app():
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://DriveKraft:elonmusk@DriveKraft.mysql.pythonanywhere-services.com/DriveKraft$drivekraft_backend_v2'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost:3306/drivekraft_backend_v2'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     app.config['CACHE_TYPE'] = 'simple'
