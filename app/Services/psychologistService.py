@@ -5,7 +5,7 @@ from app.Models.DAO import psychologistDao
 from app.Services import userService
 
 def getAllPsychologist()-> allPsychologistResponse:
-    response= psychologistDao.getAllPsychologist()
+    response = psychologistDao.getAllPsychologist()
     return response
 
 def setPsychologistBusy(requestData) ->setPsychologistBusyResponse:
