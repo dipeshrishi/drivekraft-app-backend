@@ -20,4 +20,7 @@ class PsychologistData(db.Model):
 
     psychologist = db.relationship('Psychologist', backref='psychologistData',foreign_keys=[psychologistId])
 
+    def as_dict(self):
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+
         

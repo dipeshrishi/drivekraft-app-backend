@@ -48,7 +48,6 @@ def verifySessionRequest(request : verifySessionRequest) -> verifySessionRespons
         response = verifySessionResponse(status=False)
         return response
 
-
     response = verifySessionResponse(status=True)
     return response
 

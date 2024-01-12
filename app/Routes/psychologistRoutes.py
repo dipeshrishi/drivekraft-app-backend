@@ -9,11 +9,11 @@ from ..Contract.Request import setPsychologistBusyRequest,updatePsychologistBusy
 
 psychologistBlueprint = Blueprint('api', __name__,url_prefix='/api')
 
-@psychologistBlueprint.route('/psychologist',methods=['GET','POST'])
+@psychologistBlueprint.route('/psychologists',methods=['GET','POST'])
 @create_db_session
 @format_request_data
 def getAllPsychologist():
-    response = psychologistService.getAllPsychologist().__dict__
+    response = psychologistService.getAllPsychologist()
     return jsonify(response)
 
 @psychologistBlueprint.route('/check/user/busy',methods=['GET','POST'])

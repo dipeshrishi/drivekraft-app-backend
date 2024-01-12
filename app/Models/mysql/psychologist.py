@@ -17,8 +17,9 @@ class Psychologist(db.Model):
     age = db.Column(db.Integer)
     interest = db.Column(db.String(255))
     language = db.Column(db.String(20))
-    online = db.Column(db.Integer)
-    busy = db.Column(db.Integer)
 
     user = db.relationship('User', backref='psychologists',foreign_keys=[userId])
+
+    def as_dict(self):
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
 
