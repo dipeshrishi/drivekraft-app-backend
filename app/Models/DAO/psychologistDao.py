@@ -12,7 +12,12 @@ def getAllPsychologist():
         order_by(PsychologistData.online.desc(), PsychologistData.isBusy).\
         all()
 
-    return psychologist_entire_details_obj
+    result_list = [
+        {**psychologist.as_dict(), **data.as_dict()}
+        for psychologist, data in psychologist_entire_details_obj
+    ]
+
+    return result_list
 
 def setStatusBusy(psychologist_id):
     session = g.session
