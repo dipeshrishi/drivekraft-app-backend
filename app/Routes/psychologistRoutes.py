@@ -6,6 +6,7 @@ from app.authenticate import authenticate_user
 from app.util import create_db_session
 from flask import Blueprint
 from ..Contract.Request import setPsychologistBusyRequest,updatePsychologistBusyStatusRequest,createPsychologistRequest
+import logging
 
 psychologistBlueprint = Blueprint('api', __name__,url_prefix='/api')
 
@@ -13,6 +14,8 @@ psychologistBlueprint = Blueprint('api', __name__,url_prefix='/api')
 @create_db_session
 @format_request_data
 def getAllPsychologist():
+    content_type = request.headers.get('Content-Type', '').lower()
+    logging.info(str(content_type))
     response = psychologistService.getAllPsychologist()
     return jsonify(response)
 
@@ -38,6 +41,8 @@ def updatePsychologistBusyStat():
 @create_db_session
 @format_request_data
 def createPsychologist():
+    content_type = request.headers.get('Content-Type', '').lower()
+    logging.info(str(content_type))
     requestData = createPsychologistRequest.createPsychologistRequest(**request.json_data)
     response = psychologistService.createPsychologist(requestData).__dict__
     return jsonify(response)

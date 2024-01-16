@@ -12,5 +12,5 @@ roleBlueprint = Blueprint('role', __name__,url_prefix='/api')
 @authenticate_user
 @format_request_data
 def getRole():
-    response = roleService.getUserRole().__dict__
+    response = roleService.getUserRole().to_dict()
     return jsonify(response)
