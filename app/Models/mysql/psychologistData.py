@@ -17,6 +17,8 @@ class PsychologistData(db.Model):
     firebaseName = db.Column(db.String(255))
     firebaseEmail = db.Column(db.String(255))
     firebasePassword = db.Column(db.String(255))
+    is_call = db.Column(db.Boolean,default=False)
+    is_chat = db.Column(db.Boolea,default=False)
 
     psychologist = db.relationship('Psychologist', backref='psychologistData',foreign_keys=[psychologistId])
 

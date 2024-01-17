@@ -178,3 +178,188 @@ Traceback (most recent call last):
     return psy.id
            ^^^^^^
 AttributeError: 'NoneType' object has no attribute 'id'
+2024-01-13 05:22:07,432 - app - ERROR - Exception on /api/role [GET]
+Traceback (most recent call last):
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 21, in wrapper
+    raise e
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/Routes/roleRoutes.py", line 15, in getRole
+    response = roleService.getUserRole().__dict__
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/Services/roleService.py", line 18, in getUserRole
+    logging.error(jsonify(response))
+                  ^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/json/__init__.py", line 170, in jsonify
+    return current_app.json.response(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/json/provider.py", line 215, in response
+    f"{self.dumps(obj, **dump_args)}\n", mimetype=self.mimetype
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/json/provider.py", line 180, in dumps
+    return json.dumps(obj, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.6_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.6_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.6_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/json/provider.py", line 120, in _default
+    raise TypeError(f"Object of type {type(o).__name__} is not JSON serializable")
+TypeError: Object of type Role is not JSON serializable
+2024-01-13 05:23:40,216 - app - ERROR - Exception on /api/role [GET]
+Traceback (most recent call last):
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 21, in wrapper
+    raise e
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/Routes/roleRoutes.py", line 15, in getRole
+    response = roleService.getUserRole().__dict__
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/Services/roleService.py", line 18, in getUserRole
+    logging.error(str(jsonify(response)))
+                      ^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/json/__init__.py", line 170, in jsonify
+    return current_app.json.response(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/json/provider.py", line 215, in response
+    f"{self.dumps(obj, **dump_args)}\n", mimetype=self.mimetype
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/json/provider.py", line 180, in dumps
+    return json.dumps(obj, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.6_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.6_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.6_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/json/provider.py", line 120, in _default
+    raise TypeError(f"Object of type {type(o).__name__} is not JSON serializable")
+TypeError: Object of type Role is not JSON serializable
+2024-01-13 05:29:20,050 - app - ERROR - Exception on /api/role [GET]
+Traceback (most recent call last):
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 21, in wrapper
+    raise e
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/Routes/roleRoutes.py", line 15, in getRole
+    response = roleService.getUserRole().__dict__
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/Services/roleService.py", line 18, in getUserRole
+    logging.error(jsonify(response))
+                  ^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/json/__init__.py", line 170, in jsonify
+    return current_app.json.response(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/json/provider.py", line 215, in response
+    f"{self.dumps(obj, **dump_args)}\n", mimetype=self.mimetype
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/json/provider.py", line 180, in dumps
+    return json.dumps(obj, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.6_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.6_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.6_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/json/provider.py", line 120, in _default
+    raise TypeError(f"Object of type {type(o).__name__} is not JSON serializable")
+TypeError: Object of type Role is not JSON serializable
+2024-01-13 05:29:44,884 - app - ERROR - Exception on /api/role [GET]
+Traceback (most recent call last):
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/venv/lib/python3.11/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 21, in wrapper
+    raise e
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/virender/Desktop/DriveKraft-Backend/app/Routes/roleRoutes.py", line 15, in getRole
+    response = roleService.getUserRole().__dict__
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute '__dict__'
