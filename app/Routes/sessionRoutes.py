@@ -1,6 +1,6 @@
 from flask import Blueprint,jsonify,g,request
 from app.util import create_db_session,format_request_data
-from app.Contract.Request import sendSessionRequest
+from app.Contract.Request import sendSessionRequest,cancelSessionRequest,verifySessionRequest,confirmSessionRequest
 from app.Services import sessionService
 from app.authenticate import authenticate_user
 
@@ -11,7 +11,7 @@ sessionBlueprint = Blueprint('session', __name__,url_prefix='/api/session')
 @create_db_session
 @format_request_data
 @authenticate_user
-def sendSessionRequest():
+def sendSessionRequestFun():
     sessionCreationRequest = sendSessionRequest.sendSessionRequest(**request.json_data)
     response = sessionService.send_Session_Request(sessionCreationRequest).__dict__
     return jsonify(response)
@@ -22,8 +22,8 @@ def sendSessionRequest():
 @create_db_session
 @format_request_data
 @authenticate_user
-def cancelSessionRequest():
-    sessionCancellationRequest = sendSessionRequest.cancelSessionRequest(**request.json_data)
+def cancelSessionRequestFun():
+    sessionCancellationRequest = cancelSessionRequest.cancelSessionRequest(**request.json_data)
     response = sessionService.cancelSessionRequest(sessionCancellationRequest).__dict__
     return jsonify(response)
 
@@ -32,7 +32,7 @@ def cancelSessionRequest():
 @create_db_session
 @format_request_data
 @authenticate_user
-def verifySessionRequest():
+def verifySessionRequestFun():
     sessionVerifyRequest = verifySessionRequest.verifySessionRequest(**request.json_data)
     response = sessionService.verifySessionRequest(sessionVerifyRequest).__dict__
     return jsonify(response)
@@ -41,9 +41,9 @@ def verifySessionRequest():
 @create_db_session
 @format_request_data
 @authenticate_user
-def fetchSessionRequest():
-    # token -> cached, generate, 
-    sessionFetchRequest = fetchSessionRequest.fetchSessionRequest(**request.json_data)
+def fetchSessionRequestFun():
+    # token -> cached, generate,
+    #sessionFetchRequest = fetchSessionRequest.fetchSessionRequest(**request.json_data)
     response = sessionService.fetchSessionRequest().__dict__
     return jsonify(response)
 
@@ -51,7 +51,7 @@ def fetchSessionRequest():
 @create_db_session
 @format_request_data
 @authenticate_user
-def confirmSessionRequest():
+def confirmSessionRequestFun():
     sessionConfirmRequest = confirmSessionRequest.confirmSessionRequest(**request.json_data)
     response = sessionService.confirmSessionRequest(sessionConfirmRequest).__dict__
     return jsonify(response)

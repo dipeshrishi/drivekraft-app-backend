@@ -13,7 +13,7 @@ class User(db.Model):
     firebaseEmail = db.Column(db.String(255))
     firebasePassword = db.Column(db.String(255))
     roleId = db.Column(db.Integer, db.ForeignKey('userRole.id'), nullable=False)
-    balance = db.Column(db.DECIMAL(10, 2), default=0.0)
+    balance = db.Column(db.Integer, default=0)
     isBlocked = db.Column(db.Boolean)
 
     userRole = db.relationship('app.Models.mysql.userRole.UserRole', backref='users')

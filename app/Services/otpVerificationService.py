@@ -5,13 +5,14 @@ from app.utils.validateContactNumber import validateContactNumber
 from app.Services import userService
 from app.utils import currentTime
 import random,string
-
+import logging
 
 def verifyOtp(request : otpVerificationRequest) -> otpVerificationResponse:
     validate = validateContactNumber(request.mobile)
     if(validate):
         user = userService.getUserByContact(request.mobile)
         otp = otpDAO.getOtp(userId=user.id)
+        logging.info("userOTP is "+str(request.otp)+" and required otp is"+ str(otp) )
         if str(otp) != request.otp:
             response = otpVerificationResponse(successful="false",error="{'message':'OTP does not match.'}", statusCode=401)
             return response
@@ -19,7 +20,7 @@ def verifyOtp(request : otpVerificationRequest) -> otpVerificationResponse:
         tokenDAO.addToken(user.id,tokenValue)
         response = otpVerificationResponse(successful="true",authToken=tokenValue,tokenType="Bearer")
         return response
-    
+
 
 
 def getToken():

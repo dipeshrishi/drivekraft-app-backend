@@ -83,6 +83,9 @@ def createUserInternal(contactNumber):
 def getUserByContact(contactNumber):
     return userDao.getUserByContact(contactNumber)
 
+def addGoogleContact(contactNumber):
+    return userDao.addGoogleUser(contactNumber)
+
 
 def getUserByToken(tokenValue):
     token = getToken(tokenValue)

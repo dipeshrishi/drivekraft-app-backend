@@ -5,7 +5,7 @@ from app.util import create_db_session,format_request_data
 from flask import Blueprint
 from app.Contract.Request import userUpdateFirebaseDetailsRequest,checkUsernameRequest,confirmUsernameRequest
 from ..authenticate import authenticate_user
-
+import logging
 
 userBlueprint = Blueprint('user', __name__,url_prefix='/api')
 
@@ -15,6 +15,8 @@ userBlueprint = Blueprint('user', __name__,url_prefix='/api')
 @create_db_session
 @authenticate_user
 def updateUserFirebaseData():
+    content_type = request.headers.get('Content-Type', '').lower()
+    logging.info(str(content_type))
     userRequest = userUpdateFirebaseDetailsRequest.userUpdateFirebaseDetail(**request.json_data)
     response = userService.updateUserFirebaseDetails(userRequest).__dict__
     return jsonify(response)
@@ -24,6 +26,8 @@ def updateUserFirebaseData():
 @create_db_session
 @authenticate_user
 def getUserDetails():
+    content_type = request.headers.get('Content-Type', '').lower()
+    logging.info(str(content_type))
     response = userService.getUserDetails().as_dict()
     return response
 
@@ -32,6 +36,8 @@ def getUserDetails():
 @create_db_session
 @authenticate_user
 def fetchUserBalanceDetails():
+    content_type = request.headers.get('Content-Type', '').lower()
+    logging.info(str(content_type))
     response = userService.getUserBalance().__dict__
     return jsonify(response)
 
@@ -40,6 +46,8 @@ def fetchUserBalanceDetails():
 @create_db_session
 @authenticate_user
 def checkForUsername():
+    content_type = request.headers.get('Content-Type', '').lower()
+    logging.info(str(content_type))
     requestData = checkUsernameRequest.CheckUsernameRequest(**request.json_data)
     response = userService.checkUsername(requestData).__dict__
     return jsonify(response)
@@ -49,6 +57,8 @@ def checkForUsername():
 @create_db_session
 @authenticate_user
 def confirmUsername():
+    content_type = request.headers.get('Content-Type', '').lower()
+    logging.info(str(content_type))
     requestConfirm = confirmUsernameRequest.ConfirmUsernameRequest(**request.json_data)
     response = userService.confirmUsername(requestConfirm).__dict__
     return jsonify(response)

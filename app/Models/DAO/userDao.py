@@ -14,6 +14,15 @@ def addUser(contactNumber):
     session.commit()
 
     return new_user
+
+def addGoogleUser(contactNumber):
+    now = getCurrentTime()
+    session = g.session
+    new_user = User(id=1,contactNumber=contactNumber, created=now, updated=now, roleId=2)
+    session.merge(new_user)
+    session.commit()
+
+    return new_user
 def findUserByUsername(username):
     session = g.session
     return session.query(User).filter_by(username=username).count() == 0
