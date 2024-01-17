@@ -17,7 +17,6 @@ class Role:
             'updated_at': self.updated_at
         }
 
-
 class Pivot:
     def __init__(self, role_id, user_id):
         self.role_id = role_id

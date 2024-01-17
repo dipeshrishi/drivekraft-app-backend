@@ -20,27 +20,30 @@ def getAllPsychologist():
     return result_list
 
 
-def setStatusBusy(psychologist_id):
+def setStatusBusy(psychologist_id,busyStatus):
     session = g.session
     try:
         psychologistData = session.query(PsychologistData).filter_by(psychologistId=psychologist_id).first()
-        psychologistData.isBusy = True
+        psychologistData.isBusy = busyStatus
+        session.add(psychologistData)
+        session.commit()
     except NoResultFound:
         return False
     return True
 
 
-def updateBusyStatus(busy, id):
+def updateBusyStatus(user_id,busy):
     session = g.session
     try:
-        psychologist = session.query(Psychologist).filter_by(userId=id).first()
+        psychologist = session.query(Psychologist).filter_by(userId=user_id).first()
     except NoResultFound:
         return None
     try:
-        psychologistData = session.query(PsychologistData).filter_by(psychologistId=psychologist.id).first()
-        psychologistData.isBusy = busy
+         psychologistData = session.query(PsychologistData.isBusy).filter_by(psychologistId=psychologist.id).first()
     except NoResultFound:
         return None
+    psychologistData.isBusy = busy
+    session.commit()
     return psychologistData
 
 
@@ -62,3 +65,24 @@ def createPsychologistData(psychologistData: PsychologistData):
     except:
         return None
     return psychologistData.id
+
+def getPsychologistStatus(psychologist_id):
+    session = g.session
+    try:
+        psychologistData = session.query(PsychologistData).filter_by(psychologistId=psychologist_id).first()
+        return psychologistData.isBusy,psychologistData.online
+    except NoResultFound:
+        return False
+    return True
+
+def getPsychologistOnlineStatus(user_id):
+    session = g.session
+    try:
+        psychologist_id, email = session.query(Psychologist.id, Psychologist.emailId).filter_by(userId=user_id).first()
+        if psychologist_id is None:
+            return None
+        online = session.query(PsychologistData.online).filter_by(psychologistId=psychologist_id).scalar()
+
+        return email, online
+    except NoResultFound:
+        return None

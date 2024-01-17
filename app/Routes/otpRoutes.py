@@ -12,6 +12,8 @@ otpBlueprint = Blueprint('otp', __name__,url_prefix='/api')
 @create_db_session
 @format_request_data
 def generateNewOtp():
+    content_type = request.headers.get('Content-Type', '').lower()
+    logging.info(str(content_type))
     logging.info(request.json_data);
     otpRequest = otpGenerateRequest.otpGenerateRequest(**request.json_data)
     response = otpGenerateService.generateOtp(otpRequest).__dict__
@@ -21,6 +23,8 @@ def generateNewOtp():
 @create_db_session
 @format_request_data
 def verifyOtp():
+    content_type = request.headers.get('Content-Type', '').lower()
+    logging.info(str(content_type))
     otpVerifyRequest = otpVerficationRequest.otpVerificationRequest(**request.json_data)
     response = otpVerificationService.verifyOtp(otpVerifyRequest).__dict__
     return jsonify(response)
