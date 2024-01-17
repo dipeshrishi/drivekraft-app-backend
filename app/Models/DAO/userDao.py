@@ -9,7 +9,7 @@ from sqlalchemy.orm.exc import NoResultFound
 def addUser(contactNumber):
     now = getCurrentTime()
     session = g.session
-    new_user = User(contactNumber=contactNumber, created=now, updated=now, roleId=2)
+    new_user = User(contactNumber=contactNumber, created=now, updated=now, roleId=3)
     session.add(new_user)
     session.commit()
 
