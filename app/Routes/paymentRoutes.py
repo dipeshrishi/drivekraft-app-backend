@@ -3,11 +3,12 @@ from ..util import create_db_session,format_request_data
 from ..authenticate import authenticate_user
 from ..Contract.Request import createPaymentOrderRequest
 from app.Services import paymentService
+from app.Contract.Request import confirmPaymentOrderRequest
 from flask import Blueprint
 
 paymentBlueprint = Blueprint('payment', __name__,url_prefix='/api/order')
 
-@paymentBlueprint.route('/create')
+@paymentBlueprint.route('/create',methods=['GET','POST'])
 @create_db_session
 @format_request_data
 @authenticate_user
@@ -17,7 +18,7 @@ def createNewOrder():
     return jsonify(response)
 
 
-@paymentBlueprint.route('/placed')
+@paymentBlueprint.route('/placed',methods=['GET','POST'])
 @create_db_session
 @format_request_data
 @authenticate_user
@@ -27,9 +28,10 @@ def placeOrder():
     return jsonify(response)
 
 
-@paymentBlueprint.route('/confirm')
+@paymentBlueprint.route('/confirm',methods=['GET','POST'])
 @create_db_session
 @format_request_data
 def confirmOrder():
-    response = paymentService.confirmOrder(request.json_data).__dict__
+    paymentConfirmRequest = confirmPaymentOrderRequest.confirmPaymentOrderRequest(**request.json_data)
+    response = paymentService.confirmOrder(paymentConfirmRequest).__dict__
     return jsonify(response)

@@ -37,7 +37,7 @@ def verifySessionRequestFun():
     response = sessionService.verifySessionRequest(sessionVerifyRequest).__dict__
     return jsonify(response)
 
-@sessionBlueprint.route('/book/request/fetch', methods =['GET'])
+@sessionBlueprint.route('/request/fetch', methods =['GET'])
 @create_db_session
 @format_request_data
 @authenticate_user
@@ -47,7 +47,7 @@ def fetchSessionRequestFun():
     response = sessionService.fetchSessionRequest().__dict__
     return jsonify(response)
 
-@sessionBlueprint.route('/book/request/confirm', methods =['POST'])
+@sessionBlueprint.route('/request/confirm', methods =['POST'])
 @create_db_session
 @format_request_data
 @authenticate_user

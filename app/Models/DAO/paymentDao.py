@@ -9,7 +9,7 @@ def storePaymentOrder(responseDict, userId):
 
     session = g.session
 
-    newPaymentOrder = PaymentOrder(orderId=responseDict['id'], amount=responseDict['amount'] / 100, userId=userId,
+    newPaymentOrder = PaymentOrder(orderId=responseDict['id'], amount=(responseDict['amount'] / 100), userId=userId,
                                    paymentGateway="Razorpay", created=now, updated=now)
 
     session.add(newPaymentOrder)

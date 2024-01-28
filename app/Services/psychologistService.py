@@ -31,7 +31,7 @@ def setPsychologistBusy(requestData) -> setPsychologistBusyResponse:
 
 def checkPsychologistBusyStatus(requestData) ->updatePsychologistStatusResponse:
 
-    busy,online= psychologistDao.getPsychologistStatus(requestData.psychologistId)
+    busy,online= psychologistDao.getPsychologistStatus(requestData.psychologist_id)
     if busy is not None:
         response = checkPsychologistBusyResponse(is_busy=busy,is_Online=online)
     else:
@@ -100,3 +100,5 @@ def createPsychologist(requestData: createPsychologistRequest) -> createPsycholo
         response = createPsychologistResponse(error="User already exists for the contact number")
     return response
 
+def getPsychologistIdFromUserID(userId):
+    return psychologistDao.getPsychologistIdFromUserID(userId)
