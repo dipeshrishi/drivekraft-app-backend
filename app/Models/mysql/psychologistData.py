@@ -18,11 +18,10 @@ class PsychologistData(db.Model):
     firebaseEmail = db.Column(db.String(255))
     firebasePassword = db.Column(db.String(255))
     is_call = db.Column(db.Boolean,default=False)
-    is_chat = db.Column(db.Boolea,default=False)
+    is_chat = db.Column(db.Boolean,default=False)
 
     psychologist = db.relationship('Psychologist', backref='psychologistData',foreign_keys=[psychologistId])
 
     def as_dict(self):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
 
-        
