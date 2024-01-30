@@ -5,22 +5,22 @@ from app.Contract.Request.placePaymentOrderRequest import placeRazorpayOrderRequ
 from app.Contract.Request.confirmPaymentOrderRequest import confirmPaymentOrderRequest
 from app.Contract.Response.confirmRazorpayOrderResponse import confirmRazorpayOrderResponse
 from app.Contract.Request.placePaymentOrderRequest import placeRazorpayOrderRequest
-from app.Services.userService import getUserDetails
 import json
 from ..Configurations.razorpay import ORDER_URL,ORDER_RECEIPT,ORDER_AUTHORIZATION,ORDER_CURRENCY
 import requests
 from app.Models.DAO import paymentDao
 from app.Services import sessionService
+from app.Services import userService
 
 
 def createOrder(request : createRazorpayOrderRequest) -> createRazorpayOrderResponse:
-    amountInPaisa = int(request.amount)*100
+    amountInPaisa = int(request.amount)
     payload = getPayloadForOrder(amountInPaisa)
     headers = getHeaderForOrder()
 
     response = requests.request("POST", ORDER_URL, headers=headers, data=payload)
 
-    user = getUserDetails()
+    user = getUserDetails.getUserDetails()
 
     responseDict = json.loads(response.text)
     paymentDao.storePaymentOrder(responseDict, user.id)
@@ -32,7 +32,7 @@ def createOrder(request : createRazorpayOrderRequest) -> createRazorpayOrderResp
 
 
 def placeOrder(request : placeRazorpayOrderRequest) -> placeRazorpayOrderResponse:
-    user = getUserDetails()
+    user = getUserDetails.getUserDetails()
 
     if user.credits < 5:
         response = placeRazorpayOrderResponse(user_credits=user.credits,
@@ -70,7 +70,7 @@ def placeOrder(request : placeRazorpayOrderRequest) -> placeRazorpayOrderRespons
 
 def confirmOrder(request : confirmPaymentOrderRequest) -> confirmRazorpayOrderResponse:
     response_string = request.response
-    payload = json.loads(response_string)
+    payload = response_string
     if 'razorpay_payment_id' in payload:
         paymentDao.updatePaymentOrder(order_id=payload['razorpay_order_id'], payment_id= payload['razorpay_payment_id'],
                                       signature=payload['razorpay_signature'], gateway='razorpay')

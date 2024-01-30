@@ -86,3 +86,16 @@ def getPsychologistOnlineStatus(user_id):
         return email, online
     except NoResultFound:
         return None
+
+
+def getPsychologistIdFromUserID(UserId):
+    session = g.session
+    try:
+        psychologistData = session.query(Psychologist).filter_by(userId=UserId).first()
+        print("psyho " + str(psychologistData))
+        return psychologistData.id
+    except NoResultFound:
+        return False
+    return True
+
+

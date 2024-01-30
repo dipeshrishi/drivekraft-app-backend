@@ -10,7 +10,8 @@ from app.Models.DAO import sessionDao
 from sqlalchemy import null
 from ..Models.mysql.sessionRequest import SessionRequest
 from ..Models.mysql.user import User
-from ..Services import userService
+from ..Services import userService,psychologistService
+from flask import jsonify
 
 SESSION_REQUEST_STATUS= 0
 SESSION_REQUEST_ISCANCELLED =0
@@ -19,7 +20,7 @@ SESSION_REQUEST_VaLID_STATUS=True
 
 def send_Session_Request(request : sendSessionRequest) -> sendSessionResponse:
     session_type = None
-
+    print(" psychologist id is" + str(request.listener_id))
     try:
         session_type=request.session_type
         if session_type == None:
@@ -28,6 +29,9 @@ def send_Session_Request(request : sendSessionRequest) -> sendSessionResponse:
         session_type = 'chat'
 
     user = userService.getUserDetails()
+    print("send_Session_request" + request.listener_id)
+    print("send_Session_request" + session_type)
+    print("send_Session_request" + str(user.id))
     userCurrentSession = sessionDao.createRequest(request.listener_id,session_type,user.id)
     response = sendSessionResponse(id=userCurrentSession.id)
     return response
@@ -53,7 +57,11 @@ def verifySessionRequest(request : verifySessionRequest) -> verifySessionRespons
 
 def fetchSessionRequest():
     user = userService.getUserDetails()
-    sessionRequest= sessionDao.fetchSessionRequestByUserId(user.id)
+    psy_id=psychologistService.getPsychologistIdFromUserID(user.id)
+    sessionRequest= sessionDao.fetchSessionRequestByUserId(psy_id)
+    if sessionRequest == None:
+        return verifySessionResponse(id=0,status=False)
+
     customerId = sessionRequest.userId
     customer= userService.getUserById(customerId)
 
@@ -80,10 +88,10 @@ def createVerifySessionRequest(sessionRequest : SessionRequest,customer : User):
 def confirmSessionRequest(request : confirmSessionRequest) -> confirmSessionResponse:
 
     if sessionDao.isExpiredOrCancelled(request.session_request_id):
-        response = confirmSessionRequest(status ="Error", message ="Session request either expired or cancelled.", sessionStatus =SESSION_REQUEST_EXPIRED_STATUS)
+        response = confirmSessionResponse(status =False, message ="Session request either expired or cancelled.", sessionStatus =SESSION_REQUEST_EXPIRED_STATUS)
         return response
 
-    response = confirmSessionRequest(status="Success", message="Session Confirmed",
+    response = confirmSessionResponse(status=True, message="Session Confirmed",
                                      sessionStatus=SESSION_REQUEST_VaLID_STATUS)
     return response
 #TODO need to change repsonse at android side as well
