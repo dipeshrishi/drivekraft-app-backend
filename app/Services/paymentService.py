@@ -11,6 +11,8 @@ import requests
 from app.Models.DAO import paymentDao
 from app.Services import sessionService
 from app.Services import userService
+import logging
+import json
 
 
 def createOrder(request : createRazorpayOrderRequest) -> createRazorpayOrderResponse:
@@ -20,7 +22,7 @@ def createOrder(request : createRazorpayOrderRequest) -> createRazorpayOrderResp
 
     response = requests.request("POST", ORDER_URL, headers=headers, data=payload)
 
-    user = getUserDetails.getUserDetails()
+    user = userService.getUserDetails()
 
     responseDict = json.loads(response.text)
     paymentDao.storePaymentOrder(responseDict, user.id)
@@ -32,20 +34,20 @@ def createOrder(request : createRazorpayOrderRequest) -> createRazorpayOrderResp
 
 
 def placeOrder(request : placeRazorpayOrderRequest) -> placeRazorpayOrderResponse:
-    user = getUserDetails.getUserDetails()
+    user = userService.getUserDetails()
 
-    if user.credits < 5:
-        response = placeRazorpayOrderResponse(user_credits=user.credits,
+    if user.balance < 5:
+        response = placeRazorpayOrderResponse(transaction_id=request['transaction_id'],user_credits=user.balance,
                                               status="Error",msg ="Insufficient credits",credits_availablility=False,
                                               credits_sufficient_for_five_minutes=False)
         return response
-
-    transactional = paymentDao.getTransactionaByTransId(request.transaction_id)
-    cost = int((int(request.seconds_chatted) + 60) / 60) * 5
-    sessionRequest = sessionService.getSessionByRequestId(request.session_request_id) # needs clarification
+    #print("printing request",request.session_request_id,request.transaction_id,request.seconds_chatted)
+    transactional = paymentDao.getTransactionaByTransId(request['transaction_id'])
+    cost = int((int(request['seconds_chatted']) + 60) / 60) * 5
+    sessionRequest = sessionService.getSessionByRequestId(request['session_request_id']) # needs clarification
 
     if transactional == None:
-         paymentDao.createTranaction(userId = user.id,razorpayOrderRequest = request,cost=cost, sessionType = sessionRequest.session_type )
+         transactional=paymentDao.createTranaction(userId = user.id,razorpayOrderRequest = request,cost=cost, sessionType = sessionRequest.mode )
 
     else:
         paymentDao.updateTransaction(razorpayOrderRequest = request, cost=cost)
@@ -60,7 +62,7 @@ def placeOrder(request : placeRazorpayOrderRequest) -> placeRazorpayOrderRespons
     if user.balance <5:
         availability = False
 
-    response = placeRazorpayOrderResponse(user_credits=user.balance,
+    response = placeRazorpayOrderResponse(transaction_id=transactional.transactionId,user_credits=user.balance,
                                           status="Success", msg="Sufficient credits", credits_availablility=availability,
                                           credits_sufficient_for_five_minutes=sufficent_balance)
     return response
@@ -70,7 +72,11 @@ def placeOrder(request : placeRazorpayOrderRequest) -> placeRazorpayOrderRespons
 
 def confirmOrder(request : confirmPaymentOrderRequest) -> confirmRazorpayOrderResponse:
     response_string = request.response
-    payload = response_string
+    payload_ = response_string
+    payload = json.loads(payload_)
+    logging.info("datatype of payload" + str(type(payload)))
+    logging.info("datatype of payload" + str((payload)))
+    logging.info("datatype of payload" + str(payload.keys()))
     if 'razorpay_payment_id' in payload:
         paymentDao.updatePaymentOrder(order_id=payload['razorpay_order_id'], payment_id= payload['razorpay_payment_id'],
                                       signature=payload['razorpay_signature'], gateway='razorpay')

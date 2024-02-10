@@ -1,6 +1,6 @@
 
 class verifySessionResponse:
-    def __init__(self, id, listener_id=None, customer_id=None, status=None, session_type=None, customer_firebase_id=None, username=None,
+    def __init__(self, id=None, listener_id=None, customer_id=None, status=None, session_type=None, customer_firebase_id=None, username=None,
                  is_cancelled=None,expiry_at=None):
         self.id = id
         self.listener_id = listener_id

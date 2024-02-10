@@ -1,19 +1,4 @@
-2024-01-22 15:17:38,219 - app - ERROR - Exception on /api/order/create [POST]
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1819, in _execute_context
-    self.dialect.do_execute(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
-    cursor.execute(statement, parameters)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 206, in execute
-    res = self._query(query)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 319, in _query
-    db.query(q)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 254, in query
-    _mysql.connection.query(self, query)
-MySQLdb._exceptions.ProgrammingError: (1146, "Table 'DriveKraft$drivekraft_backend_v2.payment_order' doesn't exist")
-
-The above exception was the direct cause of the following exception:
-
+2024-02-09 14:06:51,617 - app - ERROR - Exception on /api/user/firebase [POST]
 Traceback (most recent call last):
   File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
     response = self.full_dispatch_request()
@@ -23,639 +8,22 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
   File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
     raise e
   File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
     result = func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
-    return func(*args, **kwargs)
   File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
     return func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 16, in createNewOrder
-    response = paymentService.createOrder(createPayRequest).__dict__
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 26, in createOrder
-    paymentDao.storePaymentOrder(responseDict, user.id)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/paymentDao.py", line 16, in storePaymentOrder
-    session.commit()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1435, in commit
-    self._transaction.commit(_to_root=self.future)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 829, in commit
-    self._prepare_impl()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 808, in _prepare_impl
-    self.session.flush()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3367, in flush
-    self._flush(objects)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3506, in _flush
-    with util.safe_reraise():
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
-    compat.raise_(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
-    raise exception
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3467, in _flush
-    flush_context.execute()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
-    rec.execute(self)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 630, in execute
-    util.preloaded.orm_persistence.save_obj(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 245, in save_obj
-    _emit_insert_statements(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1238, in _emit_insert_statements
-    result = connection._execute_20(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1631, in _execute_20
-    return meth(self, args_10style, kwargs_10style, execution_options)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
-    return connection._execute_clauseelement(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1498, in _execute_clauseelement
-    ret = self._execute_context(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1862, in _execute_context
-    self._handle_dbapi_exception(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2043, in _handle_dbapi_exception
-    util.raise_(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
-    raise exception
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1819, in _execute_context
-    self.dialect.do_execute(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
-    cursor.execute(statement, parameters)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 206, in execute
-    res = self._query(query)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 319, in _query
-    db.query(q)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 254, in query
-    _mysql.connection.query(self, query)
-sqlalchemy.exc.ProgrammingError: (MySQLdb._exceptions.ProgrammingError) (1146, "Table 'DriveKraft$drivekraft_backend_v2.payment_order' doesn't exist")
-[SQL: INSERT INTO payment_order (`orderId`, `paymentId`, signature, amount, `userId`, `paymentGateway`, created, updated) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)]
-[parameters: ('order_NRhkkKXIHIJBXn', None, None, 10000.0, 2, 'Razorpay', datetime.datetime(2024, 1, 22, 20, 47, 38, 207625), datetime.datetime(2024, 1, 22, 20, 47, 38, 207625))]
-(Background on this error at: https://sqlalche.me/e/14/f405)
-2024-01-22 15:18:04,201 - app - ERROR - Exception on /api/order/create [POST]
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1819, in _execute_context
-    self.dialect.do_execute(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
-    cursor.execute(statement, parameters)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 206, in execute
-    res = self._query(query)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 319, in _query
-    db.query(q)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 254, in query
-    _mysql.connection.query(self, query)
-MySQLdb._exceptions.ProgrammingError: (1146, "Table 'DriveKraft$drivekraft_backend_v2.payment_order' doesn't exist")
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
-    raise e
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
-    result = func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
-    return func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
-    return func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 16, in createNewOrder
-    response = paymentService.createOrder(createPayRequest).__dict__
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 26, in createOrder
-    paymentDao.storePaymentOrder(responseDict, user.id)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/paymentDao.py", line 16, in storePaymentOrder
-    session.commit()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1435, in commit
-    self._transaction.commit(_to_root=self.future)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 829, in commit
-    self._prepare_impl()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 808, in _prepare_impl
-    self.session.flush()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3367, in flush
-    self._flush(objects)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3506, in _flush
-    with util.safe_reraise():
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
-    compat.raise_(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
-    raise exception
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3467, in _flush
-    flush_context.execute()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
-    rec.execute(self)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 630, in execute
-    util.preloaded.orm_persistence.save_obj(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 245, in save_obj
-    _emit_insert_statements(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1238, in _emit_insert_statements
-    result = connection._execute_20(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1631, in _execute_20
-    return meth(self, args_10style, kwargs_10style, execution_options)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
-    return connection._execute_clauseelement(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1498, in _execute_clauseelement
-    ret = self._execute_context(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1862, in _execute_context
-    self._handle_dbapi_exception(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2043, in _handle_dbapi_exception
-    util.raise_(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
-    raise exception
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1819, in _execute_context
-    self.dialect.do_execute(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
-    cursor.execute(statement, parameters)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 206, in execute
-    res = self._query(query)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 319, in _query
-    db.query(q)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 254, in query
-    _mysql.connection.query(self, query)
-sqlalchemy.exc.ProgrammingError: (MySQLdb._exceptions.ProgrammingError) (1146, "Table 'DriveKraft$drivekraft_backend_v2.payment_order' doesn't exist")
-[SQL: INSERT INTO payment_order (`orderId`, `paymentId`, signature, amount, `userId`, `paymentGateway`, created, updated) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)]
-[parameters: ('order_NRhlCgE0zi8XeE', None, None, 10000.0, 2, 'Razorpay', datetime.datetime(2024, 1, 22, 20, 48, 4, 186945), datetime.datetime(2024, 1, 22, 20, 48, 4, 186945))]
-(Background on this error at: https://sqlalche.me/e/14/f405)
-2024-01-22 15:33:40,834 - app - ERROR - Exception on /api/user [GET]
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
-    return fn()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
-    return _ConnectionFairy._checkout(self)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
-    result = pool._dialect.do_ping(fairy.dbapi_connection)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
-    dbapi_connection.ping(False)
-MySQLdb._exceptions.OperationalError: (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
-    return func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
-    raise e
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
-    result = func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 14, in wrapper
-    if verify_token(tokenValue):
-  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 25, in verify_token
-    token = getToken(tokenValue=tokenValue)
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 872, in decorated_function
-    rv = self._call_fn(f, *args, **kwargs)
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 175, in _call_fn
-    return ensure_sync(fn)(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/tokenDAO.py", line 28, in getToken
-    and_(Token.value == tokenValue, Token.created >= now - timedelta(hours=24))).one()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2865, in one
-    return self._iter().one()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2903, in _iter
-    result = self.session.execute(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1695, in execute
-    conn = self._connection_for_bind(bind)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1536, in _connection_for_bind
-    return self._transaction._connection_for_bind(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
-    conn = bind.connect()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3234, in connect
-    return self._connection_cls(self, close_with_result=close_with_result)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
-    else engine.raw_connection()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3313, in raw_connection
-    return self._wrap_pool_connect(self.pool.connect, _connection)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3283, in _wrap_pool_connect
-    Connection._handle_dbapi_exception_noconnection(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2117, in _handle_dbapi_exception_noconnection
-    util.raise_(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
-    raise exception
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
-    return fn()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
-    return _ConnectionFairy._checkout(self)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
-    result = pool._dialect.do_ping(fairy.dbapi_connection)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
-    dbapi_connection.ping(False)
-sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
-(Background on this error at: https://sqlalche.me/e/14/e3q8)
-2024-01-22 15:49:02,020 - app - ERROR - Exception on /api/order/create [POST]
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1819, in _execute_context
-    self.dialect.do_execute(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
-    cursor.execute(statement, parameters)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 206, in execute
-    res = self._query(query)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 319, in _query
-    db.query(q)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 254, in query
-    _mysql.connection.query(self, query)
-MySQLdb._exceptions.IntegrityError: (1062, "Duplicate entry '0' for key 'payment_order.PRIMARY'")
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
-    raise e
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
-    result = func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
-    return func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
-    return func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 16, in createNewOrder
-    response = paymentService.createOrder(createPayRequest).__dict__
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 26, in createOrder
-    paymentDao.storePaymentOrder(responseDict, user.id)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/paymentDao.py", line 16, in storePaymentOrder
-    session.commit()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1435, in commit
-    self._transaction.commit(_to_root=self.future)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 829, in commit
-    self._prepare_impl()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 808, in _prepare_impl
-    self.session.flush()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3367, in flush
-    self._flush(objects)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3506, in _flush
-    with util.safe_reraise():
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
-    compat.raise_(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
-    raise exception
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3467, in _flush
-    flush_context.execute()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
-    rec.execute(self)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 630, in execute
-    util.preloaded.orm_persistence.save_obj(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 245, in save_obj
-    _emit_insert_statements(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1238, in _emit_insert_statements
-    result = connection._execute_20(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1631, in _execute_20
-    return meth(self, args_10style, kwargs_10style, execution_options)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
-    return connection._execute_clauseelement(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1498, in _execute_clauseelement
-    ret = self._execute_context(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1862, in _execute_context
-    self._handle_dbapi_exception(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2043, in _handle_dbapi_exception
-    util.raise_(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
-    raise exception
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1819, in _execute_context
-    self.dialect.do_execute(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
-    cursor.execute(statement, parameters)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 206, in execute
-    res = self._query(query)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 319, in _query
-    db.query(q)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 254, in query
-    _mysql.connection.query(self, query)
-sqlalchemy.exc.IntegrityError: (MySQLdb._exceptions.IntegrityError) (1062, "Duplicate entry '0' for key 'payment_order.PRIMARY'")
-[SQL: INSERT INTO payment_order (`orderId`, `paymentId`, signature, amount, `userId`, `paymentGateway`, created, updated) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)]
-[parameters: ('order_NRiHuaJKYOgSbf', None, None, 100.0, 2, 'Razorpay', datetime.datetime(2024, 1, 22, 21, 19, 2, 5540), datetime.datetime(2024, 1, 22, 21, 19, 2, 5540))]
-(Background on this error at: https://sqlalche.me/e/14/gkpj)
-2024-01-22 15:49:05,996 - app - ERROR - Exception on /api/order/create [POST]
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1819, in _execute_context
-    self.dialect.do_execute(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
-    cursor.execute(statement, parameters)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 206, in execute
-    res = self._query(query)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 319, in _query
-    db.query(q)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 254, in query
-    _mysql.connection.query(self, query)
-MySQLdb._exceptions.IntegrityError: (1062, "Duplicate entry '0' for key 'payment_order.PRIMARY'")
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
-    raise e
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
-    result = func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
-    return func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
-    return func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 16, in createNewOrder
-    response = paymentService.createOrder(createPayRequest).__dict__
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 26, in createOrder
-    paymentDao.storePaymentOrder(responseDict, user.id)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/paymentDao.py", line 16, in storePaymentOrder
-    session.commit()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1435, in commit
-    self._transaction.commit(_to_root=self.future)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 829, in commit
-    self._prepare_impl()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 808, in _prepare_impl
-    self.session.flush()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3367, in flush
-    self._flush(objects)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3506, in _flush
-    with util.safe_reraise():
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
-    compat.raise_(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
-    raise exception
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3467, in _flush
-    flush_context.execute()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
-    rec.execute(self)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 630, in execute
-    util.preloaded.orm_persistence.save_obj(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 245, in save_obj
-    _emit_insert_statements(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1238, in _emit_insert_statements
-    result = connection._execute_20(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1631, in _execute_20
-    return meth(self, args_10style, kwargs_10style, execution_options)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
-    return connection._execute_clauseelement(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1498, in _execute_clauseelement
-    ret = self._execute_context(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1862, in _execute_context
-    self._handle_dbapi_exception(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2043, in _handle_dbapi_exception
-    util.raise_(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
-    raise exception
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1819, in _execute_context
-    self.dialect.do_execute(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
-    cursor.execute(statement, parameters)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 206, in execute
-    res = self._query(query)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 319, in _query
-    db.query(q)
-  File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 254, in query
-    _mysql.connection.query(self, query)
-sqlalchemy.exc.IntegrityError: (MySQLdb._exceptions.IntegrityError) (1062, "Duplicate entry '0' for key 'payment_order.PRIMARY'")
-[SQL: INSERT INTO payment_order (`orderId`, `paymentId`, signature, amount, `userId`, `paymentGateway`, created, updated) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)]
-[parameters: ('order_NRiHyvJakJmhU8', None, None, 100.0, 2, 'Razorpay', datetime.datetime(2024, 1, 22, 21, 19, 5, 988178), datetime.datetime(2024, 1, 22, 21, 19, 5, 988178))]
-(Background on this error at: https://sqlalche.me/e/14/gkpj)
-2024-01-22 15:52:14,802 - app - ERROR - Exception on /api/order/confirm [POST]
-Traceback (most recent call last):
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
-    raise e
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
-    result = func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
-    return func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 34, in confirmOrder
-    response = paymentService.confirmOrder(request.json_data).__dict__
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 72, in confirmOrder
-    response_string = request.response
-AttributeError: 'dict' object has no attribute 'response'
-2024-01-22 16:02:29,172 - app - ERROR - Exception on /api/role [GET]
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
-    return fn()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
-    return _ConnectionFairy._checkout(self)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
-    result = pool._dialect.do_ping(fairy.dbapi_connection)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
-    dbapi_connection.ping(False)
-MySQLdb._exceptions.OperationalError: (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
-    raise e
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
-    result = func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 14, in wrapper
-    if verify_token(tokenValue):
-  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 25, in verify_token
-    token = getToken(tokenValue=tokenValue)
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 872, in decorated_function
-    rv = self._call_fn(f, *args, **kwargs)
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 175, in _call_fn
-    return ensure_sync(fn)(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/tokenDAO.py", line 28, in getToken
-    and_(Token.value == tokenValue, Token.created >= now - timedelta(hours=24))).one()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2865, in one
-    return self._iter().one()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2903, in _iter
-    result = self.session.execute(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1695, in execute
-    conn = self._connection_for_bind(bind)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1536, in _connection_for_bind
-    return self._transaction._connection_for_bind(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
-    conn = bind.connect()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3234, in connect
-    return self._connection_cls(self, close_with_result=close_with_result)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
-    else engine.raw_connection()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3313, in raw_connection
-    return self._wrap_pool_connect(self.pool.connect, _connection)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3283, in _wrap_pool_connect
-    Connection._handle_dbapi_exception_noconnection(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2117, in _handle_dbapi_exception_noconnection
-    util.raise_(
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
-    raise exception
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
-    return fn()
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
-    return _ConnectionFairy._checkout(self)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
-    result = pool._dialect.do_ping(fairy.dbapi_connection)
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
-    dbapi_connection.ping(False)
-sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
-(Background on this error at: https://sqlalche.me/e/14/e3q8)
-2024-01-22 16:12:59,924 - app - ERROR - Exception on /api/order/confirm [POST]
-Traceback (most recent call last):
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
-    raise e
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
-    result = func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
-    return func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 34, in confirmOrder
-    response = paymentService.confirmOrder(request.json_data).__dict__
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 72, in confirmOrder
-    response_string = request.response
-AttributeError: 'dict' object has no attribute 'response'
-2024-01-22 16:18:02,587 - app - ERROR - Exception on /api/order/confirm [POST]
-Traceback (most recent call last):
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
-    raise e
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
-    result = func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
-    return func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 36, in confirmOrder
-    response = paymentService.confirmOrder(paymentConfirmRequest).__dict__
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 73, in confirmOrder
-    payload = json.loads(response_string)
-  File "/usr/local/lib/python3.10/json/__init__.py", line 339, in loads
-    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
-TypeError: the JSON object must be str, bytes or bytearray, not dict
-2024-01-22 16:20:27,150 - app - ERROR - Exception on /api/order/confirm [POST]
-Traceback (most recent call last):
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
-    raise e
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
-    result = func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
-    return func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 36, in confirmOrder
-    response = paymentService.confirmOrder(paymentConfirmRequest).__dict__
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 88, in confirmOrder
-    userService.addUserCredit(responseDict['amount'] / 100)
-NameError: name 'userService' is not defined
-2024-01-22 16:20:55,024 - app - ERROR - Exception on /api/order/confirm [POST]
-Traceback (most recent call last):
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
-    raise e
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
-    result = func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
-    return func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 36, in confirmOrder
-    response = paymentService.confirmOrder(paymentConfirmRequest).__dict__
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 88, in confirmOrder
-    userService.addUserCredit(responseDict['amount'] / 100)
-NameError: name 'userService' is not defined
-2024-01-22 16:22:51,639 - app - ERROR - Exception on /api/order/confirm [POST]
-Traceback (most recent call last):
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
-    raise e
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
-    result = func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
-    return func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 36, in confirmOrder
-    response = paymentService.confirmOrder(paymentConfirmRequest).__dict__
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 89, in confirmOrder
-    userService.addUserCredit(responseDict['amount'] / 100)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/userService.py", line 65, in addUserCredit
-    user = getUserDetails()
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/userService.py", line 100, in getUserDetails
-    user = getUserByToken(g.tokenValue)
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/ctx.py", line 52, in __getattr__
-    raise AttributeError(name) from None
-AttributeError: tokenValue
-2024-01-22 16:25:38,581 - app - ERROR - Exception on /api/order/confirm [POST]
-Traceback (most recent call last):
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
-    raise e
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
-    result = func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
-    return func(*args, **kwargs)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 36, in confirmOrder
-    response = paymentService.confirmOrder(paymentConfirmRequest).__dict__
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 88, in confirmOrder
-    userService.addUserCredit(responseDict['amount'] / 100)
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/userService.py", line 65, in addUserCredit
-    user = getUserDetails()
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/userService.py", line 100, in getUserDetails
-    user = getUserByToken(g.tokenValue)
-  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/ctx.py", line 52, in __getattr__
-    raise AttributeError(name) from None
-AttributeError: tokenValue
-2024-01-22 18:35:18,925 - app - ERROR - Exception on /api/users/status/busy [POST]
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/userRoutes.py", line 22, in updateUserFirebaseData
+    psychologistService.updateFirebaseDetails(userRequest)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 114, in updateFirebaseDetails
+    psychologistDao.updateFirebaseDetails(request, user)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 108, in updateFirebaseDetails
+    logging.info("psychologist" + str(psychologist.id))
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-02-09 14:07:02,382 - app - ERROR - Exception on /api/users/status/busy [POST]
 Traceback (most recent call last):
   File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
     response = self.full_dispatch_request()
@@ -675,10 +43,366 @@ Traceback (most recent call last):
     return func(*args, **kwargs)
   File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/psychologistRoutes.py", line 30, in setPsychologistAsBusy
     response = psychologistService.setPsychologistBusy(requestData).__dict__
-  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 24, in setPsychologistBusy
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 25, in setPsychologistBusy
     result = psychologistDao.updateBusyStatus(user.id,busyStatus)
   File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 45, in updateBusyStatus
-    psychologistData.isBusy = busy
-  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/row.py", line 219, in __setattr__
-    raise AttributeError("can't set attribute")
-AttributeError: can't set attribute
+    psychologistData = session.query(PsychologistData).filter_by(psychologistId=psychologist.id).first()
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-02-09 14:07:03,282 - app - ERROR - Exception on /api/user/firebase [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/userRoutes.py", line 22, in updateUserFirebaseData
+    psychologistService.updateFirebaseDetails(userRequest)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 114, in updateFirebaseDetails
+    psychologistDao.updateFirebaseDetails(request, user)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 108, in updateFirebaseDetails
+    logging.info("psychologist" + str(psychologist.id))
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-02-09 14:46:50,510 - app - ERROR - Exception on /api/user [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+MySQLdb._exceptions.OperationalError: (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 14, in wrapper
+    if verify_token(tokenValue):
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 25, in verify_token
+    token = getToken(tokenValue=tokenValue)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 872, in decorated_function
+    rv = self._call_fn(f, *args, **kwargs)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 175, in _call_fn
+    return ensure_sync(fn)(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/tokenDAO.py", line 28, in getToken
+    and_(Token.value == tokenValue, Token.created >= now - timedelta(hours=24))).one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2865, in one
+    return self._iter().one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2903, in _iter
+    result = self.session.execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1695, in execute
+    conn = self._connection_for_bind(bind)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1536, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3234, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3313, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3283, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2117, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2024-02-09 16:27:28,566 - app - ERROR - Exception on /api/role [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+MySQLdb._exceptions.OperationalError: (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 14, in wrapper
+    if verify_token(tokenValue):
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 25, in verify_token
+    token = getToken(tokenValue=tokenValue)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 872, in decorated_function
+    rv = self._call_fn(f, *args, **kwargs)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 175, in _call_fn
+    return ensure_sync(fn)(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/tokenDAO.py", line 28, in getToken
+    and_(Token.value == tokenValue, Token.created >= now - timedelta(hours=24))).one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2865, in one
+    return self._iter().one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2903, in _iter
+    result = self.session.execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1695, in execute
+    conn = self._connection_for_bind(bind)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1536, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3234, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3313, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3283, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2117, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2024-02-09 16:28:18,335 - app - ERROR - Exception on /api/users/status/busy [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/psychologistRoutes.py", line 30, in setPsychologistAsBusy
+    response = psychologistService.setPsychologistBusy(requestData).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 27, in setPsychologistBusy
+    result = psychologistDao.updateBusyStatus(user.id,busyStatus)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 45, in updateBusyStatus
+    psychologistData = session.query(PsychologistData).filter_by(psychologistId=psychologist.id).first()
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-02-09 16:28:22,054 - app - ERROR - Exception on /api/user/online [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/psychologistRoutes.py", line 67, in changeStatus
+    response = psychologistService.changeOnlineStatus(requestData).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 123, in changeOnlineStatus
+    psychologistDao.changeOnlineStatus(user.id,onlieStatus)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 124, in changeOnlineStatus
+    psychologistData = session.query(PsychologistData).filter_by(psychologistId=psychologist.id).first()
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-02-09 16:32:16,024 - app - ERROR - Exception on /api/user/online [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/psychologistRoutes.py", line 67, in changeStatus
+    response = psychologistService.changeOnlineStatus(requestData).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 123, in changeOnlineStatus
+    psychologistDao.changeOnlineStatus(user.id,onlieStatus)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 125, in changeOnlineStatus
+    logging.info("psychologist" + str(psychologist.id))
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-02-09 16:32:18,024 - app - ERROR - Exception on /api/user/online [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/psychologistRoutes.py", line 67, in changeStatus
+    response = psychologistService.changeOnlineStatus(requestData).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 123, in changeOnlineStatus
+    psychologistDao.changeOnlineStatus(user.id,onlieStatus)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 125, in changeOnlineStatus
+    logging.info("psychologist" + str(psychologist.id))
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-02-09 16:42:39,559 - app - ERROR - Exception on /api/role [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+MySQLdb._exceptions.OperationalError: (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 14, in wrapper
+    if verify_token(tokenValue):
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 25, in verify_token
+    token = getToken(tokenValue=tokenValue)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 872, in decorated_function
+    rv = self._call_fn(f, *args, **kwargs)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 175, in _call_fn
+    return ensure_sync(fn)(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/tokenDAO.py", line 28, in getToken
+    and_(Token.value == tokenValue, Token.created >= now - timedelta(hours=24))).one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2865, in one
+    return self._iter().one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2903, in _iter
+    result = self.session.execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1695, in execute
+    conn = self._connection_for_bind(bind)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1536, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3234, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3313, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3283, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2117, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2024-02-09 17:07:05,054 - app - ERROR - Exception on /api/session/book/request/cancel [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 16, in wrapper
+    g.session.commit()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1435, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 827, in commit
+    self._assert_active(prepared_ok=True)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 601, in _assert_active
+    raise sa_exc.PendingRollbackError(
+sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (MySQLdb._exceptions.IntegrityError) (1452, 'Cannot add or update a child row: a foreign key constraint fails (`DriveKraft$drivekraft_backend_v2`.`sessionRequest`, CONSTRAINT `sessionRequest_ibfk_3` FOREIGN KEY (`sessionRequestStatusId`) REFERENCES `sessionRequestStatusMapping` (`id`))')
+[SQL: UPDATE `sessionRequest` SET updated=%s, `sessionRequestStatusId`=%s WHERE `sessionRequest`.id = %s]
+[parameters: (datetime.datetime(2024, 2, 9, 22, 37, 5, 12513), <SessionRequestStatusMapping 4>, 202)]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) (Background on this error at: https://sqlalche.me/e/14/7s2a)

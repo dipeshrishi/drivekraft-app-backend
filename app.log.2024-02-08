@@ -1,0 +1,730 @@
+2024-02-08 16:21:42,454 - app - ERROR - Exception on /api/role [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+MySQLdb._exceptions.OperationalError: (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 14, in wrapper
+    if verify_token(tokenValue):
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 25, in verify_token
+    token = getToken(tokenValue=tokenValue)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 872, in decorated_function
+    rv = self._call_fn(f, *args, **kwargs)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 175, in _call_fn
+    return ensure_sync(fn)(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/tokenDAO.py", line 28, in getToken
+    and_(Token.value == tokenValue, Token.created >= now - timedelta(hours=24))).one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2865, in one
+    return self._iter().one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2903, in _iter
+    result = self.session.execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1695, in execute
+    conn = self._connection_for_bind(bind)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1536, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3234, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3313, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3283, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2117, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2024-02-08 16:24:39,957 - app - ERROR - Exception on /api/users/status/busy [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/psychologistRoutes.py", line 30, in setPsychologistAsBusy
+    response = psychologistService.setPsychologistBusy(requestData).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 25, in setPsychologistBusy
+    result = psychologistDao.updateBusyStatus(user.id,busyStatus)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 45, in updateBusyStatus
+    psychologistData = session.query(PsychologistData).filter_by(psychologistId=psychologist.id).first()
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-02-08 16:24:41,619 - app - ERROR - Exception on /api/user/firebase [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/userRoutes.py", line 22, in updateUserFirebaseData
+    psychologistService.updateFirebaseDetails(userRequest)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 114, in updateFirebaseDetails
+    psychologistDao.updateFirebaseDetails(request, user)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 107, in updateFirebaseDetails
+    psychologistData= session.query(PsychologistData).filter_by(psychologistId=psychologist.id).first()
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-02-08 16:25:12,071 - app - ERROR - Exception on /api/user/firebase [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/userRoutes.py", line 22, in updateUserFirebaseData
+    psychologistService.updateFirebaseDetails(userRequest)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 114, in updateFirebaseDetails
+    psychologistDao.updateFirebaseDetails(request, user)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 107, in updateFirebaseDetails
+    psychologistData= session.query(PsychologistData).filter_by(psychologistId=psychologist.id).first()
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-02-08 16:25:14,081 - app - ERROR - Exception on /api/user/firebase [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/userRoutes.py", line 22, in updateUserFirebaseData
+    psychologistService.updateFirebaseDetails(userRequest)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 114, in updateFirebaseDetails
+    psychologistDao.updateFirebaseDetails(request, user)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 107, in updateFirebaseDetails
+    psychologistData= session.query(PsychologistData).filter_by(psychologistId=psychologist.id).first()
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-02-08 16:26:01,653 - app - ERROR - Exception on /api/users/status/busy [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/psychologistRoutes.py", line 30, in setPsychologistAsBusy
+    response = psychologistService.setPsychologistBusy(requestData).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 25, in setPsychologistBusy
+    result = psychologistDao.updateBusyStatus(user.id,busyStatus)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 45, in updateBusyStatus
+    psychologistData = session.query(PsychologistData).filter_by(psychologistId=psychologist.id).first()
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-02-08 16:26:03,202 - app - ERROR - Exception on /api/user/firebase [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/userRoutes.py", line 22, in updateUserFirebaseData
+    psychologistService.updateFirebaseDetails(userRequest)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 114, in updateFirebaseDetails
+    psychologistDao.updateFirebaseDetails(request, user)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 107, in updateFirebaseDetails
+    psychologistData= session.query(PsychologistData).filter_by(psychologistId=psychologist.id).first()
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-02-08 16:26:46,746 - app - ERROR - Exception on /api/user/firebase [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/userRoutes.py", line 22, in updateUserFirebaseData
+    psychologistService.updateFirebaseDetails(userRequest)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 114, in updateFirebaseDetails
+    psychologistDao.updateFirebaseDetails(request, user)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 107, in updateFirebaseDetails
+    psychologistData= session.query(PsychologistData).filter_by(psychologistId=psychologist.id).first()
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-02-08 16:27:01,543 - app - ERROR - Exception on /api/users/status/busy [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/psychologistRoutes.py", line 30, in setPsychologistAsBusy
+    response = psychologistService.setPsychologistBusy(requestData).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 25, in setPsychologistBusy
+    result = psychologistDao.updateBusyStatus(user.id,busyStatus)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 45, in updateBusyStatus
+    psychologistData = session.query(PsychologistData).filter_by(psychologistId=psychologist.id).first()
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-02-08 16:27:02,573 - app - ERROR - Exception on /api/user/firebase [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/userRoutes.py", line 22, in updateUserFirebaseData
+    psychologistService.updateFirebaseDetails(userRequest)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 114, in updateFirebaseDetails
+    psychologistDao.updateFirebaseDetails(request, user)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 107, in updateFirebaseDetails
+    psychologistData= session.query(PsychologistData).filter_by(psychologistId=psychologist.id).first()
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-02-08 16:32:18,544 - app - ERROR - Exception on /api/session/book/request/cancel [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 16, in wrapper
+    g.session.commit()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1435, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 827, in commit
+    self._assert_active(prepared_ok=True)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 601, in _assert_active
+    raise sa_exc.PendingRollbackError(
+sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (MySQLdb._exceptions.IntegrityError) (1452, 'Cannot add or update a child row: a foreign key constraint fails (`DriveKraft$drivekraft_backend_v2`.`sessionRequest`, CONSTRAINT `sessionRequest_ibfk_3` FOREIGN KEY (`sessionRequestStatusId`) REFERENCES `sessionRequestStatusMapping` (`id`))')
+[SQL: UPDATE `sessionRequest` SET updated=%s, `sessionRequestStatusId`=%s WHERE `sessionRequest`.id = %s]
+[parameters: (datetime.datetime(2024, 2, 8, 22, 2, 18, 466234), <SessionRequestStatusMapping 4>, 200)]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) (Background on this error at: https://sqlalche.me/e/14/7s2a)
+2024-02-08 16:47:11,321 - app - ERROR - Exception on /api/check/user/bal [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+MySQLdb._exceptions.OperationalError: (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 14, in wrapper
+    if verify_token(tokenValue):
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 25, in verify_token
+    token = getToken(tokenValue=tokenValue)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 872, in decorated_function
+    rv = self._call_fn(f, *args, **kwargs)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 175, in _call_fn
+    return ensure_sync(fn)(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/tokenDAO.py", line 28, in getToken
+    and_(Token.value == tokenValue, Token.created >= now - timedelta(hours=24))).one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2865, in one
+    return self._iter().one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2903, in _iter
+    result = self.session.execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1695, in execute
+    conn = self._connection_for_bind(bind)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1536, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3234, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3313, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3283, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2117, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2024-02-08 17:35:57,518 - app - ERROR - Exception on /api/user [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+MySQLdb._exceptions.OperationalError: (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 14, in wrapper
+    if verify_token(tokenValue):
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 25, in verify_token
+    token = getToken(tokenValue=tokenValue)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 872, in decorated_function
+    rv = self._call_fn(f, *args, **kwargs)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 175, in _call_fn
+    return ensure_sync(fn)(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/tokenDAO.py", line 28, in getToken
+    and_(Token.value == tokenValue, Token.created >= now - timedelta(hours=24))).one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2865, in one
+    return self._iter().one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2903, in _iter
+    result = self.session.execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1695, in execute
+    conn = self._connection_for_bind(bind)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1536, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3234, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3313, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3283, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2117, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2024-02-08 19:09:17,662 - app - ERROR - Exception on /api/user/firebase [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/userRoutes.py", line 22, in updateUserFirebaseData
+    psychologistService.updateFirebaseDetails(userRequest)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 114, in updateFirebaseDetails
+    psychologistDao.updateFirebaseDetails(request, user)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 107, in updateFirebaseDetails
+    psychologistData= session.query(PsychologistData).filter_by(psychologistId=psychologist.id).first()
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-02-08 19:09:19,222 - app - ERROR - Exception on /api/user/firebase [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/userRoutes.py", line 22, in updateUserFirebaseData
+    psychologistService.updateFirebaseDetails(userRequest)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 114, in updateFirebaseDetails
+    psychologistDao.updateFirebaseDetails(request, user)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 107, in updateFirebaseDetails
+    psychologistData= session.query(PsychologistData).filter_by(psychologistId=psychologist.id).first()
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-02-08 19:19:37,914 - app - ERROR - Exception on /api/users/status/busy [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/psychologistRoutes.py", line 30, in setPsychologistAsBusy
+    response = psychologistService.setPsychologistBusy(requestData).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 25, in setPsychologistBusy
+    result = psychologistDao.updateBusyStatus(user.id,busyStatus)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 45, in updateBusyStatus
+    psychologistData = session.query(PsychologistData).filter_by(psychologistId=psychologist.id).first()
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-02-08 19:37:58,852 - app - ERROR - Exception on /api/users/status/busy [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/psychologistRoutes.py", line 30, in setPsychologistAsBusy
+    response = psychologistService.setPsychologistBusy(requestData).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 25, in setPsychologistBusy
+    result = psychologistDao.updateBusyStatus(user.id,busyStatus)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 45, in updateBusyStatus
+    psychologistData = session.query(PsychologistData).filter_by(psychologistId=psychologist.id).first()
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-02-08 19:38:19,377 - app - ERROR - Exception on /api/user/firebase [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/userRoutes.py", line 22, in updateUserFirebaseData
+    psychologistService.updateFirebaseDetails(userRequest)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 114, in updateFirebaseDetails
+    psychologistDao.updateFirebaseDetails(request, user)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 108, in updateFirebaseDetails
+    logging.info("psychologist" + str(psychologist.id))
+AttributeError: 'NoneType' object has no attribute 'id'
+2024-02-08 19:40:01,528 - app - ERROR - Exception on /api/login [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/otpRoutes.py", line 29, in verifyOtp
+    response = otpVerificationService.verifyOtp(otpVerifyRequest).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/otpVerificationService.py", line 14, in verifyOtp
+    otp = otpDAO.getOtp(userId=user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/otpDAO.py", line 32, in getOtp
+    ).one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2865, in one
+    return self._iter().one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/result.py", line 1417, in one
+    return self._only_one_row(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/result.py", line 614, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2024-02-08 19:40:09,403 - app - ERROR - Exception on /api/login [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/otpRoutes.py", line 29, in verifyOtp
+    response = otpVerificationService.verifyOtp(otpVerifyRequest).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/otpVerificationService.py", line 14, in verifyOtp
+    otp = otpDAO.getOtp(userId=user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/otpDAO.py", line 32, in getOtp
+    ).one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2865, in one
+    return self._iter().one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/result.py", line 1417, in one
+    return self._only_one_row(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/result.py", line 614, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2024-02-08 19:40:16,254 - app - ERROR - Exception on /api/login [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/otpRoutes.py", line 29, in verifyOtp
+    response = otpVerificationService.verifyOtp(otpVerifyRequest).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/otpVerificationService.py", line 14, in verifyOtp
+    otp = otpDAO.getOtp(userId=user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/otpDAO.py", line 32, in getOtp
+    ).one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2865, in one
+    return self._iter().one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/result.py", line 1417, in one
+    return self._only_one_row(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/result.py", line 614, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2024-02-08 19:40:36,715 - app - ERROR - Exception on /api/login [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/otpRoutes.py", line 29, in verifyOtp
+    response = otpVerificationService.verifyOtp(otpVerifyRequest).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/otpVerificationService.py", line 14, in verifyOtp
+    otp = otpDAO.getOtp(userId=user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/otpDAO.py", line 32, in getOtp
+    ).one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2865, in one
+    return self._iter().one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/result.py", line 1417, in one
+    return self._only_one_row(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/result.py", line 614, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required
+2024-02-08 19:46:02,506 - app - ERROR - Exception on /api/login [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/otpRoutes.py", line 29, in verifyOtp
+    response = otpVerificationService.verifyOtp(otpVerifyRequest).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/otpVerificationService.py", line 14, in verifyOtp
+    otp = otpDAO.getOtp(userId=user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/otpDAO.py", line 33, in getOtp
+    ).one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2865, in one
+    return self._iter().one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/result.py", line 1417, in one
+    return self._only_one_row(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/result.py", line 614, in _only_one_row
+    raise exc.MultipleResultsFound(
+sqlalchemy.exc.MultipleResultsFound: Multiple rows were found when exactly one was required

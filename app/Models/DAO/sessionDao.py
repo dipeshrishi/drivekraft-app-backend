@@ -5,6 +5,7 @@ from app.Models.mysql.sessionRequest import SessionRequest
 from app.Models.mysql.sessionRequestStatusMapping import SessionRequestStatusMapping
 from sqlalchemy import and_
 from sqlalchemy.orm.exc import NoResultFound
+import logging
 
 def createRequest(listener_id,session_type,user_id):
     session = g.session
@@ -32,6 +33,14 @@ def cancelSessionById(sessionId):
     return True
     # sql = f"Update sessionRequest set is_cancelled ='1' , updated_at =now() where id ='{sessioxnRequestId}'"
 
+def confirmSession(sessionId):
+    session = g.session
+    now = currentTime.getCurrentTime()
+    sessionRequest = session.query(SessionRequest).filter_by(id=sessionId).first()
+    sessionRequest.sessionRequestStatusId = 2
+    session.commit()
+    logging.error("confirming session  : {}".format(sessionId))
+    return True
 
 def findSessionRequestIdByName(name):
     id = g.session.query(SessionRequestStatusMapping).filter(SessionRequestStatusMapping.status==name).one()
@@ -39,9 +48,13 @@ def findSessionRequestIdByName(name):
 
 def findSessionRequestById(sessionId):
     session = g.session
-    verifiedSessionRequest = session.query(SessionRequest).filter(and_(SessionRequest.id==sessionId,SessionRequest.sessionRequestStatusId=='CREATED')).one()
-
-    return verifiedSessionRequest
+    try:
+        verifiedSessionRequest = session.query(SessionRequest).filter(
+            and_(SessionRequest.id == sessionId, SessionRequest.sessionRequestStatusId == 2)).one()
+        return verifiedSessionRequest
+    except NoResultFound:
+        # Handle the case when no row is found
+        return None
 
 def fetchSessionRequestByUserId(user_id):
     session = g.session
@@ -56,7 +69,7 @@ def fetchSessionRequestByUserId(user_id):
                 SessionRequest.sessionRequestStatusId == 1,
                 SessionRequest.expired > now
             )
-        ).one()
+        ).first()
         return verifiedSessionRequest
     except NoResultFound:
         # Handle the case where no result is found

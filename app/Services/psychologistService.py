@@ -2,9 +2,11 @@ from app.Contract.Response.allPsychologistResponse import allPsychologistRespons
 from ..Contract.Response.setPsychologistBusyResponse import setPsychologistBusyResponse
 from ..Contract.Response.updatePsychologistStatusResponse import updatePsychologistStatusResponse
 from ..Contract.Request.createPsychologistRequest import createPsychologistRequest
+from ..Contract.Request.changeStatusRequest import changeStatusRequest
 from ..Contract.Response.checkPsychologistOnlineStatusResponse import checkPsychologistOnlineStatusResponse
 from ..Contract.Response.createPsychologistResponse import createPsychologistResponse
 from ..Contract.Response.checkPsychologistBusyResponse import checkPsychologistBusyResponse
+from ..Contract.Response.changeOnlineStatusResponse import changeOnlineStatusResponse
 from ..Models.mysql.psychologist import Psychologist
 from ..Models.mysql.psychologistData import PsychologistData
 from app.Models.DAO import psychologistDao
@@ -21,7 +23,9 @@ def getAllPsychologist() -> allPsychologistResponse:
 def setPsychologistBusy(requestData) -> setPsychologistBusyResponse:
     user = getUserDetails()
     busyStatus = True if requestData.busy == 1 else False
+    print("user id" + str(user.id))
     result = psychologistDao.updateBusyStatus(user.id,busyStatus)
+    print("result " + str(result))
     if (result):
         response = setPsychologistBusyResponse(is_busy=requestData.busy)
     else:
@@ -102,3 +106,19 @@ def createPsychologist(requestData: createPsychologistRequest) -> createPsycholo
 
 def getPsychologistIdFromUserID(userId):
     return psychologistDao.getPsychologistIdFromUserID(userId)
+
+def updateFirebaseDetails(request):
+    user = getUserDetails()
+
+    if user.roleId==3:
+        return
+
+    psychologistDao.updateFirebaseDetails(request, user)
+    return
+
+
+def changeOnlineStatus(request: changeStatusRequest) :
+    user = getUserDetails()
+    onlieStatus = True if request.online_status == "1" else False
+    psychologistDao.changeOnlineStatus(user.id,onlieStatus)
+    return changeOnlineStatusResponse(status="success",message="Is online updated successfully",onlineStatus=request.online_status)
