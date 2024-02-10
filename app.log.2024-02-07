@@ -1,0 +1,209 @@
+2024-02-07 16:02:42,461 - app - ERROR - Exception on /api/order/create [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 17, in createNewOrder
+    response = paymentService.createOrder(createPayRequest).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 23, in createOrder
+    user = getUserDetails.getUserDetails()
+NameError: name 'getUserDetails' is not defined
+2024-02-07 16:02:49,018 - app - ERROR - Exception on /api/order/create [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 17, in createNewOrder
+    response = paymentService.createOrder(createPayRequest).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 23, in createOrder
+    user = getUserDetails.getUserDetails()
+NameError: name 'getUserDetails' is not defined
+2024-02-07 16:06:17,432 - app - ERROR - Exception on /api/order/confirm [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 36, in confirmOrder
+    response = paymentService.confirmOrder(paymentConfirmRequest).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 75, in confirmOrder
+    paymentDao.updatePaymentOrder(order_id=payload['razorpay_order_id'], payment_id= payload['razorpay_payment_id'],
+TypeError: string indices must be integers
+2024-02-07 16:15:24,471 - app - ERROR - Exception on /api/order/confirm [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 36, in confirmOrder
+    response = paymentService.confirmOrder(paymentConfirmRequest).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 76, in confirmOrder
+    logging.info("datatype of payload" + str(payload.keys()))
+AttributeError: 'str' object has no attribute 'keys'
+2024-02-07 16:22:39,245 - app - ERROR - Exception on /api/order/confirm [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 36, in confirmOrder
+    response = paymentService.confirmOrder(paymentConfirmRequest).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 94, in confirmOrder
+    userService.addUserCredit(responseDict['amount'] / 100)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/userService.py", line 65, in addUserCredit
+    user = getUserDetails()
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/userService.py", line 100, in getUserDetails
+    user = getUserByToken(g.tokenValue)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/ctx.py", line 52, in __getattr__
+    raise AttributeError(name) from None
+AttributeError: tokenValue
+2024-02-07 16:43:59,052 - app - ERROR - Exception on /api/order/confirm [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 37, in confirmOrder
+    response = paymentService.confirmOrder(paymentConfirmRequest).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 96, in confirmOrder
+    response = confirmRazorpayOrderResponse(msg ='Your payment id is ' + payload['razorpay_order_id'] + '.',status= 'success',title ="Session Booked")
+KeyError: 'razorpay_order_id'
+2024-02-07 17:10:37,075 - app - ERROR - Exception on /api/user [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+MySQLdb._exceptions.OperationalError: (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 14, in wrapper
+    if verify_token(tokenValue):
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 25, in verify_token
+    token = getToken(tokenValue=tokenValue)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 872, in decorated_function
+    rv = self._call_fn(f, *args, **kwargs)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 175, in _call_fn
+    return ensure_sync(fn)(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/tokenDAO.py", line 28, in getToken
+    and_(Token.value == tokenValue, Token.created >= now - timedelta(hours=24))).one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2865, in one
+    return self._iter().one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2903, in _iter
+    result = self.session.execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1695, in execute
+    conn = self._connection_for_bind(bind)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1536, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3234, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3313, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3283, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2117, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
