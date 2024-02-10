@@ -16,6 +16,7 @@ import json
 
 
 def createOrder(request : createRazorpayOrderRequest) -> createRazorpayOrderResponse:
+    logging.info("inside otp create order")
     amountInPaisa = int(request.amount)
     payload = getPayloadForOrder(amountInPaisa)
     headers = getHeaderForOrder()
@@ -34,6 +35,7 @@ def createOrder(request : createRazorpayOrderRequest) -> createRazorpayOrderResp
 
 
 def placeOrder(request : placeRazorpayOrderRequest) -> placeRazorpayOrderResponse:
+    logging.info("inside place order ")
     user = userService.getUserDetails()
 
     if user.balance < 5:
@@ -67,10 +69,11 @@ def placeOrder(request : placeRazorpayOrderRequest) -> placeRazorpayOrderRespons
                                           credits_sufficient_for_five_minutes=sufficent_balance)
     return response
 
-    # Todo need to make changes in android as well
+
 
 
 def confirmOrder(request : confirmPaymentOrderRequest) -> confirmRazorpayOrderResponse:
+    logging.info("inside confirm  order")
     response_string = request.response
     payload_ = response_string
     payload = json.loads(payload_)

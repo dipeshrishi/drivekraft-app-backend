@@ -15,6 +15,7 @@ from flask import g
 
 
 def updateUserFirebaseDetails(request: userUpdateFirebaseDetail) -> serviceResponse:
+    logging.info("inside update user firebase details")
     user = getUserDetails()
     result = userDao.updateUserFirebaseData(request, user)
     if (result):
@@ -27,6 +28,7 @@ def updateUserFirebaseDetails(request: userUpdateFirebaseDetail) -> serviceRespo
 
 
 def checkUsername(request: CheckUsernameRequest) -> CheckUsernameResponse:
+    logging.info("inside check user name")
     if (len(request.username) < 4):
         response = CheckUsernameResponse(message="Username must be greater than 4 characters", status=False)
         logging.info("username length is less than 4")
@@ -39,6 +41,7 @@ def checkUsername(request: CheckUsernameRequest) -> CheckUsernameResponse:
     return response
 
 def confirmUsername(request: ConfirmUsernameRequest) -> ConfirmUsernameResponse:
+    logging.info("inside confirm user name")
     user = getUserDetails()
     if (len(request.username) < 4):
         response = CheckUsernameResponse(message="Username must be greater than 4 characters", status=False)
@@ -51,6 +54,7 @@ def confirmUsername(request: ConfirmUsernameRequest) -> ConfirmUsernameResponse:
     return response
 
 def updateUserBalance(userId, newBalance):
+    logging.info("inside update balance")
     result = userDao.updateBalance(userId, newBalance)
     return result
 

@@ -13,14 +13,17 @@ from app.Models.DAO import psychologistDao
 from app.Services import userService
 from app.Services.userService import getUserDetails
 from ..utils.currentTime import getCurrentTime
+import logging
 
 
 def getAllPsychologist() -> allPsychologistResponse:
+    logging.info("inside all psychologist")
     response = psychologistDao.getAllPsychologist()
     return response
 
 
 def setPsychologistBusy(requestData) -> setPsychologistBusyResponse:
+    logging.info("inside set psychologist  busy")
     user = getUserDetails()
     busyStatus = True if requestData.busy == 1 else False
     print("user id" + str(user.id))
@@ -34,7 +37,7 @@ def setPsychologistBusy(requestData) -> setPsychologistBusyResponse:
 
 
 def checkPsychologistBusyStatus(requestData) ->updatePsychologistStatusResponse:
-
+    logging.info("inside check busy status")
     busy,online= psychologistDao.getPsychologistStatus(requestData.psychologist_id)
     if busy is not None:
         response = checkPsychologistBusyResponse(is_busy=busy,is_Online=online)
@@ -43,7 +46,7 @@ def checkPsychologistBusyStatus(requestData) ->updatePsychologistStatusResponse:
     return response
 
 def checkPsychologistOnlineStatus() ->checkPsychologistOnlineStatusResponse:
-
+    logging.info("inside check  online status")
     user = getUserDetails()
     result = psychologistDao.getPsychologistOnlineStatus(user.id)
     if result is not None:
@@ -54,7 +57,7 @@ def checkPsychologistOnlineStatus() ->checkPsychologistOnlineStatusResponse:
     return response
 
 def createPsychologist(requestData: createPsychologistRequest) -> createPsychologistResponse:
-
+    logging.info("inside create psychologist generation")
     user = userService.getUserByContact(requestData.contactNumber)
     if user is None:
         user = userService.createUser(requestData.contactNumber)
@@ -105,9 +108,11 @@ def createPsychologist(requestData: createPsychologistRequest) -> createPsycholo
     return response
 
 def getPsychologistIdFromUserID(userId):
+    logging.info("inside get psychologist by id")
     return psychologistDao.getPsychologistIdFromUserID(userId)
 
 def updateFirebaseDetails(request):
+    logging.info("inside update  firebase Details")
     user = getUserDetails()
 
     if user.roleId==3:
