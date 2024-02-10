@@ -3,6 +3,7 @@ from app.Models.mysql.user import User
 from app.Models.mysql.userRole import UserRole
 from app.utils.currentTime import getCurrentTime
 from sqlalchemy.orm.exc import NoResultFound
+import logging
 
 
 
@@ -18,7 +19,7 @@ def addUser(contactNumber):
 def addGoogleUser(contactNumber):
     now = getCurrentTime()
     session = g.session
-    new_user = User(id=1,contactNumber=contactNumber, created=now, updated=now, roleId=2)
+    new_user = User(id=1,contactNumber=contactNumber, created=now, updated=now, roleId=3)
     session.merge(new_user)
     session.commit()
 
@@ -63,6 +64,12 @@ def updateUserFirebaseData(firebaseData,userDetails):
     user.firebasePassword = firebaseData.firebasePassword
     user.firebaseEmail = firebaseData.firebaseEmail
     user.firebaseName = firebaseData.firebaseName
+
+    logging.info("firebase "+ str(firebaseData.firebaseId) )
+    logging.info("firebase "+ str(firebaseData.firebasePassword) )
+    logging.info("firebase "+ str(firebaseData.firebaseEmail) )
+    logging.info("firebase "+ str(firebaseData.firebaseName) )
+
 
     session.commit()
     return True

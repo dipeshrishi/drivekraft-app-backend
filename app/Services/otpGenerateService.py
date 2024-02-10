@@ -16,7 +16,7 @@ def generateOtp(request : otpGenerateRequest) -> otpGenerateResponse:
     print(validate)
     if(validate):
         if googleVerificationOtp(request.mobile):
-            userService.addGoogleContact(contactNumber=request.mobile)
+           #userService.addGoogleContact(contactNumber=request.mobile)
             otp = GOOGLE_OTP
             otpDAO.addOtp(1, otp)
         else:

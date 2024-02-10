@@ -1,0 +1,1869 @@
+2024-02-01 15:20:32,475 - app - ERROR - Exception on /api/order/placed [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 27, in placeOrder
+    response = paymentService.placeOrder(request.json_data).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 42, in placeOrder
+    print("printing request",request.session_request_id,request.transaction_id,request.seconds_chatted)
+AttributeError: 'dict' object has no attribute 'session_request_id'
+2024-02-01 15:21:36,303 - app - ERROR - Exception on /api/order/placed [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 27, in placeOrder
+    response = paymentService.placeOrder(request.json_data).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 42, in placeOrder
+    print("printing request",request.session_request_id,request.transaction_id,request.seconds_chatted)
+AttributeError: 'dict' object has no attribute 'session_request_id'
+2024-02-01 15:44:37,058 - app - ERROR - Exception on /api/role [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+MySQLdb._exceptions.OperationalError: (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 14, in wrapper
+    if verify_token(tokenValue):
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 25, in verify_token
+    token = getToken(tokenValue=tokenValue)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 872, in decorated_function
+    rv = self._call_fn(f, *args, **kwargs)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 175, in _call_fn
+    return ensure_sync(fn)(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/tokenDAO.py", line 28, in getToken
+    and_(Token.value == tokenValue, Token.created >= now - timedelta(hours=24))).one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2865, in one
+    return self._iter().one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2903, in _iter
+    result = self.session.execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1695, in execute
+    conn = self._connection_for_bind(bind)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1536, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3234, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3313, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3283, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2117, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2024-02-01 15:47:24,955 - app - ERROR - Exception on /api/order/placed [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 27, in placeOrder
+    response = paymentService.placeOrder(request.json_data).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 42, in placeOrder
+    print("printing request",request.session_request_id,request.transaction_id,request.seconds_chatted)
+AttributeError: 'dict' object has no attribute 'session_request_id'
+2024-02-01 15:53:29,589 - app - ERROR - Exception on /api/order/placed [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 27, in placeOrder
+    response = paymentService.placeOrder(request.json_data).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 42, in placeOrder
+    print("printing request",request.session_request_id,request.transaction_id,request.seconds_chatted)
+AttributeError: 'dict' object has no attribute 'session_request_id'
+2024-02-01 15:56:56,541 - app - ERROR - Exception on /api/order/placed [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 27, in placeOrder
+    response = paymentService.placeOrder(request.json_data).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 42, in placeOrder
+    print("printing request",request.session_request_id,request.transaction_id,request.seconds_chatted)
+AttributeError: 'dict' object has no attribute 'session_request_id'
+2024-02-01 16:08:18,623 - app - ERROR - Exception on /api/order/placed [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 27, in placeOrder
+    response = paymentService.placeOrder(request.json_data).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 42, in placeOrder
+    print("printing request",request.session_request_id,request.transaction_id,request.seconds_chatted)
+AttributeError: 'dict' object has no attribute 'session_request_id'
+2024-02-01 16:14:48,179 - app - ERROR - Exception on /api/order/placed [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 27, in placeOrder
+    response = paymentService.placeOrder(request.json_data).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 42, in placeOrder
+    print("printing request",request.session_request_id,request.transaction_id,request.seconds_chatted)
+AttributeError: 'dict' object has no attribute 'session_request_id'
+2024-02-01 16:23:49,887 - app - ERROR - Exception on /api/users/status/busy [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+MySQLdb._exceptions.OperationalError: (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/psychologistRoutes.py", line 30, in setPsychologistAsBusy
+    response = psychologistService.setPsychologistBusy(requestData).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 22, in setPsychologistBusy
+    user = getUserDetails()
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/userService.py", line 100, in getUserDetails
+    user = getUserByToken(g.tokenValue)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/userService.py", line 96, in getUserByToken
+    return userDao.getUserById(token.userId)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/userDao.py", line 53, in getUserById
+    user = session.query(User).filter_by(id=userId).one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2865, in one
+    return self._iter().one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2903, in _iter
+    result = self.session.execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1695, in execute
+    conn = self._connection_for_bind(bind)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1536, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3234, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3313, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3283, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2117, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2024-02-01 17:11:13,172 - app - ERROR - Exception on /api/session/request/fetch [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+MySQLdb._exceptions.OperationalError: (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 14, in wrapper
+    if verify_token(tokenValue):
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 25, in verify_token
+    token = getToken(tokenValue=tokenValue)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 872, in decorated_function
+    rv = self._call_fn(f, *args, **kwargs)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 175, in _call_fn
+    return ensure_sync(fn)(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/tokenDAO.py", line 28, in getToken
+    and_(Token.value == tokenValue, Token.created >= now - timedelta(hours=24))).one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2865, in one
+    return self._iter().one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2903, in _iter
+    result = self.session.execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1695, in execute
+    conn = self._connection_for_bind(bind)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1536, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3234, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3313, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3283, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2117, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2024-02-01 17:11:18,239 - app - ERROR - Exception on /api/role [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+MySQLdb._exceptions.OperationalError: (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 14, in wrapper
+    if verify_token(tokenValue):
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 25, in verify_token
+    token = getToken(tokenValue=tokenValue)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 872, in decorated_function
+    rv = self._call_fn(f, *args, **kwargs)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 175, in _call_fn
+    return ensure_sync(fn)(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/tokenDAO.py", line 28, in getToken
+    and_(Token.value == tokenValue, Token.created >= now - timedelta(hours=24))).one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2865, in one
+    return self._iter().one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2903, in _iter
+    result = self.session.execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1695, in execute
+    conn = self._connection_for_bind(bind)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1536, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3234, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3313, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3283, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2117, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2024-02-01 17:38:58,856 - app - ERROR - Exception on /api/role [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+MySQLdb._exceptions.OperationalError: (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 14, in wrapper
+    if verify_token(tokenValue):
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 25, in verify_token
+    token = getToken(tokenValue=tokenValue)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 872, in decorated_function
+    rv = self._call_fn(f, *args, **kwargs)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 175, in _call_fn
+    return ensure_sync(fn)(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/tokenDAO.py", line 28, in getToken
+    and_(Token.value == tokenValue, Token.created >= now - timedelta(hours=24))).one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2865, in one
+    return self._iter().one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2903, in _iter
+    result = self.session.execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1695, in execute
+    conn = self._connection_for_bind(bind)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1536, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3234, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3313, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3283, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2117, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2024-02-01 17:49:20,073 - app - ERROR - Exception on /api/psychologists [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1819, in _execute_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 206, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 319, in _query
+    db.query(q)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.OperationalError: (1054, "Unknown column 'psychologist.user_id' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/psychologistRoutes.py", line 20, in getAllPsychologist
+    response = psychologistService.getAllPsychologist()
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 17, in getAllPsychologist
+    response = psychologistDao.getAllPsychologist()
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 13, in getAllPsychologist
+    all()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2768, in all
+    return self._iter().all()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2903, in _iter
+    result = self.session.execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1696, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1631, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1498, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1862, in _execute_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2043, in _handle_dbapi_exception
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1819, in _execute_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 206, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 319, in _query
+    db.query(q)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (1054, "Unknown column 'psychologist.user_id' in 'field list'")
+[SQL: SELECT psychologist.id AS psychologist_id, psychologist.uuid AS psychologist_uuid, psychologist.name AS psychologist_name, psychologist.user_id AS psychologist_user_id, psychologist.profile_image AS psychologist_profile_image, psychologist.`contactNumber` AS `psychologist_contactNumber`, psychologist.`emailId` AS `psychologist_emailId`, psychologist.enabled AS psychologist_enabled, psychologist.description AS psychologist_description, psychologist.`shortDescription` AS `psychologist_shortDescription`, psychologist.`yearsOfExp` AS `psychologist_yearsOfExp`, psychologist.education AS psychologist_education, psychologist.gender AS psychologist_gender, psychologist.age AS psychologist_age, psychologist.interest AS psychologist_interest, psychologist.language AS psychologist_language, `psychologistData`.id AS `psychologistData_id`, `psychologistData`.`psychologistId` AS `psychologistData_psychologistId`, `psychologistData`.`sessionCount` AS `psychologistData_sessionCount`, `psychologistData`.rating AS `psychologistData_rating`, `psychologistData`.`preferenceOrder` AS `psychologistData_preferenceOrder`, `psychologistData`.`isBusy` AS `psychologistData_isBusy`, `psychologistData`.status AS `psychologistData_status`, `psychologistData`.online AS `psychologistData_online`, `psychologistData`.`lastSeen` AS `psychologistData_lastSeen`, `psychologistData`.`missedRequestCount` AS `psychologistData_missedRequestCount`, `psychologistData`.`totalRequestsReceivedCount` AS `psychologistData_totalRequestsReceivedCount`, `psychologistData`.`firebaseId` AS `psychologistData_firebaseId`, `psychologistData`.`firebaseName` AS `psychologistData_firebaseName`, `psychologistData`.`firebaseEmail` AS `psychologistData_firebaseEmail`, `psychologistData`.`firebasePassword` AS `psychologistData_firebasePassword`, `psychologistData`.is_call AS `psychologistData_is_call`, `psychologistData`.is_chat AS `psychologistData_is_chat` 
+FROM `psychologistData` INNER JOIN psychologist ON `psychologistData`.`psychologistId` = psychologist.id 
+WHERE psychologist.enabled = true ORDER BY `psychologistData`.online DESC, `psychologistData`.`isBusy`]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2024-02-01 17:49:24,208 - app - ERROR - Exception on /api/users/status/busy [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'userId'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/psychologistRoutes.py", line 30, in setPsychologistAsBusy
+    response = psychologistService.setPsychologistBusy(requestData).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 25, in setPsychologistBusy
+    result = psychologistDao.updateBusyStatus(user.id,busyStatus)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 38, in updateBusyStatus
+    psychologist = session.query(Psychologist).filter_by(userId=user_id).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "userId"
+2024-02-01 17:49:43,000 - app - ERROR - Exception on /api/psychologists [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1819, in _execute_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 206, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 319, in _query
+    db.query(q)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.OperationalError: (1054, "Unknown column 'psychologist.user_id' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/psychologistRoutes.py", line 20, in getAllPsychologist
+    response = psychologistService.getAllPsychologist()
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 17, in getAllPsychologist
+    response = psychologistDao.getAllPsychologist()
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 13, in getAllPsychologist
+    all()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2768, in all
+    return self._iter().all()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2903, in _iter
+    result = self.session.execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1696, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1631, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1498, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1862, in _execute_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2043, in _handle_dbapi_exception
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1819, in _execute_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 206, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 319, in _query
+    db.query(q)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (1054, "Unknown column 'psychologist.user_id' in 'field list'")
+[SQL: SELECT psychologist.id AS psychologist_id, psychologist.uuid AS psychologist_uuid, psychologist.name AS psychologist_name, psychologist.user_id AS psychologist_user_id, psychologist.profile_image AS psychologist_profile_image, psychologist.`contactNumber` AS `psychologist_contactNumber`, psychologist.`emailId` AS `psychologist_emailId`, psychologist.enabled AS psychologist_enabled, psychologist.description AS psychologist_description, psychologist.`shortDescription` AS `psychologist_shortDescription`, psychologist.`yearsOfExp` AS `psychologist_yearsOfExp`, psychologist.education AS psychologist_education, psychologist.gender AS psychologist_gender, psychologist.age AS psychologist_age, psychologist.interest AS psychologist_interest, psychologist.language AS psychologist_language, `psychologistData`.id AS `psychologistData_id`, `psychologistData`.`psychologistId` AS `psychologistData_psychologistId`, `psychologistData`.`sessionCount` AS `psychologistData_sessionCount`, `psychologistData`.rating AS `psychologistData_rating`, `psychologistData`.`preferenceOrder` AS `psychologistData_preferenceOrder`, `psychologistData`.`isBusy` AS `psychologistData_isBusy`, `psychologistData`.status AS `psychologistData_status`, `psychologistData`.online AS `psychologistData_online`, `psychologistData`.`lastSeen` AS `psychologistData_lastSeen`, `psychologistData`.`missedRequestCount` AS `psychologistData_missedRequestCount`, `psychologistData`.`totalRequestsReceivedCount` AS `psychologistData_totalRequestsReceivedCount`, `psychologistData`.`firebaseId` AS `psychologistData_firebaseId`, `psychologistData`.`firebaseName` AS `psychologistData_firebaseName`, `psychologistData`.`firebaseEmail` AS `psychologistData_firebaseEmail`, `psychologistData`.`firebasePassword` AS `psychologistData_firebasePassword`, `psychologistData`.is_call AS `psychologistData_is_call`, `psychologistData`.is_chat AS `psychologistData_is_chat` 
+FROM `psychologistData` INNER JOIN psychologist ON `psychologistData`.`psychologistId` = psychologist.id 
+WHERE psychologist.enabled = true ORDER BY `psychologistData`.online DESC, `psychologistData`.`isBusy`]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2024-02-01 17:55:14,872 - app - ERROR - Exception on /api/psychologists [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1819, in _execute_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 206, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 319, in _query
+    db.query(q)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.OperationalError: (1054, "Unknown column 'psychologist.user_id' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/psychologistRoutes.py", line 20, in getAllPsychologist
+    response = psychologistService.getAllPsychologist()
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 17, in getAllPsychologist
+    response = psychologistDao.getAllPsychologist()
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 13, in getAllPsychologist
+    all()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2768, in all
+    return self._iter().all()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2903, in _iter
+    result = self.session.execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1696, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1631, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1498, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1862, in _execute_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2043, in _handle_dbapi_exception
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1819, in _execute_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 206, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 319, in _query
+    db.query(q)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (1054, "Unknown column 'psychologist.user_id' in 'field list'")
+[SQL: SELECT psychologist.id AS psychologist_id, psychologist.uuid AS psychologist_uuid, psychologist.name AS psychologist_name, psychologist.user_id AS psychologist_user_id, psychologist.profile_image AS psychologist_profile_image, psychologist.`contactNumber` AS `psychologist_contactNumber`, psychologist.`emailId` AS `psychologist_emailId`, psychologist.enabled AS psychologist_enabled, psychologist.description AS psychologist_description, psychologist.`shortDescription` AS `psychologist_shortDescription`, psychologist.`yearsOfExp` AS `psychologist_yearsOfExp`, psychologist.education AS psychologist_education, psychologist.gender AS psychologist_gender, psychologist.age AS psychologist_age, psychologist.interest AS psychologist_interest, psychologist.language AS psychologist_language, `psychologistData`.id AS `psychologistData_id`, `psychologistData`.`psychologistId` AS `psychologistData_psychologistId`, `psychologistData`.`sessionCount` AS `psychologistData_sessionCount`, `psychologistData`.rating AS `psychologistData_rating`, `psychologistData`.`preferenceOrder` AS `psychologistData_preferenceOrder`, `psychologistData`.`isBusy` AS `psychologistData_isBusy`, `psychologistData`.status AS `psychologistData_status`, `psychologistData`.online AS `psychologistData_online`, `psychologistData`.`lastSeen` AS `psychologistData_lastSeen`, `psychologistData`.`missedRequestCount` AS `psychologistData_missedRequestCount`, `psychologistData`.`totalRequestsReceivedCount` AS `psychologistData_totalRequestsReceivedCount`, `psychologistData`.`firebaseId` AS `psychologistData_firebaseId`, `psychologistData`.`firebaseName` AS `psychologistData_firebaseName`, `psychologistData`.`firebaseEmail` AS `psychologistData_firebaseEmail`, `psychologistData`.`firebasePassword` AS `psychologistData_firebasePassword`, `psychologistData`.is_call AS `psychologistData_is_call`, `psychologistData`.is_chat AS `psychologistData_is_chat` 
+FROM `psychologistData` INNER JOIN psychologist ON `psychologistData`.`psychologistId` = psychologist.id 
+WHERE psychologist.enabled = true ORDER BY `psychologistData`.online DESC, `psychologistData`.`isBusy`]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2024-02-01 17:55:23,428 - app - ERROR - Exception on /api/psychologists [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1819, in _execute_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 206, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 319, in _query
+    db.query(q)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.OperationalError: (1054, "Unknown column 'psychologist.user_id' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/psychologistRoutes.py", line 20, in getAllPsychologist
+    response = psychologistService.getAllPsychologist()
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 17, in getAllPsychologist
+    response = psychologistDao.getAllPsychologist()
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 13, in getAllPsychologist
+    all()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2768, in all
+    return self._iter().all()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2903, in _iter
+    result = self.session.execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1696, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1631, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 325, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1498, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1862, in _execute_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2043, in _handle_dbapi_exception
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1819, in _execute_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 206, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/cursors.py", line 319, in _query
+    db.query(q)
+  File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 254, in query
+    _mysql.connection.query(self, query)
+sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (1054, "Unknown column 'psychologist.user_id' in 'field list'")
+[SQL: SELECT psychologist.id AS psychologist_id, psychologist.uuid AS psychologist_uuid, psychologist.name AS psychologist_name, psychologist.user_id AS psychologist_user_id, psychologist.profile_image AS psychologist_profile_image, psychologist.`contactNumber` AS `psychologist_contactNumber`, psychologist.`emailId` AS `psychologist_emailId`, psychologist.enabled AS psychologist_enabled, psychologist.description AS psychologist_description, psychologist.`shortDescription` AS `psychologist_shortDescription`, psychologist.`yearsOfExp` AS `psychologist_yearsOfExp`, psychologist.education AS psychologist_education, psychologist.gender AS psychologist_gender, psychologist.age AS psychologist_age, psychologist.interest AS psychologist_interest, psychologist.language AS psychologist_language, `psychologistData`.id AS `psychologistData_id`, `psychologistData`.`psychologistId` AS `psychologistData_psychologistId`, `psychologistData`.`sessionCount` AS `psychologistData_sessionCount`, `psychologistData`.rating AS `psychologistData_rating`, `psychologistData`.`preferenceOrder` AS `psychologistData_preferenceOrder`, `psychologistData`.`isBusy` AS `psychologistData_isBusy`, `psychologistData`.status AS `psychologistData_status`, `psychologistData`.online AS `psychologistData_online`, `psychologistData`.`lastSeen` AS `psychologistData_lastSeen`, `psychologistData`.`missedRequestCount` AS `psychologistData_missedRequestCount`, `psychologistData`.`totalRequestsReceivedCount` AS `psychologistData_totalRequestsReceivedCount`, `psychologistData`.`firebaseId` AS `psychologistData_firebaseId`, `psychologistData`.`firebaseName` AS `psychologistData_firebaseName`, `psychologistData`.`firebaseEmail` AS `psychologistData_firebaseEmail`, `psychologistData`.`firebasePassword` AS `psychologistData_firebasePassword`, `psychologistData`.is_call AS `psychologistData_is_call`, `psychologistData`.is_chat AS `psychologistData_is_chat` 
+FROM `psychologistData` INNER JOIN psychologist ON `psychologistData`.`psychologistId` = psychologist.id 
+WHERE psychologist.enabled = true ORDER BY `psychologistData`.online DESC, `psychologistData`.`isBusy`]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2024-02-01 18:12:23,993 - app - ERROR - Exception on /api/session/request/fetch [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/sessionRoutes.py", line 47, in fetchSessionRequestFun
+    response = sessionService.fetchSessionRequest().__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/sessionService.py", line 60, in fetchSessionRequest
+    psy_id=psychologistService.getPsychologistIdFromUserID(user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 106, in getPsychologistIdFromUserID
+    return psychologistDao.getPsychologistIdFromUserID(userId)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 94, in getPsychologistIdFromUserID
+    psychologistData = session.query(Psychologist).filter_by(user_id=UserId).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "user_id"
+2024-02-01 18:12:24,416 - app - ERROR - Exception on /api/session/request/fetch [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/sessionRoutes.py", line 47, in fetchSessionRequestFun
+    response = sessionService.fetchSessionRequest().__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/sessionService.py", line 60, in fetchSessionRequest
+    psy_id=psychologistService.getPsychologistIdFromUserID(user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 106, in getPsychologistIdFromUserID
+    return psychologistDao.getPsychologistIdFromUserID(userId)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 94, in getPsychologistIdFromUserID
+    psychologistData = session.query(Psychologist).filter_by(user_id=UserId).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "user_id"
+2024-02-01 18:12:25,453 - app - ERROR - Exception on /api/session/request/fetch [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/sessionRoutes.py", line 47, in fetchSessionRequestFun
+    response = sessionService.fetchSessionRequest().__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/sessionService.py", line 60, in fetchSessionRequest
+    psy_id=psychologistService.getPsychologistIdFromUserID(user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 106, in getPsychologistIdFromUserID
+    return psychologistDao.getPsychologistIdFromUserID(userId)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 94, in getPsychologistIdFromUserID
+    psychologistData = session.query(Psychologist).filter_by(user_id=UserId).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "user_id"
+2024-02-01 18:12:26,708 - app - ERROR - Exception on /api/session/request/fetch [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/sessionRoutes.py", line 47, in fetchSessionRequestFun
+    response = sessionService.fetchSessionRequest().__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/sessionService.py", line 60, in fetchSessionRequest
+    psy_id=psychologistService.getPsychologistIdFromUserID(user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 106, in getPsychologistIdFromUserID
+    return psychologistDao.getPsychologistIdFromUserID(userId)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 94, in getPsychologistIdFromUserID
+    psychologistData = session.query(Psychologist).filter_by(user_id=UserId).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "user_id"
+2024-02-01 18:12:27,855 - app - ERROR - Exception on /api/order/placed [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 27, in placeOrder
+    response = paymentService.placeOrder(request.json_data).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 42, in placeOrder
+    print("printing request",request.session_request_id,request.transaction_id,request.seconds_chatted)
+AttributeError: 'dict' object has no attribute 'session_request_id'
+2024-02-01 18:12:30,142 - app - ERROR - Exception on /api/session/request/fetch [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/sessionRoutes.py", line 47, in fetchSessionRequestFun
+    response = sessionService.fetchSessionRequest().__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/sessionService.py", line 60, in fetchSessionRequest
+    psy_id=psychologistService.getPsychologistIdFromUserID(user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 106, in getPsychologistIdFromUserID
+    return psychologistDao.getPsychologistIdFromUserID(userId)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 94, in getPsychologistIdFromUserID
+    psychologistData = session.query(Psychologist).filter_by(user_id=UserId).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "user_id"
+2024-02-01 18:12:54,027 - app - ERROR - Exception on /api/session/request/fetch [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/sessionRoutes.py", line 47, in fetchSessionRequestFun
+    response = sessionService.fetchSessionRequest().__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/sessionService.py", line 60, in fetchSessionRequest
+    psy_id=psychologistService.getPsychologistIdFromUserID(user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 106, in getPsychologistIdFromUserID
+    return psychologistDao.getPsychologistIdFromUserID(userId)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 94, in getPsychologistIdFromUserID
+    psychologistData = session.query(Psychologist).filter_by(user_id=UserId).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "user_id"
+2024-02-01 18:12:54,551 - app - ERROR - Exception on /api/session/request/fetch [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/sessionRoutes.py", line 47, in fetchSessionRequestFun
+    response = sessionService.fetchSessionRequest().__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/sessionService.py", line 60, in fetchSessionRequest
+    psy_id=psychologistService.getPsychologistIdFromUserID(user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 106, in getPsychologistIdFromUserID
+    return psychologistDao.getPsychologistIdFromUserID(userId)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 94, in getPsychologistIdFromUserID
+    psychologistData = session.query(Psychologist).filter_by(user_id=UserId).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "user_id"
+2024-02-01 18:13:24,056 - app - ERROR - Exception on /api/session/request/fetch [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/sessionRoutes.py", line 47, in fetchSessionRequestFun
+    response = sessionService.fetchSessionRequest().__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/sessionService.py", line 60, in fetchSessionRequest
+    psy_id=psychologistService.getPsychologistIdFromUserID(user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 106, in getPsychologistIdFromUserID
+    return psychologistDao.getPsychologistIdFromUserID(userId)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 94, in getPsychologistIdFromUserID
+    psychologistData = session.query(Psychologist).filter_by(user_id=UserId).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "user_id"
+2024-02-01 18:13:24,392 - app - ERROR - Exception on /api/session/request/fetch [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/sessionRoutes.py", line 47, in fetchSessionRequestFun
+    response = sessionService.fetchSessionRequest().__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/sessionService.py", line 60, in fetchSessionRequest
+    psy_id=psychologistService.getPsychologistIdFromUserID(user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 106, in getPsychologistIdFromUserID
+    return psychologistDao.getPsychologistIdFromUserID(userId)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 94, in getPsychologistIdFromUserID
+    psychologistData = session.query(Psychologist).filter_by(user_id=UserId).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "user_id"
+2024-02-01 18:13:54,081 - app - ERROR - Exception on /api/session/request/fetch [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/sessionRoutes.py", line 47, in fetchSessionRequestFun
+    response = sessionService.fetchSessionRequest().__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/sessionService.py", line 60, in fetchSessionRequest
+    psy_id=psychologistService.getPsychologistIdFromUserID(user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 106, in getPsychologistIdFromUserID
+    return psychologistDao.getPsychologistIdFromUserID(userId)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 94, in getPsychologistIdFromUserID
+    psychologistData = session.query(Psychologist).filter_by(user_id=UserId).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "user_id"
+2024-02-01 18:13:54,419 - app - ERROR - Exception on /api/session/request/fetch [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/sessionRoutes.py", line 47, in fetchSessionRequestFun
+    response = sessionService.fetchSessionRequest().__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/sessionService.py", line 60, in fetchSessionRequest
+    psy_id=psychologistService.getPsychologistIdFromUserID(user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 106, in getPsychologistIdFromUserID
+    return psychologistDao.getPsychologistIdFromUserID(userId)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 94, in getPsychologistIdFromUserID
+    psychologistData = session.query(Psychologist).filter_by(user_id=UserId).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "user_id"
+2024-02-01 18:14:24,139 - app - ERROR - Exception on /api/session/request/fetch [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/sessionRoutes.py", line 47, in fetchSessionRequestFun
+    response = sessionService.fetchSessionRequest().__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/sessionService.py", line 60, in fetchSessionRequest
+    psy_id=psychologistService.getPsychologistIdFromUserID(user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 106, in getPsychologistIdFromUserID
+    return psychologistDao.getPsychologistIdFromUserID(userId)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 94, in getPsychologistIdFromUserID
+    psychologistData = session.query(Psychologist).filter_by(user_id=UserId).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "user_id"
+2024-02-01 18:14:24,647 - app - ERROR - Exception on /api/session/request/fetch [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/sessionRoutes.py", line 47, in fetchSessionRequestFun
+    response = sessionService.fetchSessionRequest().__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/sessionService.py", line 60, in fetchSessionRequest
+    psy_id=psychologistService.getPsychologistIdFromUserID(user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 106, in getPsychologistIdFromUserID
+    return psychologistDao.getPsychologistIdFromUserID(userId)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 94, in getPsychologistIdFromUserID
+    psychologistData = session.query(Psychologist).filter_by(user_id=UserId).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "user_id"
+2024-02-01 18:14:54,177 - app - ERROR - Exception on /api/session/request/fetch [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/sessionRoutes.py", line 47, in fetchSessionRequestFun
+    response = sessionService.fetchSessionRequest().__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/sessionService.py", line 60, in fetchSessionRequest
+    psy_id=psychologistService.getPsychologistIdFromUserID(user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 106, in getPsychologistIdFromUserID
+    return psychologistDao.getPsychologistIdFromUserID(userId)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 94, in getPsychologistIdFromUserID
+    psychologistData = session.query(Psychologist).filter_by(user_id=UserId).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "user_id"
+2024-02-01 18:14:54,555 - app - ERROR - Exception on /api/session/request/fetch [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/sessionRoutes.py", line 47, in fetchSessionRequestFun
+    response = sessionService.fetchSessionRequest().__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/sessionService.py", line 60, in fetchSessionRequest
+    psy_id=psychologistService.getPsychologistIdFromUserID(user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 106, in getPsychologistIdFromUserID
+    return psychologistDao.getPsychologistIdFromUserID(userId)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 94, in getPsychologistIdFromUserID
+    psychologistData = session.query(Psychologist).filter_by(user_id=UserId).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "user_id"
+2024-02-01 18:15:24,247 - app - ERROR - Exception on /api/session/request/fetch [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/sessionRoutes.py", line 47, in fetchSessionRequestFun
+    response = sessionService.fetchSessionRequest().__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/sessionService.py", line 60, in fetchSessionRequest
+    psy_id=psychologistService.getPsychologistIdFromUserID(user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 106, in getPsychologistIdFromUserID
+    return psychologistDao.getPsychologistIdFromUserID(userId)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 94, in getPsychologistIdFromUserID
+    psychologistData = session.query(Psychologist).filter_by(userId=UserId).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "user_id"
+2024-02-01 18:15:24,587 - app - ERROR - Exception on /api/session/request/fetch [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/sessionRoutes.py", line 47, in fetchSessionRequestFun
+    response = sessionService.fetchSessionRequest().__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/sessionService.py", line 60, in fetchSessionRequest
+    psy_id=psychologistService.getPsychologistIdFromUserID(user.id)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 106, in getPsychologistIdFromUserID
+    return psychologistDao.getPsychologistIdFromUserID(userId)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 94, in getPsychologistIdFromUserID
+    psychologistData = session.query(Psychologist).filter_by(userId=UserId).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "user_id"
+2024-02-01 18:16:01,818 - app - ERROR - Exception on /api/users/status/busy [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/psychologistRoutes.py", line 30, in setPsychologistAsBusy
+    response = psychologistService.setPsychologistBusy(requestData).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 25, in setPsychologistBusy
+    result = psychologistDao.updateBusyStatus(user.id,busyStatus)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 38, in updateBusyStatus
+    psychologist = session.query(Psychologist).filter_by(user_id=user_id).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "user_id"
+2024-02-01 18:16:03,427 - app - ERROR - Exception on /api/order/placed [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 27, in placeOrder
+    response = paymentService.placeOrder(request.json_data).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 42, in placeOrder
+    print("printing request",request.session_request_id,request.transaction_id,request.seconds_chatted)
+AttributeError: 'dict' object has no attribute 'session_request_id'
+2024-02-01 18:16:18,152 - app - ERROR - Exception on /api/users/status/busy [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/psychologistRoutes.py", line 30, in setPsychologistAsBusy
+    response = psychologistService.setPsychologistBusy(requestData).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 25, in setPsychologistBusy
+    result = psychologistDao.updateBusyStatus(user.id,busyStatus)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 38, in updateBusyStatus
+    psychologist = session.query(Psychologist).filter_by(user_id=user_id).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "user_id"
+2024-02-01 18:16:18,531 - app - ERROR - Exception on /api/users/status/busy [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/psychologistRoutes.py", line 30, in setPsychologistAsBusy
+    response = psychologistService.setPsychologistBusy(requestData).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 25, in setPsychologistBusy
+    result = psychologistDao.updateBusyStatus(user.id,busyStatus)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 38, in updateBusyStatus
+    psychologist = session.query(Psychologist).filter_by(user_id=user_id).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "user_id"
+2024-02-01 18:16:19,028 - app - ERROR - Exception on /api/users/status/busy [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1693, in _entity_namespace_key
+    return getattr(ns, key)
+AttributeError: type object 'Psychologist' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/psychologistRoutes.py", line 30, in setPsychologistAsBusy
+    response = psychologistService.setPsychologistBusy(requestData).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/psychologistService.py", line 25, in setPsychologistBusy
+    result = psychologistDao.updateBusyStatus(user.id,busyStatus)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/psychologistDao.py", line 38, in updateBusyStatus
+    psychologist = session.query(Psychologist).filter_by(user_id=user_id).first()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1802, in filter_by
+    clauses = [
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 1803, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/base.py", line 1695, in _entity_namespace_key
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "psychologist" has no property "user_id"
+2024-02-01 18:18:30,759 - app - ERROR - Exception on /api/order/placed [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 27, in placeOrder
+    response = paymentService.placeOrder(request.json_data).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 42, in placeOrder
+    print("printing request",request.session_request_id,request.transaction_id,request.seconds_chatted)
+AttributeError: 'dict' object has no attribute 'session_request_id'
+2024-02-01 18:20:46,255 - app - ERROR - Exception on /api/order/placed [POST]
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 16, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Routes/paymentRoutes.py", line 27, in placeOrder
+    response = paymentService.placeOrder(request.json_data).__dict__
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Services/paymentService.py", line 42, in placeOrder
+    print("printing request",request.session_request_id,request.transaction_id,request.seconds_chatted)
+AttributeError: 'dict' object has no attribute 'session_request_id'
+2024-02-01 18:48:06,690 - app - ERROR - Exception on /api/check/user/bal [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+MySQLdb._exceptions.OperationalError: (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 43, in wrapper
+    return func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 21, in wrapper
+    raise e
+  File "/home/DriveKraft/drivekraft-app-backend/./app/util.py", line 15, in wrapper
+    result = func(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 14, in wrapper
+    if verify_token(tokenValue):
+  File "/home/DriveKraft/drivekraft-app-backend/./app/authenticate.py", line 25, in verify_token
+    token = getToken(tokenValue=tokenValue)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 872, in decorated_function
+    rv = self._call_fn(f, *args, **kwargs)
+  File "/home/DriveKraft/.local/lib/python3.10/site-packages/flask_caching/__init__.py", line 175, in _call_fn
+    return ensure_sync(fn)(*args, **kwargs)
+  File "/home/DriveKraft/drivekraft-app-backend/./app/Models/DAO/tokenDAO.py", line 28, in getToken
+    and_(Token.value == tokenValue, Token.created >= now - timedelta(hours=24))).one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2865, in one
+    return self._iter().one()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2903, in _iter
+    result = self.session.execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1695, in execute
+    conn = self._connection_for_bind(bind)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1536, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3234, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3313, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3283, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2117, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 3280, in _wrap_pool_connect
+    return fn()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/pool/base.py", line 901, in _checkout
+    result = pool._dialect.do_ping(fairy.dbapi_connection)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 183, in do_ping
+    dbapi_connection.ping(False)
+sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (4031, 'The client was disconnected by the server because of inactivity. See wait_timeout and interactive_timeout for configuring this behavior.')
+(Background on this error at: https://sqlalche.me/e/14/e3q8)

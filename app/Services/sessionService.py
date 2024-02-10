@@ -12,6 +12,7 @@ from ..Models.mysql.sessionRequest import SessionRequest
 from ..Models.mysql.user import User
 from ..Services import userService,psychologistService
 from flask import jsonify
+import logging
 
 SESSION_REQUEST_STATUS= 0
 SESSION_REQUEST_ISCANCELLED =0
@@ -47,7 +48,7 @@ def cancelSessionRequest(request : cancelSessionRequest) -> cancelSessionRespons
 
 def verifySessionRequest(request : verifySessionRequest) -> verifySessionResponse:
     verifiedSessionRequestId= sessionDao.findSessionRequestById(request.session_request_id)
-
+    logging.info("verifiedSessionRequestId: {}".format(verifiedSessionRequestId))
     if verifiedSessionRequestId==None:
         response = verifySessionResponse(status=False)
         return response
@@ -81,7 +82,7 @@ def createVerifySessionRequest(sessionRequest : SessionRequest,customer : User):
     response = verifySessionResponse(id=sessionRequest.id,listener_id=sessionRequest.psychologistId,
                                      customer_id=customer.id,status= SESSION_REQUEST_STATUS,
                                      session_type=sessionRequest.mode,customer_firebase_id=customer.firebaseId,
-                                     username=customer.name)
+                                     username=customer.username)
     return response
     #todo need to fix response at android side as well--> need to remove list , created and updated as well
 
@@ -90,8 +91,13 @@ def confirmSessionRequest(request : confirmSessionRequest) -> confirmSessionResp
     if sessionDao.isExpiredOrCancelled(request.session_request_id):
         response = confirmSessionResponse(status =False, message ="Session request either expired or cancelled.", sessionStatus =SESSION_REQUEST_EXPIRED_STATUS)
         return response
-
+    sessionDao.confirmSession(request.session_request_id)
     response = confirmSessionResponse(status=True, message="Session Confirmed",
                                      sessionStatus=SESSION_REQUEST_VaLID_STATUS)
     return response
 #TODO need to change repsonse at android side as well
+
+def getSessionByRequestId(sessionRequestId):
+    verifiedSessionRequest = sessionDao.findSessionRequestById(sessionRequestId)
+    return verifiedSessionRequest
+

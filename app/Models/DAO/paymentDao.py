@@ -2,6 +2,7 @@ from app.utils import currentTime
 from app.Models.mysql.paymentOrder import PaymentOrder
 from app.Models.mysql.transaction import Transaction
 from flask import g
+from sqlalchemy.exc import NoResultFound
 
 
 def storePaymentOrder(responseDict, userId):
@@ -20,9 +21,12 @@ def storePaymentOrder(responseDict, userId):
 
 def getTransactionaByTransId(transactionId):
     session = g.session
-    transaction = session.query(PaymentOrder).filter_by(contactNumber=transactionId).one()
-
-    return transaction
+    try:
+        transaction = session.query(Transaction).filter_by(transactionId=transactionId).first()
+        return transaction
+    except NoResultFound:
+        # Handle the case when no row is found
+        return None
 
 
 def createTranaction(userId, razorpayOrderRequest, cost, sessionType):
@@ -31,22 +35,22 @@ def createTranaction(userId, razorpayOrderRequest, cost, sessionType):
     session = g.session
 
     newTransaction = Transaction(userId=userId,
-                                 transactionId=razorpayOrderRequest.transaction_id,
-                                 psychologistId=razorpayOrderRequest.psychologist_id,
-                                 sessionRequestId=razorpayOrderRequest.session_request_id,
-                                 secondsChatted=razorpayOrderRequest.seconds_chatted,
+                                 transactionId=razorpayOrderRequest['transaction_id'],
+                                 psychologistId=razorpayOrderRequest['psychologist_id'],
+                                 sessionRequestId=razorpayOrderRequest['session_request_id'],
+                                 secondsChatted=razorpayOrderRequest['seconds_chatted'],
                                  amountDeducted=cost, sessionType=sessionType, created=now, updated=now)
 
     session.add(newTransaction)
     session.commit()
 
-    return "New transaction created in the database"
+    return newTransaction
 
 
 def updateTransaction(razorpayOrderRequest, cost):
     session = g.session
 
-    transaction = session.query(Transaction).filter_by(transactionId=razorpayOrderRequest.transaction_id)
+    transaction = session.query(Transaction).filter_by(transactionId=razorpayOrderRequest['transaction_id'])
     transaction.amountDeducted = cost
 
     session.commit()

@@ -4,6 +4,7 @@ from app.Models.mysql.otp import Otp
 from flask import g
 from sqlalchemy import and_
 from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy import desc
 
 
 def addOtp(userId,otpValue):
@@ -16,10 +17,10 @@ def addOtp(userId,otpValue):
     session.commit()
 
     return "Value updated in the database"
-    
+
 def getOtpbyUserId(userId):
     session = g.session
-    otp = session.query(Otp).filter_by(userId=userId).one()
+    otp = session.query(Otp).filter_by(userId=userId).order_by(desc(Otp.id)).first()
     print(otp)
     return otp
 
@@ -33,4 +34,3 @@ def getOtp(userId):
         return otp.otp
     except NoResultFound:
         return None
-    

@@ -31,6 +31,7 @@ def placeOrder():
 @paymentBlueprint.route('/confirm',methods=['GET','POST'])
 @create_db_session
 @format_request_data
+@authenticate_user
 def confirmOrder():
     paymentConfirmRequest = confirmPaymentOrderRequest.confirmPaymentOrderRequest(**request.json_data)
     response = paymentService.confirmOrder(paymentConfirmRequest).__dict__
