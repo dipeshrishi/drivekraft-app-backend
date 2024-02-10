@@ -8,6 +8,7 @@ import random,string
 import logging
 
 def verifyOtp(request : otpVerificationRequest) -> otpVerificationResponse:
+    logging.info("inside otp verify")
     validate = validateContactNumber(request.mobile)
     if(validate):
         user = userService.getUserByContact(request.mobile)

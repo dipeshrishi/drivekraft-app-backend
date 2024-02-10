@@ -7,6 +7,7 @@ from ..Configurations.chatApi import url_for_templates,api_instance,api_token,ge
 
 
 def sendTemplate(templateName, parameters, urlParameters, contactNumber):
+    logging.info("inside send template")
     url = url_for_templates.format(api_instance, api_token)
     parametersInJson = getParametersInJson(parameters, urlParameters)
 

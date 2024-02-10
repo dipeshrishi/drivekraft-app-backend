@@ -9,8 +9,10 @@ from app.utils.validateContactNumber import validateContactNumber
 from app.Services import userService
 from app.utils.currentTime import getCurrentTime
 from app.Models.DAO import otpDAO
+import logging
 
 def generateOtp(request : otpGenerateRequest) -> otpGenerateResponse:
+    logging.info("inside otp generation")
     validate = validateContactNumber(request.mobile)
     created = getCurrentTime()
     print(validate)
@@ -44,6 +46,7 @@ def generateOtpInternal():
     return otp
 
 def googleVerificationOtp(contactNumber):
+    logging.info("inside otp verification")
     if contactNumber == GOOGLE_CONTACT_NUMBER:
         return True
 

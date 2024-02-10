@@ -20,6 +20,7 @@ SESSION_REQUEST_EXPIRED_STATUS=False
 SESSION_REQUEST_VaLID_STATUS=True
 
 def send_Session_Request(request : sendSessionRequest) -> sendSessionResponse:
+    logging.info("inside send session Request")
     session_type = None
     print(" psychologist id is" + str(request.listener_id))
     try:
@@ -38,6 +39,7 @@ def send_Session_Request(request : sendSessionRequest) -> sendSessionResponse:
     return response
 
 def cancelSessionRequest(request : cancelSessionRequest) -> cancelSessionResponse:
+    logging.info("inside cancel session Request")
     try:
         sessionDao.cancelSessionById(request.session_request_id)
         response = cancelSessionResponse(status="Success", message="Session request cancelled.")
@@ -47,6 +49,7 @@ def cancelSessionRequest(request : cancelSessionRequest) -> cancelSessionRespons
         return response
 
 def verifySessionRequest(request : verifySessionRequest) -> verifySessionResponse:
+    logging.info("inside verify session Request")
     verifiedSessionRequestId= sessionDao.findSessionRequestById(request.session_request_id)
     logging.info("verifiedSessionRequestId: {}".format(verifiedSessionRequestId))
     if verifiedSessionRequestId==None:
@@ -57,6 +60,7 @@ def verifySessionRequest(request : verifySessionRequest) -> verifySessionRespons
     return response
 
 def fetchSessionRequest():
+    logging.info("inside fetch session Request")
     user = userService.getUserDetails()
     psy_id=psychologistService.getPsychologistIdFromUserID(user.id)
     sessionRequest= sessionDao.fetchSessionRequestByUserId(psy_id)
@@ -70,6 +74,7 @@ def fetchSessionRequest():
 
 
 def createVerifySessionRequest(sessionRequest : SessionRequest,customer : User):
+    logging.info("inside create verify session Request")
 
     # response = verifySessionResponse( id=sessionId,
     #                                   listener_id= sessionRequest.psychologistId,
@@ -87,7 +92,7 @@ def createVerifySessionRequest(sessionRequest : SessionRequest,customer : User):
     #todo need to fix response at android side as well--> need to remove list , created and updated as well
 
 def confirmSessionRequest(request : confirmSessionRequest) -> confirmSessionResponse:
-
+    logging.info("inside confirm session Request")
     if sessionDao.isExpiredOrCancelled(request.session_request_id):
         response = confirmSessionResponse(status =False, message ="Session request either expired or cancelled.", sessionStatus =SESSION_REQUEST_EXPIRED_STATUS)
         return response
@@ -95,7 +100,6 @@ def confirmSessionRequest(request : confirmSessionRequest) -> confirmSessionResp
     response = confirmSessionResponse(status=True, message="Session Confirmed",
                                      sessionStatus=SESSION_REQUEST_VaLID_STATUS)
     return response
-#TODO need to change repsonse at android side as well
 
 def getSessionByRequestId(sessionRequestId):
     verifiedSessionRequest = sessionDao.findSessionRequestById(sessionRequestId)

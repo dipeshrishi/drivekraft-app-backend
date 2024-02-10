@@ -6,6 +6,7 @@ from ..Services import userService
 from flask import jsonify
 
 def getUserRole()-> Role:
+    logging.info("inside get user roles")
     user = userService.getUserDetails()
 
     if user.roleId==PSYCHOLOGIST_ROLE_ID:

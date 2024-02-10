@@ -3,8 +3,10 @@ import json
 import time
 import logging
 from ..Configurations.chatApi import url as apiUrl,api_instance,api_token
+import logging
 
 def sendMessage(phonenumber, msg):
+    logging.info("inside send message")
     url = apiUrl.format(api_instance, api_token)
 
     payload = json.dumps({
