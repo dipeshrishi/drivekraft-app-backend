@@ -8,7 +8,7 @@ from functools import wraps
 import logging
 otpBlueprint = Blueprint('otp', __name__,url_prefix='/api')
 
-@otpBlueprint.route('/login-send-otp',methods=['GET','POST'])
+@otpBlueprint.route('/login-send-otp',methods=['POST'])
 @create_db_session
 @format_request_data
 def generateNewOtp():

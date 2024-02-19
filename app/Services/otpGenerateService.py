@@ -32,10 +32,10 @@ def generateOtp(request : otpGenerateRequest) -> otpGenerateResponse:
                     otpDAO.addOtp(user.id,otp)
 
         sendTemplateService.sendTemplate('otp', [otp],[], request.mobile)
-        response = otpGenerateResponse(successful=True,otp=otp,created=created)
+        response = otpGenerateResponse(statusCode=200,successful=True,otp=otp,created=created)
         return response
     else:
-        response = otpGenerateResponse(successful=False,error="Invalid Phone Number")
+        response = otpGenerateResponse(statusCode=400,successful=False,error="Invalid Phone Number")
         return response
 
 
